@@ -14,6 +14,7 @@
 		2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282851CD8520800C4655E /* LaunchScreen.storyboard */; };
 		2AD282921CD8520800C4655E /* ShadowsocksFreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD282911CD8520800C4655E /* ShadowsocksFreeTests.swift */; };
 		2AD2829D1CD8520800C4655E /* ShadowsocksFreeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2829C1CD8520800C4655E /* ShadowsocksFreeUITests.swift */; };
+		B40BD94E8D1B110407F8A58E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC121B21320A626A75E4D59 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,9 @@
 		2AD282981CD8520800C4655E /* ShadowsocksFreeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShadowsocksFreeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2829C1CD8520800C4655E /* ShadowsocksFreeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsocksFreeUITests.swift; sourceTree = "<group>"; };
 		2AD2829E1CD8520800C4655E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53272F45141B0C24FA91C8AE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6A0D7751512AC8B2A53E478C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9DC121B21320A626A75E4D59 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40BD94E8D1B110407F8A58E /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1DFB4E8E3B6468D1FCE851A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A0D7751512AC8B2A53E478C /* Pods.debug.xcconfig */,
+				53272F45141B0C24FA91C8AE /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		2AD282701CD8520800C4655E = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +95,8 @@
 				2AD282901CD8520800C4655E /* ShadowsocksFreeTests */,
 				2AD2829B1CD8520800C4655E /* ShadowsocksFreeUITests */,
 				2AD2827A1CD8520800C4655E /* Products */,
+				1DFB4E8E3B6468D1FCE851A5 /* Pods */,
+				49CDE42A6D9F863670ED9EFB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +141,14 @@
 			path = ShadowsocksFreeUITests;
 			sourceTree = "<group>";
 		};
+		49CDE42A6D9F863670ED9EFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9DC121B21320A626A75E4D59 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2AD282A11CD8520800C4655E /* Build configuration list for PBXNativeTarget "ShadowsocksFree" */;
 			buildPhases = (
+				464794F334623780392449D3 /* Check Pods Manifest.lock */,
 				2AD282751CD8520800C4655E /* Sources */,
 				2AD282761CD8520800C4655E /* Frameworks */,
 				2AD282771CD8520800C4655E /* Resources */,
+				51CDEF28BAFBBFD1E86CA3EB /* Embed Pods Frameworks */,
+				914A23D383E94E89C15C0887 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +220,7 @@
 				TargetAttributes = {
 					2AD282781CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = N7XNKCS3XY;
 					};
 					2AD2828C1CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
@@ -250,6 +278,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		464794F334623780392449D3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		51CDEF28BAFBBFD1E86CA3EB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		914A23D383E94E89C15C0887 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2AD282751CD8520800C4655E /* Sources */ = {
@@ -399,23 +475,31 @@
 		};
 		2AD282A21CD8520800C4655E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A0D7751512AC8B2A53E478C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShadowsocksFree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ChengLuffy.ShadowsocksFree;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ChengLuffy.FlashLight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		2AD282A31CD8520800C4655E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53272F45141B0C24FA91C8AE /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShadowsocksFree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ChengLuffy.ShadowsocksFree;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ChengLuffy.FlashLight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -484,6 +568,7 @@
 				2AD282A31CD8520800C4655E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2AD282A41CD8520800C4655E /* Build configuration list for PBXNativeTarget "ShadowsocksFreeTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +577,7 @@
 				2AD282A61CD8520800C4655E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2AD282A71CD8520800C4655E /* Build configuration list for PBXNativeTarget "ShadowsocksFreeUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +586,7 @@
 				2AD282A91CD8520800C4655E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
