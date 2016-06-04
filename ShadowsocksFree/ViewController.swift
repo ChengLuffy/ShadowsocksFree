@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         Alamofire.request(request).responseData { (respose: Response) in
             if respose.result.error == nil {
                 let str = String.init(data: respose.result.value!, encoding: NSUTF8StringEncoding)
-                let arr = str?.componentsSeparatedByString("<h3>免费shadowsocks帐号</h3>")
+                let arr = str?.componentsSeparatedByString("<h3>实验帐号</h3>")
                 let str1 = arr![1] as String
                 let arr1 = str1.componentsSeparatedByString("</section>")
                 let str2 = arr1[0] as String

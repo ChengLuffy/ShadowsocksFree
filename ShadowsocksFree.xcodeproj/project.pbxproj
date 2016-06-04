@@ -220,7 +220,7 @@
 				TargetAttributes = {
 					2AD282781CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = N7XNKCS3XY;
+						DevelopmentTeam = 9MXB6QACDK;
 					};
 					2AD2828C1CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
@@ -482,7 +482,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShadowsocksFree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ChengLuffy.FlashLight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noone.shadowsocksfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -497,7 +497,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShadowsocksFree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ChengLuffy.FlashLight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noone.shadowsocksfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
