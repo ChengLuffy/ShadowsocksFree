@@ -8,14 +8,14 @@
 
 import UIKit
 import Alamofire
-import MBProgressHUD
+import Fuzi
 
 class ViewController: UIViewController {
     var titles = [String]()
     var refreshControl: UIRefreshControl?
     @IBOutlet weak var tableView: UITableView!
-    lazy var dataSource: [String] = {
-        return [String]()
+    lazy var dataSource: [Model] = {
+        return [Model]()
     }()
     
     override func viewDidLoad() {
@@ -41,44 +41,58 @@ class ViewController: UIViewController {
     
     func getData() {
         
-//        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         self.refreshControl?.beginRefreshing()
-        let request = NSURLRequest.init(URL: NSURL.init(string: "http://www.ishadowsocks.net/")!)
-        
-        Alamofire.request(request).responseData { (respose: Response) in
+        let URLStr = "http://www.ishadowsocks.net/"
+        Alamofire.request(.GET, URLStr).responseData { (respose) in
+            
             if respose.result.error == nil {
-                let str = String.init(data: respose.result.value!, encoding: NSUTF8StringEncoding)
-                let arr = str?.componentsSeparatedByString("<h3>实验帐号</h3>")
-                let str1 = arr![1] as String
-                let arr1 = str1.componentsSeparatedByString("</section>")
-                let str2 = arr1[0] as String
-                var subArr = str2.componentsSeparatedByString("<h4>")
-                subArr.removeAtIndex(0)
+                let html = NSString.init(data: respose.data!, encoding: NSUTF8StringEncoding)
                 
-                for (index, value) in subArr.enumerate() {
-                    var subStr1 = value.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                    if index+1 % 6 != 0 {
-                        let range = subStr1.rangeOfString("</h4>")
-                        subStr1.removeRange(range!)
-                    }
-                    let tempStr: String
-                    if (index + 1) % 6 == 5 {
-                        tempStr = "状态:" + subStr1.componentsSeparatedByString(":")[1].componentsSeparatedByString("\">")[1].componentsSeparatedByString("<")[0]
-                        self.dataSource.append(tempStr)
-                    } else if (index + 1) % 6 == 0 {
-                    } else if (index + 1) % 6 == 1 {
-                        let temp = subStr1.componentsSeparatedByString(":")[1].substringToIndex(subStr1.startIndex.advancedBy(2))
-                        self.titles.append(temp.uppercaseString)
-                        self.dataSource.append(subStr1)
+                
+                do {
+                    let doc = try HTMLDocument(string: html as! String, encoding: NSUTF8StringEncoding)
+                    if var free = doc.xpath("//section")[2]?.children(tag: "div")[0].children(tag: "div") {
+                        free.removeFirst()
+                        for node in free[0].children(tag: "div") {
+                            let model = Model()
+                            
+                            for (index, sub) in node.children(tag: "h4").enumerate() {
+                                
+                                switch index {
+                                case 0: model.adress = sub.stringValue
+                                case 1: model.port = sub.stringValue
+                                case 2: model.passWord = sub.stringValue
+                                case 3: model.encryption = sub.stringValue
+                                case 4: model.stutas = sub.stringValue
+                                default :
+                                    break
+                                }
+                                
+                            }
+                            self.dataSource.append(model)
+                        }
+                        self.tableView.reloadData()
+                        self.refreshControl!.endRefreshing()
                     } else {
-                        self.dataSource.append(subStr1)
+                        print("nil")
                     }
+                    
+                } catch let error  {
+                    print(error)
                 }
-                self.tableView.reloadData()
-//                MBProgressHUD.hideHUDForView(self.view, animated: true)
-                self.refreshControl!.endRefreshing()
+                
+                
             }
         }
+
+    }
+    
+    func getValueForNum(num: Int) -> String {
+        var count: UInt32 = 0
+        let properties = class_copyPropertyList(Model.self, &count)
+        let str = String.fromCString(property_getName(properties[num]))!
+        free(properties)
+        return str
     }
     
 }
@@ -87,7 +101,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if dataSource.count > 0 {
-            return 3
+            return self.dataSource.count
         } else {
             return 0
         }
@@ -98,12 +112,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return titles[section]
+        return self.dataSource[section].name
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        cell.textLabel?.text = dataSource[indexPath.section * 5 + indexPath.row]
+        let str = self.getValueForNum(indexPath.row + 1)
+        let model = dataSource[indexPath.section]
+        cell.textLabel?.text = model.valueForKey(str) as? String
         return cell
     }
     
@@ -112,10 +128,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         } else {
             let pboard = UIPasteboard.generalPasteboard()
-            pboard.string = dataSource[indexPath.section * 5 + indexPath.row].componentsSeparatedByString(":")[1]
-            let alertVC = UIAlertController.init(title: dataSource[indexPath.section * 5 + indexPath.row].componentsSeparatedByString(":")[0] + "已成功复制", message: "", preferredStyle: .Alert)
+            let str = getValueForNum(indexPath.row + 1)
+            let temp = dataSource[indexPath.section].valueForKey(str)!.componentsSeparatedByString(":")
+            pboard.string = temp[1]
+            let alertVC = UIAlertController.init(title: temp[0] + "已成功复制", message: "", preferredStyle: .Alert)
             weak var weakSelf = self
-            
             self.presentViewController(alertVC, animated: true) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                     weakSelf!.dismissViewControllerAnimated(true, completion: {

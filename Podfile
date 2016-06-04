@@ -1,4 +1,6 @@
+platform:ios,'9.0'
 use_frameworks!
-platform:ios,'9.3'
-pod 'MBProgressHUD', '~> 0.9.2'
-pod 'Alamofire', '~> 3.3.1'
+target 'ShadowsocksFree' do
+pod 'Alamofire', '~> 3.4.0'
+pod 'Fuzi', '~> 0.3.0'
+end
