@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     }
     
     func getData() {
-        
+        self.dataSource.removeAll()
         self.refreshControl?.beginRefreshing()
         let URLStr = "http://www.ishadowsocks.net/"
         Alamofire.request(.GET, URLStr).responseData { (respose) in
