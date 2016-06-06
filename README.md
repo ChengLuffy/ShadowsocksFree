@@ -12,5 +12,5 @@
 
 > 16.6.6: 增加保存二维码到本地
 
-# Demo
-![](https://github.com/ChengLuffy/ShadowsocksFree/blob/master/Demo.jpg)
+# 演示
+![](https://github.com/ChengLuffy/ShadowsocksFree/blob/master/demo.gif)
