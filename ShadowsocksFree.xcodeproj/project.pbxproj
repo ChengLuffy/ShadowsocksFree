@@ -10,6 +10,7 @@
 		105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */; };
 		2A5409061D027D9A008912E9 /* Demo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A5409051D027D9A008912E9 /* Demo.jpg */; };
 		2A5409471D033B62008912E9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5409461D033B62008912E9 /* Model.swift */; };
+		2ACEAB341D05B31700CA96EB /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2ACEAB331D05B31700CA96EB /* demo.gif */; };
 		2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2827C1CD8520800C4655E /* AppDelegate.swift */; };
 		2AD2827F1CD8520800C4655E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2827E1CD8520800C4655E /* ViewController.swift */; };
 		2AD282821CD8520800C4655E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282801CD8520800C4655E /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		2A5409051D027D9A008912E9 /* Demo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Demo.jpg; sourceTree = "<group>"; };
 		2A5409461D033B62008912E9 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		2ACEAB331D05B31700CA96EB /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		2AD282791CD8520800C4655E /* ShadowsocksFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowsocksFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2827C1CD8520800C4655E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AD2827E1CD8520800C4655E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		2AD282701CD8520800C4655E = {
 			isa = PBXGroup;
 			children = (
+				2ACEAB331D05B31700CA96EB /* demo.gif */,
 				2A5409051D027D9A008912E9 /* Demo.jpg */,
 				2AD2827B1CD8520800C4655E /* ShadowsocksFree */,
 				2AD282901CD8520800C4655E /* ShadowsocksFreeTests */,
@@ -344,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A5409061D027D9A008912E9 /* Demo.jpg in Resources */,
+				2ACEAB341D05B31700CA96EB /* demo.gif in Resources */,
 				2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */,
 				2AD282841CD8520800C4655E /* Assets.xcassets in Resources */,
 				2AD282821CD8520800C4655E /* Main.storyboard in Resources */,
