@@ -10,5 +10,7 @@
 
 > 16.6.6: 使用之前的OC封装库进行二维码生成（有时间再用swift写下）
 
+> 16.6.6: 增加保存二维码到本地
+
 # Demo
 ![](https://github.com/ChengLuffy/ShadowsocksFree/blob/master/Demo.jpg)
