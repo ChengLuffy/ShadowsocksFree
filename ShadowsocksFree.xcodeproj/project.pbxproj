@@ -17,6 +17,20 @@
 		2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282851CD8520800C4655E /* LaunchScreen.storyboard */; };
 		2AD282921CD8520800C4655E /* ShadowsocksFreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD282911CD8520800C4655E /* ShadowsocksFreeTests.swift */; };
 		2AD2829D1CD8520800C4655E /* ShadowsocksFreeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2829C1CD8520800C4655E /* ShadowsocksFreeUITests.swift */; };
+		2ADD70D21D04854B0078A749 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70C21D04854B0078A749 /* bitstream.c */; };
+		2ADD70D31D04854B0078A749 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70C41D04854B0078A749 /* mask.c */; };
+		2ADD70D41D04854B0078A749 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70C61D04854B0078A749 /* qrencode.c */; };
+		2ADD70D51D04854B0078A749 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70C81D04854B0078A749 /* qrinput.c */; };
+		2ADD70D61D04854B0078A749 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70CA1D04854B0078A749 /* qrspec.c */; };
+		2ADD70D71D04854B0078A749 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70CC1D04854B0078A749 /* rscode.c */; };
+		2ADD70D81D04854B0078A749 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70CE1D04854B0078A749 /* split.c */; };
+		2ADD70D91D04854B0078A749 /* UIImage+MDQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70D11D04854B0078A749 /* UIImage+MDQRCode.m */; };
+		2ADD70E61D0488160078A749 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70E51D0488160078A749 /* NSString+Base64.m */; };
+		2ADD70E81D048B2F0078A749 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70E71D048B2F0078A749 /* QRViewController.swift */; };
+		2ADD70EF1D0497050078A749 /* QRCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70ED1D0497050078A749 /* QRCollectionViewCell.swift */; };
+		2ADD70F01D0497050078A749 /* QRCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ADD70EE1D0497050078A749 /* QRCollectionViewCell.xib */; };
+		2ADD70F31D049AF00078A749 /* QRCollectionReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD70F11D049AF00078A749 /* QRCollectionReusableHeaderView.swift */; };
+		2ADD70F41D049AF00078A749 /* QRCollectionReusableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ADD70F21D049AF00078A749 /* QRCollectionReusableHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +66,30 @@
 		2AD282981CD8520800C4655E /* ShadowsocksFreeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShadowsocksFreeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2829C1CD8520800C4655E /* ShadowsocksFreeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsocksFreeUITests.swift; sourceTree = "<group>"; };
 		2AD2829E1CD8520800C4655E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ADD70C21D04854B0078A749 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		2ADD70C31D04854B0078A749 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		2ADD70C41D04854B0078A749 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		2ADD70C51D04854B0078A749 /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		2ADD70C61D04854B0078A749 /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		2ADD70C71D04854B0078A749 /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		2ADD70C81D04854B0078A749 /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		2ADD70C91D04854B0078A749 /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		2ADD70CA1D04854B0078A749 /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		2ADD70CB1D04854B0078A749 /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		2ADD70CC1D04854B0078A749 /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		2ADD70CD1D04854B0078A749 /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		2ADD70CE1D04854B0078A749 /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		2ADD70CF1D04854B0078A749 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
+		2ADD70D01D04854B0078A749 /* UIImage+MDQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MDQRCode.h"; sourceTree = "<group>"; };
+		2ADD70D11D04854B0078A749 /* UIImage+MDQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MDQRCode.m"; sourceTree = "<group>"; };
+		2ADD70E31D04864F0078A749 /* ShadowsocksFree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShadowsocksFree-Bridging-Header.h"; sourceTree = "<group>"; };
+		2ADD70E41D0488160078A749 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		2ADD70E51D0488160078A749 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		2ADD70E71D048B2F0078A749 /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		2ADD70ED1D0497050078A749 /* QRCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionViewCell.swift; sourceTree = "<group>"; };
+		2ADD70EE1D0497050078A749 /* QRCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionViewCell.xib; sourceTree = "<group>"; };
+		2ADD70F11D049AF00078A749 /* QRCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
+		2ADD70F21D049AF00078A749 /* QRCollectionReusableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionReusableHeaderView.xib; sourceTree = "<group>"; };
 		9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksFree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC121B21320A626A75E4D59 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9628EBA50EBD12EDA813B3 /* Pods-ShadowsocksFree.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksFree.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksFree/Pods-ShadowsocksFree.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,9 +148,18 @@
 		2AD2827B1CD8520800C4655E /* ShadowsocksFree */ = {
 			isa = PBXGroup;
 			children = (
+				2ADD70E41D0488160078A749 /* NSString+Base64.h */,
+				2ADD70E51D0488160078A749 /* NSString+Base64.m */,
+				2ADD70C01D04854B0078A749 /* QR */,
 				2AD2827C1CD8520800C4655E /* AppDelegate.swift */,
 				2AD2827E1CD8520800C4655E /* ViewController.swift */,
+				2ADD70E71D048B2F0078A749 /* QRViewController.swift */,
 				2A5409461D033B62008912E9 /* Model.swift */,
+				2ADD70ED1D0497050078A749 /* QRCollectionViewCell.swift */,
+				2ADD70EE1D0497050078A749 /* QRCollectionViewCell.xib */,
+				2ADD70F11D049AF00078A749 /* QRCollectionReusableHeaderView.swift */,
+				2ADD70F21D049AF00078A749 /* QRCollectionReusableHeaderView.xib */,
+				2ADD70E31D04864F0078A749 /* ShadowsocksFree-Bridging-Header.h */,
 				2AD282801CD8520800C4655E /* Main.storyboard */,
 				2AD282831CD8520800C4655E /* Assets.xcassets */,
 				2AD282851CD8520800C4655E /* LaunchScreen.storyboard */,
@@ -137,6 +184,37 @@
 				2AD2829E1CD8520800C4655E /* Info.plist */,
 			);
 			path = ShadowsocksFreeUITests;
+			sourceTree = "<group>";
+		};
+		2ADD70C01D04854B0078A749 /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				2ADD70C11D04854B0078A749 /* libqrencode */,
+				2ADD70D01D04854B0078A749 /* UIImage+MDQRCode.h */,
+				2ADD70D11D04854B0078A749 /* UIImage+MDQRCode.m */,
+			);
+			path = QR;
+			sourceTree = "<group>";
+		};
+		2ADD70C11D04854B0078A749 /* libqrencode */ = {
+			isa = PBXGroup;
+			children = (
+				2ADD70C21D04854B0078A749 /* bitstream.c */,
+				2ADD70C31D04854B0078A749 /* bitstream.h */,
+				2ADD70C41D04854B0078A749 /* mask.c */,
+				2ADD70C51D04854B0078A749 /* mask.h */,
+				2ADD70C61D04854B0078A749 /* qrencode.c */,
+				2ADD70C71D04854B0078A749 /* qrencode.h */,
+				2ADD70C81D04854B0078A749 /* qrinput.c */,
+				2ADD70C91D04854B0078A749 /* qrinput.h */,
+				2ADD70CA1D04854B0078A749 /* qrspec.c */,
+				2ADD70CB1D04854B0078A749 /* qrspec.h */,
+				2ADD70CC1D04854B0078A749 /* rscode.c */,
+				2ADD70CD1D04854B0078A749 /* rscode.h */,
+				2ADD70CE1D04854B0078A749 /* split.c */,
+				2ADD70CF1D04854B0078A749 /* split.h */,
+			);
+			path = libqrencode;
 			sourceTree = "<group>";
 		};
 		49CDE42A6D9F863670ED9EFB /* Frameworks */ = {
@@ -228,7 +306,7 @@
 				TargetAttributes = {
 					2AD282781CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 9MXB6QACDK;
+						DevelopmentTeam = N7XNKCS3XY;
 					};
 					2AD2828C1CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
@@ -269,6 +347,8 @@
 				2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */,
 				2AD282841CD8520800C4655E /* Assets.xcassets in Resources */,
 				2AD282821CD8520800C4655E /* Main.storyboard in Resources */,
+				2ADD70F01D0497050078A749 /* QRCollectionViewCell.xib in Resources */,
+				2ADD70F41D049AF00078A749 /* QRCollectionReusableHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,9 +421,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ADD70E61D0488160078A749 /* NSString+Base64.m in Sources */,
+				2ADD70D41D04854B0078A749 /* qrencode.c in Sources */,
+				2ADD70D51D04854B0078A749 /* qrinput.c in Sources */,
+				2ADD70D91D04854B0078A749 /* UIImage+MDQRCode.m in Sources */,
+				2ADD70D31D04854B0078A749 /* mask.c in Sources */,
 				2A5409471D033B62008912E9 /* Model.swift in Sources */,
+				2ADD70D71D04854B0078A749 /* rscode.c in Sources */,
+				2ADD70EF1D0497050078A749 /* QRCollectionViewCell.swift in Sources */,
 				2AD2827F1CD8520800C4655E /* ViewController.swift in Sources */,
 				2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */,
+				2ADD70D21D04854B0078A749 /* bitstream.c in Sources */,
+				2ADD70F31D049AF00078A749 /* QRCollectionReusableHeaderView.swift in Sources */,
+				2ADD70E81D048B2F0078A749 /* QRViewController.swift in Sources */,
+				2ADD70D81D04854B0078A749 /* split.c in Sources */,
+				2ADD70D61D04854B0078A749 /* qrspec.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,9 +584,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShadowsocksFree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.noone.shadowsocksfree;
+				LLVM_LTO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shadowsocksfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/ShadowsocksFree-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -507,9 +601,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShadowsocksFree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.noone.shadowsocksfree;
+				LLVM_LTO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shadowsocksfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/ShadowsocksFree-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -7,18 +7,23 @@
 //
 
 import UIKit
+import RealmSwift
 
-class Model: NSObject {
+class Model: Object {
 
-    var name: String?
-    var adress: String? {
+    dynamic var name: String?
+    dynamic var adress: String? {
         didSet {
           name = adress!.componentsSeparatedByString(":")[1].substringToIndex(adress!.startIndex.advancedBy(2)).uppercaseString
         }
     }
-    var port: String?
-    var passWord: String?
-    var encryption: String?
-    var stutas: String?
+    dynamic var port: String?
+    dynamic var passWord: String?
+    dynamic var encryption: String?
+    dynamic var stutas: String?
     
+}
+
+public class realm {
+    static let sharedInstance = try! Realm()
 }

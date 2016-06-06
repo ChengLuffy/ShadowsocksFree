@@ -9,14 +9,12 @@
 import UIKit
 import Alamofire
 import Fuzi
+import RealmSwift
 
 class ViewController: UIViewController {
     var titles = [String]()
     var refreshControl: UIRefreshControl?
     @IBOutlet weak var tableView: UITableView!
-    lazy var dataSource: [Model] = {
-        return [Model]()
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +25,7 @@ class ViewController: UIViewController {
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(ViewController.getData), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl!)
+        self.title = "ShadowsocksFree"
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -40,15 +39,16 @@ class ViewController: UIViewController {
     }
     
     func getData() {
-        self.dataSource.removeAll()
         self.refreshControl?.beginRefreshing()
         let URLStr = "http://www.ishadowsocks.net/"
+        
         Alamofire.request(.GET, URLStr).responseData { (respose) in
             
             if respose.result.error == nil {
                 let html = NSString.init(data: respose.data!, encoding: NSUTF8StringEncoding)
-                
-                
+                try! realm.sharedInstance.write({
+                    realm.sharedInstance.deleteAll()
+                })
                 do {
                     let doc = try HTMLDocument(string: html as! String, encoding: NSUTF8StringEncoding)
                     if var free = doc.xpath("//section")[2]?.children(tag: "div")[0].children(tag: "div") {
@@ -69,7 +69,10 @@ class ViewController: UIViewController {
                                 }
                                 
                             }
-                            self.dataSource.append(model)
+                            
+                            try! realm.sharedInstance.write({
+                                realm.sharedInstance.add(model)
+                            })
                         }
                         self.tableView.reloadData()
                         self.refreshControl!.endRefreshing()
@@ -100,11 +103,9 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if dataSource.count > 0 {
-            return self.dataSource.count
-        } else {
-            return 0
-        }
+        
+        return realm.sharedInstance.objects(Model).count
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -112,13 +113,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.dataSource[section].name
+        return realm.sharedInstance.objects(Model)[section].name
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         let str = self.getValueForNum(indexPath.row + 1)
-        let model = dataSource[indexPath.section]
+        let model = realm.sharedInstance.objects(Model)[indexPath.section]
         cell.textLabel?.text = model.valueForKey(str) as? String
         return cell
     }
@@ -129,7 +130,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let pboard = UIPasteboard.generalPasteboard()
             let str = getValueForNum(indexPath.row + 1)
-            let temp = dataSource[indexPath.section].valueForKey(str)!.componentsSeparatedByString(":")
+            let temp = realm.sharedInstance.objects(Model)[indexPath.section].valueForKey(str)!.componentsSeparatedByString(":")
             pboard.string = temp[1]
             let alertVC = UIAlertController.init(title: temp[0] + "已成功复制", message: "", preferredStyle: .Alert)
             weak var weakSelf = self
