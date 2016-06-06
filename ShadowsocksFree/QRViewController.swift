@@ -100,4 +100,38 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
         
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let alertVC = UIAlertController.init(title: "将二维码保存到相册？", message: "", preferredStyle: .Alert)
+        let cancleAction = UIAlertAction.init(title: "取消", style: .Cancel) { (action) in
+            
+        }
+        let sureAction = UIAlertAction.init(title: "确定", style: .Default) { (action) in
+            UIImageWriteToSavedPhotosAlbum((collectionView.cellForItemAtIndexPath(indexPath) as! QRCollectionViewCell).mainImageView.image!, self, #selector(QRViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
+        
+        alertVC.addAction(cancleAction)
+        alertVC.addAction(sureAction)
+        
+        self.presentViewController(alertVC, animated: true, completion: nil)
+    }
+    // - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
+    func image(image: UIImage, didFinishSavingWithError: NSError?, contextInfo: AnyObject) {
+        let str: String?
+        if didFinishSavingWithError != nil {
+            print("错误")
+            str = "发生错误"
+        } else {
+            str = "保存成功"
+        }
+        
+        let alertVC = UIAlertController.init(title: str, message: "", preferredStyle: .Alert)
+        weak var weadSelf = self
+        self.presentViewController(alertVC, animated: true) { 
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { 
+                weadSelf!.dismissViewControllerAnimated(true, completion: nil)
+            })
+        }
+        
+    }
+    
 }
