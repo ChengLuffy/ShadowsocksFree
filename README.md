@@ -13,9 +13,9 @@
 > 16.6.6: 增加保存二维码到本地
 
 # TODO
-> 归档用户自己输入的配置信息并声称二维码
+- [ ]归档用户自己输入的配置信息并声称二维码
 
-> 尝试新的二维码图片生成方法
+- [x]尝试新的二维码图片生成方法
 
 # 演示
 ![](https://github.com/ChengLuffy/ShadowsocksFree/blob/master/demo.gif)

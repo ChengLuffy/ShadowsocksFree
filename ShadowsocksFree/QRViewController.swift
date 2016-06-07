@@ -50,7 +50,7 @@ class QRViewController: UIViewController {
         let port: NSString = (model.port?.componentsSeparatedByString(":")[1])!
         let temp: NSString = NSString.init(format: "\(method):\(passWord!)@\(adress):\(port)")
         let temp1 = temp.base64EncodedString()
-        let retStr = "ss://" + temp1
+        let retStr = "ss://" + (temp1 as String)
         
         return retStr
     }
@@ -81,7 +81,7 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! QRCollectionViewCell
         
         let SSStr = getSSQRStr(indexPath.section)
-        cell.mainImageView.image = UIImage.mdQRCodeForString(SSStr, size: 100)
+        cell.mainImageView.image = UIImage.createQRImage(info: SSStr, scale: UIScreen.mainScreen().bounds.size.width - 30)
         return cell
     }
     
