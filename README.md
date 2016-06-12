@@ -14,10 +14,16 @@
 
 > 16.6.7: Swift封装base64加密字符串以及二维码图片生成方法
 
+> 16.6.12: 增加 IBAnimatable 2.3 很好玩的转场动画，学习下
+
 # TODO
-- [ ] 归档用户自己输入的配置信息并生成二维码
+- [x] 归档用户自己输入的配置信息并生成二维码
 
 - [x] 尝试新的二维码图片生成方法
+
+- [ ] 增加编辑管理用户自定义节点的选项
+
+- [ ] 买了本 [剑指人心](http://weibo.com/u/1787521145?refer_flag=1005055010_&is_all=1) 大神的《Mac应用开发技术》，想尝试写个Mac端小插件
 
 # 演示
 ![](https://github.com/ChengLuffy/ShadowsocksFree/blob/master/demo.gif)
