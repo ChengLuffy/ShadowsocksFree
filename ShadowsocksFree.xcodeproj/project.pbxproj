@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */; };
 		2A33290F1D06A26B00B51725 /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33290E1D06A26B00B51725 /* QRImageCreate.swift */; };
+		2A3329111D06BC3800B51725 /* AddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3329101D06BC3800B51725 /* AddInfoViewController.swift */; };
+		2A33294E1D06F62300B51725 /* AddInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33294C1D06F62300B51725 /* AddInfoTableViewCell.swift */; };
+		2A33294F1D06F62300B51725 /* AddInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A33294D1D06F62300B51725 /* AddInfoTableViewCell.xib */; };
 		2A5409061D027D9A008912E9 /* Demo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A5409051D027D9A008912E9 /* Demo.jpg */; };
 		2A5409471D033B62008912E9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5409461D033B62008912E9 /* Model.swift */; };
 		2ACEAB341D05B31700CA96EB /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2ACEAB331D05B31700CA96EB /* demo.gif */; };
@@ -45,6 +48,9 @@
 
 /* Begin PBXFileReference section */
 		2A33290E1D06A26B00B51725 /* QRImageCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRImageCreate.swift; sourceTree = "<group>"; };
+		2A3329101D06BC3800B51725 /* AddInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInfoViewController.swift; sourceTree = "<group>"; };
+		2A33294C1D06F62300B51725 /* AddInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInfoTableViewCell.swift; sourceTree = "<group>"; };
+		2A33294D1D06F62300B51725 /* AddInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddInfoTableViewCell.xib; sourceTree = "<group>"; };
 		2A5409051D027D9A008912E9 /* Demo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Demo.jpg; sourceTree = "<group>"; };
 		2A5409461D033B62008912E9 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2ACEAB331D05B31700CA96EB /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
@@ -130,11 +136,14 @@
 				2AD2827C1CD8520800C4655E /* AppDelegate.swift */,
 				2AD2827E1CD8520800C4655E /* ViewController.swift */,
 				2ADD70E71D048B2F0078A749 /* QRViewController.swift */,
+				2A3329101D06BC3800B51725 /* AddInfoViewController.swift */,
 				2A5409461D033B62008912E9 /* Model.swift */,
 				2ADD70ED1D0497050078A749 /* QRCollectionViewCell.swift */,
 				2ADD70EE1D0497050078A749 /* QRCollectionViewCell.xib */,
 				2ADD70F11D049AF00078A749 /* QRCollectionReusableHeaderView.swift */,
 				2ADD70F21D049AF00078A749 /* QRCollectionReusableHeaderView.xib */,
+				2A33294C1D06F62300B51725 /* AddInfoTableViewCell.swift */,
+				2A33294D1D06F62300B51725 /* AddInfoTableViewCell.xib */,
 				2ADD70E31D04864F0078A749 /* ShadowsocksFree-Bridging-Header.h */,
 				2AD282801CD8520800C4655E /* Main.storyboard */,
 				2AD282831CD8520800C4655E /* Assets.xcassets */,
@@ -289,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A5409061D027D9A008912E9 /* Demo.jpg in Resources */,
+				2A33294F1D06F62300B51725 /* AddInfoTableViewCell.xib in Resources */,
 				2ACEAB341D05B31700CA96EB /* demo.gif in Resources */,
 				2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */,
 				2AD282841CD8520800C4655E /* Assets.xcassets in Resources */,
@@ -369,6 +379,8 @@
 			files = (
 				2A33290F1D06A26B00B51725 /* QRImageCreate.swift in Sources */,
 				2A5409471D033B62008912E9 /* Model.swift in Sources */,
+				2A3329111D06BC3800B51725 /* AddInfoViewController.swift in Sources */,
+				2A33294E1D06F62300B51725 /* AddInfoTableViewCell.swift in Sources */,
 				2ADD70EF1D0497050078A749 /* QRCollectionViewCell.swift in Sources */,
 				2AD2827F1CD8520800C4655E /* ViewController.swift in Sources */,
 				2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */,

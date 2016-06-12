@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (3.4.0)
   - Fuzi (0.3.1)
+  - IBAnimatable (2.3)
   - Realm (1.0.0):
     - Realm/Headers (= 1.0.0)
   - Realm/Headers (1.0.0)
@@ -10,14 +11,16 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.4.0)
   - Fuzi (~> 0.3.0)
+  - IBAnimatable (~> 2.3)
   - RealmSwift (~> 1.0.0)
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   Fuzi: 25118b725a1637f1676f63ae1acbba1f30a5dd6c
+  IBAnimatable: aafa60405dd69e9bbd3edc9c00fa150e13433951
   Realm: e15cd8e7c11d3e576f628ba0b7cb855269b4991c
   RealmSwift: 3229306d020d96f83b335f87a0dcbf2cef0e6a2b
 
-PODFILE CHECKSUM: 21b70de578c7c35f2c6282b1d84d60c1bfea8be6
+PODFILE CHECKSUM: 2f95538224ea03a1fe6ef8b4774804887e0153fe
 
 COCOAPODS: 1.0.1

@@ -46,9 +46,6 @@ class ViewController: UIViewController {
             
             if respose.result.error == nil {
                 let html = NSString.init(data: respose.data!, encoding: NSUTF8StringEncoding)
-                try! realm.sharedInstance.write({
-                    realm.sharedInstance.deleteAll()
-                })
                 do {
                     let doc = try HTMLDocument(string: html as! String, encoding: NSUTF8StringEncoding)
                     if var free = doc.xpath("//section")[2]?.children(tag: "div")[0].children(tag: "div") {
@@ -67,11 +64,11 @@ class ViewController: UIViewController {
                                 default :
                                     break
                                 }
-                                
+                                model.isNet = true
                             }
                             
                             try! realm.sharedInstance.write({
-                                realm.sharedInstance.add(model)
+                                realm.sharedInstance.add(model, update: true)
                             })
                         }
                         self.tableView.reloadData()
@@ -83,8 +80,8 @@ class ViewController: UIViewController {
                 } catch let error  {
                     print(error)
                 }
-                
-                
+            } else {
+                print(respose.result.error)
             }
         }
 
@@ -109,7 +106,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

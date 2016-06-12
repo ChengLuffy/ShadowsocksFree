@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IBAnimatable.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ShadowsocksFree.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,12 +37,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>28B21F2BB0C4E0C28CE849C200582208</key>
+		<key>0E1A5BB1562B0CB15C9F8200023E0BBA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>34A92C6832F4CF836332F3010B7A3594</key>
+		<key>2FB21F4CAB0DD229E3207E62FB126F8F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,12 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>40333F5917FF417C09E1CBB9CF369BEB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8F32957C8CE93F0BF6E00C36EA82DC03</key>
+		<key>7C8916FAA4CB709341B7F5C196601289</key>
 		<dict>
 			<key>primary</key>
 			<true/>

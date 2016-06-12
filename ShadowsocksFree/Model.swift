@@ -14,13 +14,25 @@ class Model: Object {
     dynamic var name: String?
     dynamic var adress: String? {
         didSet {
-          name = adress!.componentsSeparatedByString(":")[1].substringToIndex(adress!.startIndex.advancedBy(2)).uppercaseString
+            if adress!.containsString(":") {
+                name = adress!.componentsSeparatedByString(":")[1].substringToIndex(adress!.startIndex.advancedBy(2)).uppercaseString
+            }
         }
     }
     dynamic var port: String?
     dynamic var passWord: String?
     dynamic var encryption: String?
     dynamic var stutas: String?
+    dynamic var isNet = true
+    
+    /**
+     realm 设置主键
+     
+     - returns: 主键
+     */
+    override static func primaryKey() -> String? {
+        return "adress"
+    }
     
 }
 
