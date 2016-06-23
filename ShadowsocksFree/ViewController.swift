@@ -187,7 +187,7 @@ class ViewController: UIViewController {
     func scanBtnDidClicked(sender: AnyObject) {
         popoverView!.dismiss()
         let QRVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("scan")
-        QRVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Portal(direction: .Out, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pinch(direction: .Close))
+        QRVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Portal(direction: .Forward, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pinch(direction: .Close))
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.15 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
             self.presentViewController(QRVC, animated: true, completion: nil)
         })
@@ -240,10 +240,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         var model = Model()
         if isDelete == false {
             model = realm.sharedInstance.objects(Model)[indexPath.section]
+            cell.textLabel?.text = model.valueForKey(str) as? String
         } else {
             model = realm.sharedInstance.objects(Model).filter("isNet = false")[indexPath.row]
+            cell.textLabel?.text = model.adress
         }
-        cell.textLabel?.text = model.valueForKey(str) as? String
+        
         return cell
     }
     

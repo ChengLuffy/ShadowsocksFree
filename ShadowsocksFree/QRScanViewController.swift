@@ -13,10 +13,25 @@ import IBAnimatable
 class QRScanViewController: AnimatableViewController {
 
     var session: AVCaptureSession?
+    lazy var imagePickerVC: UIImagePickerController = {
+        let imagePickerVC = UIImagePickerController.init()
+        imagePickerVC.sourceType = .SavedPhotosAlbum
+        imagePickerVC.delegate = self
+        return imagePickerVC
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let imagePickerBtn = UIButton.init(type: .System)
+        imagePickerBtn.setTitle("从相册读取", forState: .Normal)
+        imagePickerBtn.backgroundColor = UIColor(white: 1, alpha: 0.6)
+        imagePickerBtn.layer.cornerRadius = 15
+        let size = UIScreen.mainScreen().bounds.size
+        imagePickerBtn.frame = CGRect(x: size.width / 2 - 50, y: size.height - 150, width: 100, height: 30)
+        imagePickerBtn.addTarget(self, action: #selector(QRScanViewController.imagePickerBtnDidClicker(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(imagePickerBtn)
+        
         let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
         do {
@@ -35,6 +50,7 @@ class QRScanViewController: AnimatableViewController {
             layer.videoGravity = AVLayerVideoGravityResizeAspectFill
             layer.frame = self.view.bounds
             self.view.layer.insertSublayer(layer, atIndex: 0)
+            
             session?.startRunning()
             
         } catch let error as NSError {
@@ -61,10 +77,16 @@ class QRScanViewController: AnimatableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func imagePickerBtnDidClicker(sender: AnyObject) {
+        session?.stopRunning()
+        self.presentViewController(imagePickerVC, animated: true, completion: nil)
+    }
 
 }
 
-extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
+extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         if metadataObjects.count > 0 {
             session?.stopRunning()
@@ -101,6 +123,69 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate {
                 alertVC.addAction(cancelAction)
                 alertVC.addAction(addAction)
                 self.presentViewController(alertVC, animated: true, completion: nil)
+            } else {
+                let alertVC = UIAlertController.init(title: "信息提示", message: "错误的ShadowSocks配置信息\n\(str)", preferredStyle: .Alert)
+                weak var weakSelf = self
+                let cancelAction = UIAlertAction.init(title: "确定", style: .Cancel, handler: { (_) in
+                    print("cancel")
+                    weakSelf!.session?.startRunning()
+                })
+                alertVC.addAction(cancelAction)
+                self.presentViewController(alertVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        let detector = CIDetector.init(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+        let ciimage = CIImage.init(image: image)
+        picker.dismissViewControllerAnimated(true) {
+            let features = detector.featuresInImage(ciimage!)
+            if features.count > 0 {
+                let feature = features[0] as! CIQRCodeFeature
+                let str = feature.messageString
+                print(str)
+                if str.hasPrefix("ss://") {
+                    let dataStr = str.componentsSeparatedByString("://")[1]
+                    let data = NSData(base64EncodedString: dataStr, options: .IgnoreUnknownCharacters)
+                    let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                    let adress = str!.componentsSeparatedByString("@")[1].componentsSeparatedByString(":")[0]
+                    let port = str!.componentsSeparatedByString(":")[2]
+                    let method = str!.componentsSeparatedByString("@")[0].componentsSeparatedByString(":")[0]
+                    let password = str!.componentsSeparatedByString(":")[1].componentsSeparatedByString("@")[0]
+                    let alertVC = UIAlertController.init(title: "信息预览", message: "服务器地址:\(adress)\n端口:\(port)\n加密方式:\(method)\n密码:\(password)", preferredStyle: .Alert)
+                    weak var weakSelf = self
+                    let cancelAction = UIAlertAction.init(title: "取消", style: .Cancel, handler: { (_) in
+                        print("cancel")
+                        weakSelf!.session?.startRunning()
+                    })
+                    let addAction = UIAlertAction.init(title: "添加", style: .Default, handler: { (_) in
+                        let model = Model()
+                        model.adress = "服务器地址:" + adress
+                        model.port = "端口:" + port
+                        model.encryption = "加密方式:" + method
+                        model.passWord = "密码:" + password
+                        model.isNet = false
+                        try! realm.sharedInstance.write({
+                            realm.sharedInstance.add(model, update: true)
+                        })
+                        
+                        weakSelf?.dismissViewControllerAnimated(true, completion: nil)
+                    })
+                    alertVC.addAction(cancelAction)
+                    alertVC.addAction(addAction)
+                    self.presentViewController(alertVC, animated: true, completion: nil)
+                } else {
+                    let alertVC = UIAlertController.init(title: "信息提示", message: "错误的ShadowSocks配置信息\n\(str)", preferredStyle: .Alert)
+                    weak var weakSelf = self
+                    let cancelAction = UIAlertAction.init(title: "确定", style: .Cancel, handler: { (_) in
+                        print("cancel")
+                        weakSelf!.session?.startRunning()
+                    })
+                    alertVC.addAction(cancelAction)
+                    self.presentViewController(alertVC, animated: true, completion: nil)
+                }
+
             }
         }
     }

@@ -4,21 +4,23 @@
 作者只是写着玩，最近这几个节点账号并不稳定而且网速很慢，推荐搬瓦工和[Shadowrocket](https://itunes.apple.com/cn/app/shadowrocket/id932747118?mt=8)使用
 
 # 更新记录
-> 16.6.5: 使用[Fuzi](https://github.com/cezheng/Fuzi)对HTML进行解析
+> 16.06.05: 使用[Fuzi](https://github.com/cezheng/Fuzi)对HTML进行解析
 
-> 16.6.6: 使用[RealmSwift](https://github.com/realm/realm-cocoa)进行数据持久化
+> 16.06.06: 使用[RealmSwift](https://github.com/realm/realm-cocoa)进行数据持久化
 
-> 16.6.6: 使用之前的用的第三方库进行二维码生成（有时间再用swift写下）
+> 16.06.06: 使用之前的用的第三方库进行二维码生成（有时间再用swift写下）
 
-> 16.6.6: 增加保存二维码到本地
+> 16.06.06: 增加保存二维码到本地
 
-> 16.6.7: Swift封装base64加密字符串以及二维码图片生成方法
+> 16.06.07: Swift封装base64加密字符串以及二维码图片生成方法
 
-> 16.6.12: 增加 IBAnimatable 2.3 很好玩的转场动画，学习下
+> 16.06.12: 增加 IBAnimatable 2.3 很好玩的转场动画，学习下
 
-> 16.6.23: 学习下在iPhone下实现popoverView。
-           实现swift下二维码扫描及base64 解码。
-           学习代码使用IBAnimatable 进行转场动画。
+> 16.06.23: 学习下在iPhone下实现popoverView；
+           实现swift下二维码扫描及base64 解码；
+           学习代码使用IBAnimatable 进行转场动画
+
+> 16.06.23: 实现从设备相册读取二维码扫描。
 
 # TODO
 - [x] 归档用户自己输入的配置信息并生成二维码
