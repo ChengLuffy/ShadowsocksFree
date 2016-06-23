@@ -16,7 +16,7 @@
 
 > 16.06.12: 增加 IBAnimatable 2.3 很好玩的转场动画，学习下
 
-> 16.06.23: 学习下在iPhone下实现popoverView；
+> 16.06.23: 学习下[corin8823](https://github.com/corin8823/Popover)在iPhone下实现popoverView, 自己写的由于做了很多实验也不知道怎么改回去，项目内还是用大神的；
            实现swift下二维码扫描及base64 解码；
            学习代码使用IBAnimatable 进行转场动画
 
