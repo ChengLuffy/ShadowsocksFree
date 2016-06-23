@@ -12,11 +12,10 @@
 		2A3329111D06BC3800B51725 /* AddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3329101D06BC3800B51725 /* AddInfoViewController.swift */; };
 		2A33294E1D06F62300B51725 /* AddInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33294C1D06F62300B51725 /* AddInfoTableViewCell.swift */; };
 		2A33294F1D06F62300B51725 /* AddInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A33294D1D06F62300B51725 /* AddInfoTableViewCell.xib */; };
-		2A5409061D027D9A008912E9 /* Demo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A5409051D027D9A008912E9 /* Demo.jpg */; };
+		2A33CE5F1D1B9C03000F652A /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2A33CE5E1D1B9C03000F652A /* demo.gif */; };
 		2A5409471D033B62008912E9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5409461D033B62008912E9 /* Model.swift */; };
 		2ABF70111D1AECC000ED43AB /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF70101D1AECC000ED43AB /* Popover.swift */; };
 		2ABF704D1D1B220900ED43AB /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF704C1D1B220900ED43AB /* QRScanViewController.swift */; };
-		2ACEAB341D05B31700CA96EB /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2ACEAB331D05B31700CA96EB /* demo.gif */; };
 		2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2827C1CD8520800C4655E /* AppDelegate.swift */; };
 		2AD2827F1CD8520800C4655E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2827E1CD8520800C4655E /* ViewController.swift */; };
 		2AD282821CD8520800C4655E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282801CD8520800C4655E /* Main.storyboard */; };
@@ -53,11 +52,10 @@
 		2A3329101D06BC3800B51725 /* AddInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInfoViewController.swift; sourceTree = "<group>"; };
 		2A33294C1D06F62300B51725 /* AddInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInfoTableViewCell.swift; sourceTree = "<group>"; };
 		2A33294D1D06F62300B51725 /* AddInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddInfoTableViewCell.xib; sourceTree = "<group>"; };
-		2A5409051D027D9A008912E9 /* Demo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Demo.jpg; sourceTree = "<group>"; };
+		2A33CE5E1D1B9C03000F652A /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		2A5409461D033B62008912E9 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2ABF70101D1AECC000ED43AB /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		2ABF704C1D1B220900ED43AB /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
-		2ACEAB331D05B31700CA96EB /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		2AD282791CD8520800C4655E /* ShadowsocksFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowsocksFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2827C1CD8520800C4655E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AD2827E1CD8520800C4655E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,8 +110,7 @@
 		2AD282701CD8520800C4655E = {
 			isa = PBXGroup;
 			children = (
-				2ACEAB331D05B31700CA96EB /* demo.gif */,
-				2A5409051D027D9A008912E9 /* Demo.jpg */,
+				2A33CE5E1D1B9C03000F652A /* demo.gif */,
 				2AD2827B1CD8520800C4655E /* ShadowsocksFree */,
 				2AD282901CD8520800C4655E /* ShadowsocksFreeTests */,
 				2AD2829B1CD8520800C4655E /* ShadowsocksFreeUITests */,
@@ -303,9 +300,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A5409061D027D9A008912E9 /* Demo.jpg in Resources */,
+				2A33CE5F1D1B9C03000F652A /* demo.gif in Resources */,
 				2A33294F1D06F62300B51725 /* AddInfoTableViewCell.xib in Resources */,
-				2ACEAB341D05B31700CA96EB /* demo.gif in Resources */,
 				2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */,
 				2AD282841CD8520800C4655E /* Assets.xcassets in Resources */,
 				2AD282821CD8520800C4655E /* Main.storyboard in Resources */,
