@@ -8,8 +8,9 @@
 
 import UIKit
 
-class AddInfoViewController: UIViewController {
 
+class AddInfoViewController:  UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     lazy var titleArr = ["服务器地址", "端口", "密码", "加密方式", "备注"]
     override func viewDidLoad() {
@@ -82,5 +83,6 @@ extension AddInfoViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.view.endEditing(true)
     }
 }

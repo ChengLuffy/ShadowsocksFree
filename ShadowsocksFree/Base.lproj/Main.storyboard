@@ -25,7 +25,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="xP0-4x-djZ" firstAttribute="top" secondItem="iuH-65-Ai4" secondAttribute="bottom" id="9iV-ER-Ohi"/>
                             <constraint firstItem="xP0-4x-djZ" firstAttribute="leading" secondItem="MH9-co-Oa0" secondAttribute="leading" id="Mup-NR-M95"/>
@@ -47,6 +47,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGe-di-ZJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1852" y="-694"/>
+        </scene>
+        <!--Scan View Controller-->
+        <scene sceneID="pe6-L7-Xfg">
+            <objects>
+                <viewController storyboardIdentifier="scan" id="qt7-uy-Rjg" customClass="QRScanViewController" customModule="ShadowsocksFree" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bgG-lo-8jF"/>
+                        <viewControllerLayoutGuide type="bottom" id="aR7-a4-1JX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ewJ-bC-Q8b">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aki-3V-RRw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2537" y="-694"/>
         </scene>
         <!--ShadowsocksFree-->
         <scene sceneID="tne-QT-ifu">
@@ -76,12 +94,12 @@
                     <navigationItem key="navigationItem" title="ShadowsocksFree" id="T3q-cY-nUC">
                         <barButtonItem key="leftBarButtonItem" title="Item" systemItem="add" id="ciK-6H-v85">
                             <connections>
-                                <segue destination="CFY-0b-aip" kind="custom" customClass="PresentCardsSegue" customModule="IBAnimatable" id="tJO-9r-dsA"/>
+                                <action selector="addItemDidClicked:" destination="BYZ-38-t0r" id="avX-Nm-6r2"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="QR" id="v9E-zX-jVs">
                             <connections>
-                                <segue destination="gae-pN-Ric" kind="custom" customClass="PresentExplodeSegue" customModule="IBAnimatable" id="ZV6-XI-p9E"/>
+                                <action selector="QRItemDidClicked:" destination="BYZ-38-t0r" id="Jea-ml-ib3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -130,7 +148,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5aL-2O-CfI">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="9EI-mT-aeB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="9EI-mT-aeB">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="custom" customClass="DismissSegue" customModule="IBAnimatable" id="RHg-S2-Nzt"/>
                             </connections>
@@ -165,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="231" y="138"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Animatable Navigation Controller-->
         <scene sceneID="Ali-d7-idh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gae-pN-Ric" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="watch" automaticallyAdjustsScrollViewInsets="NO" id="gae-pN-Ric" customClass="AnimatableNavigationController" customModule="IBAnimatable" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yui-4E-9eG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -183,16 +201,22 @@
             </objects>
             <point key="canvasLocation" x="1787" y="138"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Animatable Navigation Controller-->
         <scene sceneID="HEE-21-0Ru">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CFY-0b-aip" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="add" automaticallyAdjustsScrollViewInsets="NO" id="CFY-0b-aip" customClass="AnimatableNavigationController" customModule="IBAnimatable" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UuE-ye-VVa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="transitionAnimationType" value="Flod"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="transitionDuration">
+                            <real key="value" value="0.25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="qaZ-WR-QfG" kind="relationship" relationship="rootViewController" id="DoD-yp-0d8"/>
                     </connections>
@@ -203,6 +227,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="RHg-S2-Nzt"/>
+        <segue reference="Lc3-Yj-qWx"/>
     </inferredMetricsTieBreakers>
 </document>

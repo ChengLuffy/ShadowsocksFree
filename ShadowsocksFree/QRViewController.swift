@@ -40,7 +40,7 @@ class QRViewController: UIViewController {
     
     func getSSQRStr(num: Int) -> String! {
         let model = realm.sharedInstance.objects(Model)[num]
-        print(model.adress)
+        print(model.adress!)
         let method: NSString = (model.encryption?.componentsSeparatedByString(":")[1])!
         
         let passWord: NSString?
