@@ -179,6 +179,7 @@ class ViewController: UIViewController {
         popoverView!.dismiss()
         let addInfoVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("add")
         addInfoVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Fold(fromDirection: .Right, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.15 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
             self.presentViewController(addInfoVC, animated: true, completion: nil)
         })
@@ -201,6 +202,7 @@ class ViewController: UIViewController {
             self.presentViewController(QRVC, animated: true, completion: nil)
         })
     }
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -278,6 +280,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             })
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return isDelete
     }
     
 }
