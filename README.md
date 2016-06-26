@@ -1,12 +1,14 @@
 # ShadowsocksFree
 数据来源：[ishadowsocks](http://www.ishadowsocks.net/)
 
-作者只是写着玩，最近这几个节点账号并不稳定而且网速很慢，推荐搬瓦工和[Shadowrocket](https://itunes.apple.com/cn/app/shadowrocket/id932747118?mt=8)使用
+作者只是写着玩，最近这几个节点账号并不稳定而且网速很慢，推荐搬瓦工和[Shadowrocket](https://itunes.apple.com/cn/app/shadowrocket/id932747118?mt=8)搭配使用
+
+之所以有做各样一个应用的想法是因为搬瓦工前几天电信出口炸了半天，当时萌生了一个App端获取一些免费账号过渡搬瓦工不稳定时期的想法，正好想学Swift，于是做了下，把想学的都加进去玩。
 
 # 更新记录
-> 16.06.05: 使用[Fuzi](https://github.com/cezheng/Fuzi)对HTML进行解析
+> 16.06.05: 使用[Fuzi](https://github.com/cezheng/Fuzi)对HTML进行解析(第一次对HTML进行类XML的解析，有点小激动呢)
 
-> 16.06.06: 使用[RealmSwift](https://github.com/realm/realm-cocoa)进行数据持久化
+> 16.06.06: 使用[RealmSwift](https://github.com/realm/realm-cocoa)进行数据持久化(项目哪集成Realm后应用会变的超大，但是Realm还是很好用)
 
 > 16.06.06: 使用之前的用的第三方库进行二维码生成（有时间再用swift写下）
 
@@ -17,8 +19,8 @@
 > 16.06.12: 增加 IBAnimatable 2.3 很好玩的转场动画，学习下
 
 > 16.06.23: 学习下[corin8823](https://github.com/corin8823/Popover)在iPhone下实现popoverView, 自己写的由于做了很多实验也不知道怎么改回去，项目内还是用大神的；
-           实现swift下二维码扫描及base64 解码；
-           学习代码使用IBAnimatable 进行转场动画
+实现swift下二维码扫描及base64 解码；
+学习代码使用IBAnimatable 进行转场动画(用storyBoard会比较简单但是用代码去做。。。首先没有文档也没有Example，自己试了很多次才搞懂)
 
 > 16.06.23: 实现从设备相册读取二维码扫描。
 
