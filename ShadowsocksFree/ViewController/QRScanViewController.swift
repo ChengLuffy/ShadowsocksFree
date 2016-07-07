@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import IBAnimatable
 
-class QRScanViewController: AnimatableViewController {
+class QRScanViewController: UIViewController {
 
     var session: AVCaptureSession?
     lazy var imagePickerVC: UIImagePickerController = {
