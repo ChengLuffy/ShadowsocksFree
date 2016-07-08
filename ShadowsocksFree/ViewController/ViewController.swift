@@ -29,11 +29,11 @@ class ViewController: UIViewController {
         refreshControl!.addTarget(self, action: #selector(ViewController.getData), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl!)
         self.title = "ShadowsocksFree"
-        self.getData()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.getData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     }
     
     func getData() {
+        tableView.updateFocusIfNeeded()
         self.refreshControl?.beginRefreshing()
         let URLStr = "http://www.ishadowsocks.net/"
         
