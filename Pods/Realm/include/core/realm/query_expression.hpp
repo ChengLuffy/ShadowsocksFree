@@ -651,7 +651,7 @@ Overloads<T, float>, public Overloads<T, double>, public Overloads<T, int64_t>, 
 public Overloads<T, bool>, public Overloads<T, Timestamp>, public Overloads<T, OldDateTime>, public Overloads<T, null>
 {
 public:
-    virtual ~Subexpr2() {};
+    virtual ~Subexpr2() {}
 
 #define RLM_U2(t, o) using Overloads<T, t>::operator o;
 #define RLM_U(o) RLM_U2(int, o) RLM_U2(float, o) RLM_U2(double, o) RLM_U2(int64_t, o) RLM_U2(StringData, o) RLM_U2(bool, o) RLM_U2(OldDateTime, o) RLM_U2(Timestamp, o) RLM_U2(null, o)
@@ -701,7 +701,7 @@ struct NullableVector
     using t_storage  = typename std::conditional<std::is_same<Underlying, bool>::value
         || std::is_same<Underlying, int>::value, int64_t, Underlying>::type;
 
-    NullableVector() {};
+    NullableVector() {}
 
     NullableVector& operator= (const NullableVector& other)
     {
@@ -1436,7 +1436,7 @@ UnaryOperator<Pow<T>> power (const Subexpr2<T>& left) {
 // Classes used for LinkMap (see below).
 struct LinkMapFunction
 {
-    // Your consume() method is given row index of the linked-to table as argument, and you must return wether or
+    // Your consume() method is given row index of the linked-to table as argument, and you must return whether or
     // not you want the LinkMapFunction to exit (return false) or continue (return true) harvesting the link tree
     // for the current main table row index (it will be a link tree if you have multiple type_LinkList columns
     // in a link()->link() query.
@@ -1445,7 +1445,7 @@ struct LinkMapFunction
 
 struct FindNullLinks : public LinkMapFunction
 {
-    FindNullLinks() : m_has_link(false) {};
+    FindNullLinks() : m_has_link(false) {}
 
     bool consume(size_t row_index) override
     {
@@ -2046,9 +2046,9 @@ public:
     }
 
     template<typename C>
-    SubColumns<C> column(size_t column) const
+    SubColumns<C> column(size_t column_ndx) const
     {
-        return SubColumns<C>(Columns<C>(column, m_link_map.target_table()), m_link_map);
+        return SubColumns<C>(Columns<C>(column_ndx, m_link_map.target_table()), m_link_map);
     }
 
     LinkMap link_map() const { return m_link_map; }
@@ -2073,10 +2073,10 @@ public:
     }
 
 private:
-    Columns(size_t column, const Table* table, const std::vector<size_t>& links={}) :
+    Columns(size_t column_ndx, const Table* table, const std::vector<size_t>& links={}) :
         m_link_map(table, links)
     {
-        static_cast<void>(column);
+        static_cast<void>(column_ndx);
     }
 
     LinkMap m_link_map;
@@ -2096,7 +2096,7 @@ Query compare(const Subexpr2<Link>& left, const ConstRow& row)
 #ifdef REALM_OLDQUERY_FALLBACK
         if (link_map.m_link_columns.size() == 1) {
             // We can fall back to Query::links_to for != and == operations on links, but only
-            // for == on link lists. This is because negating query.links_to(…) is equivalent to
+            // for == on link lists. This is because negating query.links_to() is equivalent to
             // to "ALL linklist != row" rather than the "ANY linklist != row" semantics we're after.
             if (link_map.m_link_types[0] == col_type_Link ||
                 (link_map.m_link_types[0] == col_type_LinkList && std::is_same<Operator, Equal>::value)) {

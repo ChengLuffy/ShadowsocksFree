@@ -179,6 +179,7 @@ public:
     virtual StringData get_index_data(size_t, StringIndex::StringConversionBuffer& buffer) const noexcept = 0;
 
     // Search index
+    virtual bool supports_search_index() const noexcept;
     virtual bool has_search_index() const noexcept;
     virtual StringIndex* create_search_index();
     virtual void destroy_search_index() noexcept;
@@ -292,7 +293,6 @@ public:
     virtual void refresh_accessor_tree(size_t new_col_ndx, const Spec&) = 0;
 
 #ifdef REALM_DEBUG
-    // Must be upper case to avoid conflict with macro in Objective-C
     virtual void verify() const = 0;
     virtual void verify(const Table&, size_t col_ndx) const;
     virtual void to_dot(std::ostream&, StringData title = StringData()) const = 0;
@@ -338,8 +338,6 @@ protected:
 #endif
 
 private:
-    class WriteSliceHandler;
-
     static ref_type build(size_t* rest_size_ptr, size_t fixed_height,
                           Allocator&, CreateHandler&);
 };
@@ -399,6 +397,7 @@ public:
     void move_assign(ColumnBaseWithIndex& col) noexcept;
     void destroy() noexcept override;
 
+    virtual bool supports_search_index() const noexcept override { return true; }
     bool has_search_index() const noexcept final { return bool(m_search_index); }
     StringIndex* get_search_index() noexcept final { return m_search_index.get(); }
     const StringIndex* get_search_index() const noexcept final { return m_search_index.get(); }
@@ -525,6 +524,14 @@ public:
 
     void populate_search_index();
     StringIndex* create_search_index() override;
+    inline bool supports_search_index() const noexcept override 
+    { 
+        if (realm::is_any<T, float, double>::value)
+            return false;
+        else
+            return true; 
+    }
+
 
     //@{
     /// Find the lower/upper bound for the specified value assuming
@@ -620,6 +627,12 @@ private:
 };
 
 // Implementation:
+
+inline bool ColumnBase::supports_search_index() const noexcept
+{
+    REALM_ASSERT(!has_search_index());
+    return false;
+}
 
 inline bool ColumnBase::has_search_index() const noexcept
 {
@@ -855,7 +868,11 @@ void Column<T>::populate_search_index()
 template<class T>
 StringIndex* Column<T>::create_search_index()
 {
+    if (realm::is_any<T, float, double>::value)
+        return nullptr;
+
     REALM_ASSERT(!has_search_index());
+    REALM_ASSERT(supports_search_index());
     m_search_index.reset(new StringIndex(this, get_alloc())); // Throws
     populate_search_index();
     return m_search_index.get();
@@ -896,17 +913,17 @@ template<class L, class T>
 size_t ColumnBase::lower_bound(const L& list, T value) const noexcept
 {
     size_t i = 0;
-    size_t size = list.size();
-    while (0 < size) {
-        size_t half = size / 2;
+    size_t list_size = list.size();
+    while (0 < list_size) {
+        size_t half = list_size / 2;
         size_t mid = i + half;
         typename L::value_type probe = list.get(mid);
         if (probe < value) {
             i = mid + 1;
-            size -= half + 1;
+            list_size -= half + 1;
         }
         else {
-            size = half;
+            list_size = half;
         }
     }
     return i;
@@ -916,26 +933,26 @@ template<class L, class T>
 size_t ColumnBase::upper_bound(const L& list, T value) const noexcept
 {
     size_t i = 0;
-    size_t size = list.size();
-    while (0 < size) {
-        size_t half = size / 2;
+    size_t list_size = list.size();
+    while (0 < list_size) {
+        size_t half = list_size / 2;
         size_t mid = i + half;
         typename L::value_type probe = list.get(mid);
         if (!(value < probe)) {
             i = mid + 1;
-            size -= half + 1;
+            list_size -= half + 1;
         }
         else {
-            size = half;
+            list_size = half;
         }
     }
     return i;
 }
 
 
-inline ref_type ColumnBase::create(Allocator& alloc, size_t size, CreateHandler& handler)
+inline ref_type ColumnBase::create(Allocator& alloc, size_t column_size, CreateHandler& handler)
 {
-    size_t rest_size = size;
+    size_t rest_size = column_size;
     size_t fixed_height = 0; // Not fixed
     return build(&rest_size, fixed_height, alloc, handler);
 }
@@ -1108,8 +1125,8 @@ void Column<T>::add(T value)
 template<class T>
 void Column<T>::insert_without_updating_index(size_t row_ndx, T value, size_t num_rows)
 {
-    size_t size = this->size(); // Slow
-    bool is_append = row_ndx == size || row_ndx == npos;
+    size_t column_size = this->size(); // Slow
+    bool is_append = row_ndx == column_size || row_ndx == npos;
     size_t ndx_or_npos_if_append = is_append ? npos : row_ndx;
 
     m_tree.insert(ndx_or_npos_if_append, std::move(value), num_rows); // Throws
@@ -1118,14 +1135,14 @@ void Column<T>::insert_without_updating_index(size_t row_ndx, T value, size_t nu
 template<class T>
 void Column<T>::insert(size_t row_ndx, T value, size_t num_rows)
 {
-    size_t size = this->size(); // Slow
-    bool is_append = row_ndx == size || row_ndx == npos;
+    size_t column_size = this->size(); // Slow
+    bool is_append = row_ndx == column_size || row_ndx == npos;
     size_t ndx_or_npos_if_append = is_append ? npos : row_ndx;
 
     m_tree.insert(ndx_or_npos_if_append, value, num_rows); // Throws
 
     if (has_search_index()) {
-        row_ndx = is_append ? size : row_ndx;
+        row_ndx = is_append ? column_size : row_ndx;
         m_search_index->insert(row_ndx, value, num_rows, is_append); // Throws
     }
 }
@@ -1189,9 +1206,9 @@ void Column<T>::swap_rows(size_t row_ndx_1, size_t row_ndx_2)
     if (has_search_index()) {
         T value_1 = get(row_ndx_1);
         T value_2 = get(row_ndx_2);
-        size_t size = this->size();
-        bool row_ndx_1_is_last = row_ndx_1 == size - 1;
-        bool row_ndx_2_is_last = row_ndx_2 == size - 1;
+        size_t column_size = this->size();
+        bool row_ndx_1_is_last = row_ndx_1 == column_size - 1;
+        bool row_ndx_2_is_last = row_ndx_2 == column_size - 1;
         m_search_index->erase<StringData>(row_ndx_1, row_ndx_1_is_last);
         m_search_index->insert(row_ndx_1, value_2, 1, row_ndx_1_is_last);
 
@@ -1369,7 +1386,7 @@ public:
     ref_type create_leaf(size_t size) override
     {
         MemRef mem = BpTree<T>::create_leaf(m_leaf_type, size, m_value, m_alloc); // Throws
-        return mem.m_ref;
+        return mem.get_ref();
     }
 private:
     const T m_value;
@@ -1421,6 +1438,7 @@ void Column<T>::verify() const
     m_tree.verify();
 }
 
+
 template<class T>
 void Column<T>::to_dot(std::ostream& out, StringData title) const
 {
@@ -1450,11 +1468,10 @@ void Column<T>::leaf_to_dot(MemRef leaf_mem, ArrayParent* parent, size_t ndx_in_
 template<class T>
 MemStats Column<T>::stats() const
 {
-    MemStats stats;
-    get_root_array()->stats(stats);
-    return stats;
+    MemStats mem_stats;
+    get_root_array()->stats(mem_stats);
+    return mem_stats;
 }
-
 
 namespace _impl {
     void leaf_dumper(MemRef mem, Allocator& alloc, std::ostream& out, int level);

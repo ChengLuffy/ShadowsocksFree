@@ -98,9 +98,6 @@ static void throwError() {
     catch (realm::List::InvalidatedException const&) {
         @throw RLMException(@"RLMArray has been invalidated or the containing object has been deleted");
     }
-    catch (realm::List::DetatchedAccessorException const&) {
-        @throw RLMException(@"Object has been deleted or invalidated");
-    }
     catch (realm::List::OutOfBoundsIndexException const& e) {
         @throw RLMException(@"Index %zu is out of bounds (must be less than %zu)",
                             e.requested, e.valid_count);
@@ -360,21 +357,20 @@ static void RLMInsertObject(RLMArrayLinkView *ar, RLMObject *object, NSUInteger 
 }
 
 - (RLMResults *)sortedResultsUsingDescriptors:(NSArray *)properties {
-    auto order = RLMSortOrderFromDescriptors(_objectSchema, properties);
+    auto order = RLMSortOrderFromDescriptors(*_objectSchema.table, properties);
     auto results = translateErrors([&] { return _backingList.sort(std::move(order)); });
     return [RLMResults resultsWithObjectSchema:_objectSchema results:std::move(results)];
 }
 
 - (RLMResults *)objectsWithPredicate:(NSPredicate *)predicate {
-    auto query = translateErrors([&] { return _backingList.get_query(); });
-    RLMUpdateQueryWithPredicate(&query, predicate, _realm.schema, _objectSchema);
-    return [RLMResults resultsWithObjectSchema:_objectSchema
-                                       results:_backingList.filter(std::move(query))];
+    auto query = RLMPredicateToQuery(predicate, _objectSchema, _realm.schema, *_realm.group);
+    auto results = translateErrors([&] { return _backingList.filter(std::move(query)); });
+    return [RLMResults resultsWithObjectSchema:_objectSchema results:std::move(results)];
 }
 
 - (NSUInteger)indexOfObjectWithPredicate:(NSPredicate *)predicate {
     auto query = translateErrors([&] { return _backingList.get_query(); });
-    RLMUpdateQueryWithPredicate(&query, predicate, _realm.schema, _objectSchema);
+    query.and_query(RLMPredicateToQuery(predicate, _objectSchema, _realm.schema, *_realm.group));
     return RLMConvertNotFound(query.find());
 }
 

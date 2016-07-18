@@ -38,6 +38,7 @@ public:
     void set_null(size_t) override = 0;
     bool is_null(size_t) const noexcept override = 0;
 
+    bool supports_search_index() const noexcept final { return false; }
     StringIndex* create_search_index() override;
 
     bool get_weak_links() const noexcept;
@@ -63,6 +64,7 @@ public:
     void adj_acc_clear_root_table() noexcept override;
     void mark(int) noexcept override;
     void refresh_accessor_tree(size_t, const Spec&) override;
+    void bump_link_origin_table_version() noexcept override;
 
 #ifdef REALM_DEBUG
     void verify(const Table&, size_t) const override;
@@ -188,6 +190,18 @@ inline void LinkColumnBase::mark(int type) noexcept
         tf::mark(*m_target_table);
     }
 }
+
+inline void LinkColumnBase::bump_link_origin_table_version() noexcept
+{
+    // It is important to mark connected tables as modified.
+    // Also see BacklinkColumn::bump_link_origin_table_version().
+    typedef _impl::TableFriend tf;
+    if (m_target_table) {
+        bool bump_global = false;
+        tf::bump_version(*m_target_table, bump_global);
+    }
+}
+
 
 
 } // namespace realm

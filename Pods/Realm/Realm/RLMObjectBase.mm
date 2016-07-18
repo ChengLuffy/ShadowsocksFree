@@ -50,7 +50,7 @@ static bool RLMInitializedObjectSchema(RLMObjectBase *obj) {
     }
 
     // set unmanaged accessor class
-    object_setClass(obj, obj->_objectSchema.standaloneClass);
+    object_setClass(obj, obj->_objectSchema.unmanagedClass);
     return true;
 }
 
@@ -321,20 +321,8 @@ static id RLMValidatedObjectForProperty(id obj, RLMProperty *prop, RLMSchema *sc
 
 @end
 
-void RLMObjectBaseSetRealm(__unsafe_unretained RLMObjectBase *object, __unsafe_unretained RLMRealm *realm) {
-    if (object) {
-        object->_realm = realm;
-    }
-}
-
 RLMRealm *RLMObjectBaseRealm(__unsafe_unretained RLMObjectBase *object) {
     return object ? object->_realm : nil;
-}
-
-void RLMObjectBaseSetObjectSchema(__unsafe_unretained RLMObjectBase *object, __unsafe_unretained RLMObjectSchema *objectSchema) {
-    if (object) {
-        object->_objectSchema = objectSchema;
-    }
 }
 
 RLMObjectSchema *RLMObjectBaseObjectSchema(__unsafe_unretained RLMObjectBase *object) {

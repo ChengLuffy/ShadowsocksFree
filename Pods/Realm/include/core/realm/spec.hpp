@@ -117,7 +117,7 @@ public:
     void set_ndx_in_parent(size_t) noexcept;
 
 #ifdef REALM_DEBUG
-    void verify() const; // Must be upper case to avoid conflict with macro in ObjC
+    void verify() const;
     void to_dot(std::ostream&, StringData title = StringData()) const;
 #endif
 
@@ -175,7 +175,7 @@ private:
 
     ColumnInfo get_column_info(size_t column_ndx) const noexcept;
 
-    size_t get_subspec_ndx_after(size_t column_ndx) const noexcept;
+    size_t get_subspec_ndx_after(size_t column_ndx, size_t skip_column_ndx) const noexcept;
     bool has_subspec() const noexcept;
 
     // Returns false if the spec has no columns, otherwise it returns

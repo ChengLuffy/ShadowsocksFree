@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ShadowsocksFree.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,12 +42,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0E1A5BB1562B0CB15C9F8200023E0BBA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2FB21F4CAB0DD229E3207E62FB126F8F</key>
+		<key>29DD99664D189A7CA206368F493B1E0B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +52,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>40333F5917FF417C09E1CBB9CF369BEB</key>
+		<key>4D3EB3E8B9A4AC4BD7264AD3B0466ACA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +62,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C8916FAA4CB709341B7F5C196601289</key>
+		<key>8747CCAE3B274B9C4E4C67809924EE5B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AC9A2A76A882FAFA5A467B99EA0E7C6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED7F8DD947617940D8A6C2CD3356FA55</key>
 		<dict>
 			<key>primary</key>
 			<true/>

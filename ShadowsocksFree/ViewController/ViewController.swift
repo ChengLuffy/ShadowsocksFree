@@ -11,10 +11,11 @@ import Alamofire
 import Fuzi
 import RealmSwift
 import IBAnimatable
+import MJRefresh
 
 class ViewController: UIViewController {
     var titles = [String]()
-    var refreshControl: UIRefreshControl?
+//    var refreshControl: UIRefreshControl?
     var popoverView: Popover?
     var isDelete: Bool = false
     @IBOutlet weak var tableView: UITableView!
@@ -25,15 +26,20 @@ class ViewController: UIViewController {
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        /*
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(ViewController.getData), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl!)
+         */
+        
+        self.tableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(ViewController.getData))
+        
+        
         self.title = "ShadowsocksFree"
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.getData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,7 +49,6 @@ class ViewController: UIViewController {
     
     func getData() {
         tableView.updateFocusIfNeeded()
-        self.refreshControl?.beginRefreshing()
         let URLStr = "http://www.ishadowsocks.net/"
         
         Alamofire.request(.GET, URLStr).responseData { (respose) in
@@ -78,7 +83,7 @@ class ViewController: UIViewController {
                             })
                         }
                         self.tableView.reloadData()
-                        self.refreshControl!.endRefreshing()
+                        self.tableView.mj_header.endRefreshing()
                     } else {
                         print("nil")
                     }
@@ -88,6 +93,7 @@ class ViewController: UIViewController {
                 }
             } else {
                 print(respose.result.error)
+                self.tableView.mj_header.endRefreshing()
             }
         }
 
