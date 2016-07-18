@@ -40,6 +40,7 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.tableView.mj_header.beginRefreshing()
     }
     
     override func didReceiveMemoryWarning() {
