@@ -33,7 +33,14 @@ class ViewController: UIViewController {
          */
         
         self.tableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(ViewController.getData))
-        
+        /*
+        self.tableView.mj_footer = MJRefreshAutoStateFooter.init(refreshingBlock: {
+            print("footer")
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { 
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            })
+        })
+         */
         
         self.title = "ShadowsocksFree"
     }
@@ -78,9 +85,9 @@ class ViewController: UIViewController {
                                 }
                                 model.isNet = true
                             }
-                            
-                            try! realm.sharedInstance.write({
-                                realm.sharedInstance.add(model, update: true)
+                            let realm = try! Realm()
+                            try! realm.write({
+                                realm.add(model, update: true)
                             })
                         }
                         self.tableView.reloadData()
@@ -220,7 +227,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if isDelete == true {
             return 1
         } else {
-            return realm.sharedInstance.objects(Model).count
+            let realm = try! Realm()
+            return realm.objects(Model).count
         }
         
     }
@@ -229,14 +237,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if isDelete == false {
             return 4
         } else {
-            return realm.sharedInstance.objects(Model).filter("isNet = false").count
+            let realm = try! Realm()
+            return realm.objects(Model).filter("isNet = false").count
         }
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if isDelete == false {
-            return realm.sharedInstance.objects(Model)[section].name
+            let realm = try! Realm()
+            return realm.objects(Model)[section].name
         } else {
             return "自定义节点信息列表"
         }
@@ -246,13 +256,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         let str = self.getValueForNum(indexPath.row + 1)
-        
+        let realm = try! Realm()
         var model = Model()
         if isDelete == false {
-            model = realm.sharedInstance.objects(Model)[indexPath.section]
+            model = realm.objects(Model)[indexPath.section]
             cell.textLabel?.text = model.valueForKey(str) as? String
         } else {
-            model = realm.sharedInstance.objects(Model).filter("isNet = false")[indexPath.row]
+            model = realm.objects(Model).filter("isNet = false")[indexPath.row]
             cell.textLabel?.text = model.adress
         }
         
@@ -264,8 +274,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         } else {
             let pboard = UIPasteboard.generalPasteboard()
+            let realm = try! Realm()
             let str = getValueForNum(indexPath.row + 1)
-            let temp = realm.sharedInstance.objects(Model)[indexPath.section].valueForKey(str)!.componentsSeparatedByString(":")
+            let temp = realm.objects(Model)[indexPath.section].valueForKey(str)!.componentsSeparatedByString(":")
             pboard.string = temp[1]
             let alertVC = UIAlertController.init(title: temp[0] + "已成功复制", message: "", preferredStyle: .Alert)
             weak var weakSelf = self
@@ -282,9 +293,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             print("delete")
-            let model = realm.sharedInstance.objects(Model).filter("isNet = false")[indexPath.row]
-            try! realm.sharedInstance.write({ 
-                realm.sharedInstance.delete(model)
+            let realm = try! Realm()
+            let model = realm.objects(Model).filter("isNet = false")[indexPath.row]
+            try! realm.write({
+                realm.delete(model)
             })
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }

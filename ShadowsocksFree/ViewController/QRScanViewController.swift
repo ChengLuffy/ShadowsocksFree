@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import IBAnimatable
+import RealmSwift
 
 class QRScanViewController: UIViewController {
 
@@ -114,8 +115,9 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate, UIImageP
                     model.encryption = "加密方式:" + method
                     model.passWord = "密码:" + password
                     model.isNet = false
-                    try! realm.sharedInstance.write({
-                        realm.sharedInstance.add(model, update: true)
+                    let realm = try! Realm()
+                    try! realm.write({
+                        realm.add(model, update: true)
                     })
                     
                     weakSelf?.dismissViewControllerAnimated(true, completion: nil)
@@ -166,8 +168,9 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate, UIImageP
                         model.encryption = "加密方式:" + method
                         model.passWord = "密码:" + password
                         model.isNet = false
-                        try! realm.sharedInstance.write({
-                            realm.sharedInstance.add(model, update: true)
+                        let realm = try! Realm()
+                        try! realm.write({
+                            realm.add(model, update: true)
                         })
                         
                         weakSelf?.dismissViewControllerAnimated(true, completion: nil)

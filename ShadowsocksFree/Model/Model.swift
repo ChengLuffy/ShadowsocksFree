@@ -23,19 +23,15 @@ class Model: Object {
     dynamic var passWord: String?
     dynamic var encryption: String?
     dynamic var stutas: String?
-    dynamic var isNet = true
+    dynamic var isNet: Bool = true
     
     /**
      realm 设置主键
      
      - returns: 主键
      */
-    override static func primaryKey() -> String? {
+    override class func primaryKey() -> String? {
         return "adress"
     }
     
-}
-
-public class realm {
-    static let sharedInstance = try! Realm()
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class QRViewController: UIViewController {
 
@@ -39,7 +40,8 @@ class QRViewController: UIViewController {
     }
     
     func getSSQRStr(num: Int) -> String! {
-        let model = realm.sharedInstance.objects(Model)[num]
+        let realm = try! Realm()
+        let model = realm.objects(Model)[num]
         print(model.adress!)
         let method: NSString = (model.encryption?.componentsSeparatedByString(":")[1])!
         
@@ -75,7 +77,8 @@ class QRViewController: UIViewController {
 extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return realm.sharedInstance.objects(Model).count
+        let realm = try! Realm()
+        return realm.objects(Model).count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,7 +103,8 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "header", forIndexPath: indexPath) as! QRCollectionReusableHeaderView
-        view.textLabel.text = realm.sharedInstance.objects(Model)[indexPath.section].name
+        let realm = try! Realm()
+        view.textLabel.text = realm.objects(Model)[indexPath.section].name
         return view
         
     }

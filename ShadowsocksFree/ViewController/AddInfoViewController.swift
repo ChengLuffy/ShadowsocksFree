@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 
 class AddInfoViewController:  UIViewController {
     
@@ -69,8 +69,9 @@ class AddInfoViewController:  UIViewController {
         } else if model.encryption?.characters.count < 8 {
             self.alertMSG("加密方式输入有误", tag: 4)
         } else {
-            try! realm.sharedInstance.write({
-                realm.sharedInstance.add(model, update: true)
+            let realm = try! Realm()
+            try! realm.write({
+                realm.add(model, update: true)
             })
             self.view.endEditing(false)
             self.dismissViewControllerAnimated(true, completion: nil)
