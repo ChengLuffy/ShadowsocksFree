@@ -188,8 +188,15 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate, UIImageP
                     alertVC.addAction(cancelAction)
                     self.presentViewController(alertVC, animated: true, completion: nil)
                 }
-
+            } else {
+                self.session?.startRunning()
             }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true) { 
+            self.session?.startRunning()
         }
     }
 }
