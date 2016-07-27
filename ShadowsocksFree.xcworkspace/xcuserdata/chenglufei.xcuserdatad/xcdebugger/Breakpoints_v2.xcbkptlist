@@ -33,38 +33,6 @@
             endingLineNumber = "179"
             landmarkName = "imagePickerController(_:didFinishPickingImage:editingInfo:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ShadowsocksFree.QRScanViewController.(imagePickerController (__ObjC.UIImagePickerController, didFinishPickingImage : __ObjC.UIImage, editingInfo : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;) -&gt; ()).(closure #1).(closure #2)"
-                  moduleName = "ShadowsocksFree"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chenglufei/Desktop/%E9%A1%B9%E7%9B%AE/ShadowsocksFree/ShadowsocksFree/ViewController/QRScanViewController.swift"
-                  timestampString = "491290264.439524"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "179"
-                  endingLineNumber = "179"
-                  offsetFromSymbolStart = "1072">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ShadowsocksFree.QRScanViewController.(imagePickerController (__ObjC.UIImagePickerController, didFinishPickingImage : __ObjC.UIImage, editingInfo : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;) -&gt; ()).(closure #1).(closure #2).(closure #2)"
-                  moduleName = "ShadowsocksFree"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chenglufei/Desktop/%E9%A1%B9%E7%9B%AE/ShadowsocksFree/ShadowsocksFree/ViewController/QRScanViewController.swift"
-                  timestampString = "491290264.439736"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "162"
-                  endingLineNumber = "162"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

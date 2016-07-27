@@ -59,11 +59,23 @@ class ViewController: UIViewController {
         tableView.updateFocusIfNeeded()
         let URLStr = "http://www.ishadowsocks.net/"
         print(self.tableView.mj_header.lastUpdatedTime)
+        
+        let dateFormater = NSDateFormatter()
+        dateFormater.dateFormat = "yyyyMMdd"
+        
+        let dateFormaterH = NSDateFormatter()
+        dateFormaterH.dateFormat = "HH"
+        
         let date = self.tableView.mj_header.lastUpdatedTime
-        let currentDate = NSDate()
-        let date1 = currentDate.timeIntervalSinceDate(date)
-        print(date1)
-        if date1 > 60.0 * 60 * 6 {
+        let lastDateStr = dateFormater.stringFromDate(date)
+        let lastDateHStr = dateFormaterH.stringFromDate(date)
+        
+        let dateNow = NSDate()
+        let dateNowStr = dateFormater.stringFromDate(dateNow)
+        let dateNowHStr = dateFormaterH.stringFromDate(dateNow)
+        print(lastDateStr, dateNowStr)
+        
+        if Int(lastDateStr)! > Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6 {
             Alamofire.request(.GET, URLStr).responseData { (respose) in
                 
                 if respose.result.error == nil {
