@@ -35,3 +35,5 @@ class Model: Object {
     }
     
 }
+
+let realm = try! Realm()

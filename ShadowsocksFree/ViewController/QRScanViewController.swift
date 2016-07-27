@@ -13,6 +13,7 @@ import RealmSwift
 
 class QRScanViewController: UIViewController {
 
+    var refreshHandle: (() -> ())?
     var session: AVCaptureSession?
     lazy var imagePickerVC: UIImagePickerController = {
         let imagePickerVC = UIImagePickerController.init()
@@ -120,7 +121,9 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate, UIImageP
                         realm.add(model, update: true)
                     })
                     
-                    weakSelf?.dismissViewControllerAnimated(true, completion: nil)
+                    weakSelf?.dismissViewControllerAnimated(true, completion: {
+                        weakSelf?.refreshHandle!()
+                    })
                 })
                 alertVC.addAction(cancelAction)
                 alertVC.addAction(addAction)
@@ -173,7 +176,9 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate, UIImageP
                             realm.add(model, update: true)
                         })
                         
-                        weakSelf?.dismissViewControllerAnimated(true, completion: nil)
+                        weakSelf?.dismissViewControllerAnimated(true, completion: { 
+                            weakSelf?.refreshHandle!()
+                        })
                     })
                     alertVC.addAction(cancelAction)
                     alertVC.addAction(addAction)

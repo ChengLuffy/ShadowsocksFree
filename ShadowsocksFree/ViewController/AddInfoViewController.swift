@@ -11,6 +11,7 @@ import RealmSwift
 
 class AddInfoViewController:  UIViewController {
     
+    var refreshHandle: (() -> ())?
     var popUpTextView: PopUpViewTextView?
     var currentEditingY: CGFloat?
     lazy var titleArr = ["服务器地址", "端口", "密码", "加密方式", "备注"]
@@ -74,7 +75,10 @@ class AddInfoViewController:  UIViewController {
                 realm.add(model, update: true)
             })
             self.view.endEditing(false)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            weak var weakSelf = self
+            self.dismissViewControllerAnimated(true, completion: {
+                weakSelf?.refreshHandle!()
+            })
         }
         
     }

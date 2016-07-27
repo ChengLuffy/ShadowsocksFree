@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JPFPSStatus.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,7 +57,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4D3EB3E8B9A4AC4BD7264AD3B0466ACA</key>
+		<key>670429FD2F1D175B48A568D28BF19041</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AC9A2A76A882FAFA5A467B99EA0E7C6F</key>
+		<key>9D195ABC7DA18DE58D37BF15F76A8EFE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ED7F8DD947617940D8A6C2CD3356FA55</key>
+		<key>FA0E7FFDD877C9CE51C91A0E6A3262E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB3DC2CE158B34A71AE6A154F23E4051</key>
 		<dict>
 			<key>primary</key>
 			<true/>

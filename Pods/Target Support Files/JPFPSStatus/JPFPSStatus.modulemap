@@ -1,0 +1,6 @@
+framework module JPFPSStatus {
+  umbrella header "JPFPSStatus-umbrella.h"
+
+  export *
+  module * { export * }
+}

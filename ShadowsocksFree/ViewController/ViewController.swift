@@ -41,13 +41,13 @@ class ViewController: UIViewController {
             })
         })
          */
-        
+        self.tableView.mj_header.beginRefreshing()
         self.title = "ShadowsocksFree"
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.tableView.mj_header.beginRefreshing()
+        // self.tableView.mj_header.beginRefreshing()
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,51 +58,60 @@ class ViewController: UIViewController {
     func getData() {
         tableView.updateFocusIfNeeded()
         let URLStr = "http://www.ishadowsocks.net/"
-        
-        Alamofire.request(.GET, URLStr).responseData { (respose) in
-            
-            if respose.result.error == nil {
-                print(respose.data?.length)
+        print(self.tableView.mj_header.lastUpdatedTime)
+        let date = self.tableView.mj_header.lastUpdatedTime
+        let currentDate = NSDate()
+        let date1 = currentDate.timeIntervalSinceDate(date)
+        print(date1)
+        if date1 > 60.0 * 60 * 6 {
+            Alamofire.request(.GET, URLStr).responseData { (respose) in
                 
-                let html = NSString.init(data: respose.data!, encoding: NSUTF8StringEncoding)
-                do {
-                    let doc = try HTMLDocument(string: html as! String, encoding: NSUTF8StringEncoding)
-                    if var free = doc.xpath("//section")[2]?.children(tag: "div")[0].children(tag: "div") {
-                        free.removeFirst()
-                        for node in free[0].children(tag: "div") {
-                            let model = Model()
-                            
-                            for (index, sub) in node.children(tag: "h4").enumerate() {
-                                
-                                switch index {
-                                case 0: model.adress = sub.stringValue
-                                case 1: model.port = sub.stringValue
-                                case 2: model.passWord = sub.stringValue
-                                case 3: model.encryption = sub.stringValue
-                                case 4: model.stutas = sub.stringValue
-                                default :
-                                    break
-                                }
-                                model.isNet = true
-                            }
-                            let realm = try! Realm()
-                            try! realm.write({
-                                realm.add(model, update: true)
-                            })
-                        }
-                        self.tableView.reloadData()
-                        self.tableView.mj_header.endRefreshing()
-                    } else {
-                        print("nil")
-                    }
+                if respose.result.error == nil {
+                    print(respose.data?.length)
                     
-                } catch let error  {
-                    print(error)
+                    let html = NSString.init(data: respose.data!, encoding: NSUTF8StringEncoding)
+                    do {
+                        let doc = try HTMLDocument(string: html as! String, encoding: NSUTF8StringEncoding)
+                        if var free = doc.xpath("//section")[2]?.children(tag: "div")[0].children(tag: "div") {
+                            free.removeFirst()
+                            for node in free[0].children(tag: "div") {
+                                let model = Model()
+                                
+                                for (index, sub) in node.children(tag: "h4").enumerate() {
+                                    
+                                    switch index {
+                                    case 0: model.adress = sub.stringValue
+                                    case 1: model.port = sub.stringValue
+                                    case 2: model.passWord = sub.stringValue
+                                    case 3: model.encryption = sub.stringValue
+                                    case 4: model.stutas = sub.stringValue
+                                    default :
+                                        break
+                                    }
+                                    model.isNet = true
+                                }
+                                
+                                try! realm.write({
+                                    realm.add(model, update: true)
+                                })
+                            }
+                            self.tableView.reloadData()
+                            self.tableView.mj_header.endRefreshing()
+                        } else {
+                            print("nil")
+                        }
+                        
+                    } catch let error  {
+                        print(error)
+                    }
+                } else {
+                    print(respose.result.error)
+                    self.tableView.mj_header.endRefreshing()
                 }
-            } else {
-                print(respose.result.error)
-                self.tableView.mj_header.endRefreshing()
             }
+        } else {
+            self.tableView.reloadData()
+            self.tableView.mj_header.endRefreshing()
         }
 
     }
@@ -192,7 +201,11 @@ class ViewController: UIViewController {
     
     func addBtnClicked(sender: AnyObject) {
         popoverView!.dismiss()
-        let addInfoVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("add")
+        let addInfoVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("add") as! AddInfoViewController
+        weak var weakSelf = self
+        addInfoVC.refreshHandle = {
+            weakSelf?.tableView.mj_header.beginRefreshing()
+        }
         addInfoVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Fold(fromDirection: .Right, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.15 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
@@ -202,7 +215,11 @@ class ViewController: UIViewController {
     
     func scanBtnDidClicked(sender: AnyObject) {
         popoverView!.dismiss()
-        let QRVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("scan")
+        let QRVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("scan") as! QRScanViewController
+        weak var weakSelf = self
+        QRVC.refreshHandle = {
+            weakSelf?.tableView.mj_header.beginRefreshing()
+        }
         QRVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Portal(direction: .Forward, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pinch(direction: .Close))
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.15 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
             self.presentViewController(QRVC, animated: true, completion: nil)
@@ -227,7 +244,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if isDelete == true {
             return 1
         } else {
-            let realm = try! Realm()
+            
             return realm.objects(Model).count
         }
         
@@ -237,7 +254,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if isDelete == false {
             return 4
         } else {
-            let realm = try! Realm()
+            
             return realm.objects(Model).filter("isNet = false").count
         }
     }
@@ -245,7 +262,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if isDelete == false {
-            let realm = try! Realm()
             return realm.objects(Model)[section].name
         } else {
             return "自定义节点信息列表"
@@ -256,7 +272,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         let str = self.getValueForNum(indexPath.row + 1)
-        let realm = try! Realm()
+        
         var model = Model()
         if isDelete == false {
             model = realm.objects(Model)[indexPath.section]
@@ -274,7 +290,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         } else {
             let pboard = UIPasteboard.generalPasteboard()
-            let realm = try! Realm()
+            
             let str = getValueForNum(indexPath.row + 1)
             let temp = realm.objects(Model)[indexPath.section].valueForKey(str)!.componentsSeparatedByString(":")
             pboard.string = temp[1]
@@ -293,7 +309,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             print("delete")
-            let realm = try! Realm()
+            
             let model = realm.objects(Model).filter("isNet = false")[indexPath.row]
             try! realm.write({
                 realm.delete(model)

@@ -2,6 +2,7 @@ PODS:
   - Alamofire (3.4.1)
   - Fuzi (0.3.1)
   - IBAnimatable (2.4)
+  - JPFPSStatus (0.1)
   - MJRefresh (3.1.10)
   - Realm (1.0.2):
     - Realm/Headers (= 1.0.2)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.4.0)
   - Fuzi (~> 0.3.0)
   - IBAnimatable (~> 2.3)
+  - JPFPSStatus (~> 0.1)
   - MJRefresh (~> 3.1.10)
   - RealmSwift (~> 1.0.0)
 
@@ -20,10 +22,11 @@ SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Fuzi: 25118b725a1637f1676f63ae1acbba1f30a5dd6c
   IBAnimatable: f5dcd428e0fc41d11d3ed657c925393dd7bbaa0a
+  JPFPSStatus: 4467a17488382e4c1700bd9d18c92ae581fd6305
   MJRefresh: bb72948c985914b0b5cecac573a2c69a8915fb02
   Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
   RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
 
-PODFILE CHECKSUM: 0272a6d3042ca244c30af29e7a44fb1e5d1fa905
+PODFILE CHECKSUM: 935501e46c1f74974f449af830b674281ec18de0
 
 COCOAPODS: 1.0.1
