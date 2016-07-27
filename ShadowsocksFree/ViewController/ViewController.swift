@@ -201,15 +201,16 @@ class ViewController: UIViewController {
     
     func addBtnClicked(sender: AnyObject) {
         popoverView!.dismiss()
-        let addInfoVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("add") as! AddInfoViewController
+        let addInfoVCNav = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("add") as! AnimatableNavigationController
+        let addInfoVC = addInfoVCNav.viewControllers.first as! AddInfoViewController
         weak var weakSelf = self
         addInfoVC.refreshHandle = {
             weakSelf?.tableView.mj_header.beginRefreshing()
         }
-        addInfoVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Fold(fromDirection: .Right, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
+        addInfoVCNav.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Fold(fromDirection: .Right, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.15 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-            self.presentViewController(addInfoVC, animated: true, completion: nil)
+            self.presentViewController(addInfoVCNav, animated: true, completion: nil)
         })
     }
     
@@ -314,6 +315,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             try! realm.write({
                 realm.delete(model)
             })
+            print(model.invalidated)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
     }

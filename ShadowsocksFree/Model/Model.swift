@@ -24,6 +24,7 @@ class Model: Object {
     dynamic var encryption: String?
     dynamic var stutas: String?
     dynamic var isNet: Bool = true
+    dynamic override var invalidated: Bool { return super.invalidated }
     
     /**
      realm 设置主键
