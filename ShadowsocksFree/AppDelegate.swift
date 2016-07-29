@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import JPFPSStatus
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,10 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        #if defined(DEBUG)||defined(_DEBUG)
 //            [[JPFPSStatus sharedInstance] open];
 //        #endif
-        #if DEBUG
-            JPFPSStatus.sharedInstance().open()
-        #endif
-        
 
         return true
     }

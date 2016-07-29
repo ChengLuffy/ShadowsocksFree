@@ -12,6 +12,7 @@ import Fuzi
 import RealmSwift
 import IBAnimatable
 import MJRefresh
+import JPFPSStatus
 
 class ViewController: UIViewController {
     var titles = [String]()
@@ -22,6 +23,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        #if DEBUG
+            JPFPSStatus.sharedInstance().open()
+        #endif
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView.delegate = self

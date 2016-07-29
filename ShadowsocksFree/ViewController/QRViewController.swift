@@ -40,7 +40,6 @@ class QRViewController: UIViewController {
     }
     
     func getSSQRStr(num: Int) -> String! {
-        let realm = try! Realm()
         let model = realm.objects(Model)[num]
         print(model.adress!)
         let method: NSString = (model.encryption?.componentsSeparatedByString(":")[1])!
@@ -77,7 +76,6 @@ class QRViewController: UIViewController {
 extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        let realm = try! Realm()
         return realm.objects(Model).count
     }
     
@@ -103,7 +101,6 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "header", forIndexPath: indexPath) as! QRCollectionReusableHeaderView
-        let realm = try! Realm()
         view.textLabel.text = realm.objects(Model)[indexPath.section].name
         return view
         
