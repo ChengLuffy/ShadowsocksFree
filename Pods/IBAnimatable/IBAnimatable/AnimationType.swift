@@ -1,6 +1,6 @@
 //
 //  Created by Jake Lin on 11/19/15.
-//  Copyright © 2015 Jake Lin. All rights reserved.
+//  Copyright © 2015 IBAnimatable. All rights reserved.
 //
 
 import Foundation
@@ -47,6 +47,8 @@ public enum AnimationType: String {
   case SqueezeFadeOutUp
   case ZoomIn
   case ZoomOut
+  case ZoomInvertIn
+  case ZoomInvertOut
   case Shake
   case Pop
   case FlipX

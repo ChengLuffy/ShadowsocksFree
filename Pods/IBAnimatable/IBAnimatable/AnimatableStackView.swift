@@ -1,6 +1,6 @@
 //
 //  Created by Jake Lin on 12/11/15.
-//  Copyright © 2015 Jake Lin. All rights reserved.
+//  Copyright © 2015 IBAnimatable. All rights reserved.
 //
 
 import UIKit
@@ -87,8 +87,23 @@ import UIKit
   }
   
   // MARK: - BlurDesignable
-  @IBInspectable public var blurEffectStyle: String?
-  @IBInspectable public var blurOpacity: CGFloat = CGFloat.NaN
+  @IBInspectable public var blurEffectStyle: String? {
+    didSet {
+      configBlurEffectStyle()
+    }
+  }
+
+  @IBInspectable public var vibrancyEffectStyle: String? {
+    didSet {
+      configBlurEffectStyle()
+    }
+  }
+
+  @IBInspectable public var blurOpacity: CGFloat = CGFloat.NaN {
+    didSet {
+      configBlurEffectStyle()
+    }
+  }
   
   // MARK: - TintDesignable
   @IBInspectable public var tintOpacity: CGFloat = CGFloat.NaN
@@ -142,8 +157,7 @@ import UIKit
   // MARK: - Private
   private func configInspectableProperties() {
     configAnimatableProperties()
-    configTintedColor()
-    configBlurEffectStyle()
+    configTintedColor()    
   }
   
   private func configAfterLayoutSubviews() {

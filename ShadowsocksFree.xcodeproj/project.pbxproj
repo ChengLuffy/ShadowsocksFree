@@ -303,7 +303,7 @@
 				TargetAttributes = {
 					2AD282781CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = N7XNKCS3XY;
+						DevelopmentTeam = W6GJE53Q42;
 					};
 					2AD2828C1CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
@@ -581,7 +581,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LLVM_LTO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shadowsocksfree;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shadowsocksfree.zhengshu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/ShadowsocksFree-Bridging-Header.h";
@@ -600,7 +600,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LLVM_LTO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shadowsocksfree;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shadowsocksfree.zhengshu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/ShadowsocksFree-Bridging-Header.h";

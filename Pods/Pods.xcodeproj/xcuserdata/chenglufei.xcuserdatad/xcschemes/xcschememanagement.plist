@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JPFPSStatus.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -46,47 +41,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>29DD99664D189A7CA206368F493B1E0B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3E19FB5CFCB8600C109A178F9D1E75A6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>670429FD2F1D175B48A568D28BF19041</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8747CCAE3B274B9C4E4C67809924EE5B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9D195ABC7DA18DE58D37BF15F76A8EFE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FA0E7FFDD877C9CE51C91A0E6A3262E9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FB3DC2CE158B34A71AE6A154F23E4051</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>
