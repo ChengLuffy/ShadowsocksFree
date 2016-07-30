@@ -1,0 +1,6 @@
+Pods/
+Podfile.lock
+
+*.xcuserstate
+
+*.xcbkptlist
