@@ -78,8 +78,9 @@ class ViewController: UIViewController {
         let dateNowStr = dateFormater.stringFromDate(dateNow)
         let dateNowHStr = dateFormaterH.stringFromDate(dateNow)
         print(lastDateStr, dateNowStr)
+        print(lastDateHStr, dateNowHStr)
         
-        if Int(lastDateStr)! > Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6 {
+        if Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6 {
             Alamofire.request(.GET, URLStr).responseData { (respose) in
                 
                 if respose.result.error == nil {
