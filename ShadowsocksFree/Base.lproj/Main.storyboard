@@ -55,7 +55,7 @@
         <!--ShadowsocksFree-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ShadowsocksFree" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="home" id="BYZ-38-t0r" customClass="ViewController" customModule="ShadowsocksFree" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -100,7 +100,7 @@
         <!--View Controller-->
         <scene sceneID="gcm-go-arw">
             <objects>
-                <viewController id="5v3-iu-kkq" customClass="QRViewController" customModule="ShadowsocksFree" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="qr" id="5v3-iu-kkq" customClass="QRViewController" customModule="ShadowsocksFree" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hbt-kO-Bay"/>
                         <viewControllerLayoutGuide type="bottom" id="g3b-Hk-0r4"/>
@@ -151,7 +151,7 @@
         <!--Navigation Controller-->
         <scene sceneID="mnB-65-cEw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sDn-2f-QXW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav" automaticallyAdjustsScrollViewInsets="NO" id="sDn-2f-QXW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sXG-94-Yxm">
@@ -173,7 +173,6 @@
         <!--Animatable Navigation Controller-->
         <scene sceneID="Ali-d7-idh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kwX-Gx-Wfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="watch" automaticallyAdjustsScrollViewInsets="NO" id="gae-pN-Ric" customClass="AnimatableNavigationController" customModule="IBAnimatable" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yui-4E-9eG">
@@ -185,6 +184,7 @@
                         <segue destination="5v3-iu-kkq" kind="relationship" relationship="rootViewController" id="hVF-fr-xpE"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kwX-Gx-Wfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-711" y="-694"/>
         </scene>
@@ -214,6 +214,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Lc3-Yj-qWx"/>
+        <segue reference="7Ib-1I-0gq"/>
     </inferredMetricsTieBreakers>
 </document>

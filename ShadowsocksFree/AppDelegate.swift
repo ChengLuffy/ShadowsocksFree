@@ -16,10 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-//        #if defined(DEBUG)||defined(_DEBUG)
-//            [[JPFPSStatus sharedInstance] open];
-//        #endif
-
+        
+        if launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] != nil {
+             let shortcutItem = launchOptions![UIApplicationLaunchOptionsShortcutItemKey] as! UIApplicationShortcutItem
+            pushVCWith(shortcutItem.type)
+        }
+        
         return true
     }
 
@@ -49,6 +51,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(url.query)
         return true
     }
+    
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        let itemType = shortcutItem.type
+        pushVCWith(itemType)
+        completionHandler(true)
+    }
 
+    func pushVCWith(type: String) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let nav = storyboard.instantiateViewControllerWithIdentifier("nav") as! UINavigationController
+        self.window?.rootViewController = nav
+        switch type {
+        case "home":
+            break
+        case "scan":
+            let scanVC = storyboard.instantiateViewControllerWithIdentifier("scan")
+            nav.pushViewController(scanVC, animated: true)
+            break
+        default:
+            let qrVC = storyboard.instantiateViewControllerWithIdentifier("qr")
+            nav.pushViewController(qrVC, animated: true)
+        }
+        
+    }
+    
 }
 

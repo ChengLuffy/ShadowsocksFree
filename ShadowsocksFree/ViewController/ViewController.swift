@@ -58,25 +58,34 @@ class ViewController: UIViewController {
     func getData() {
         tableView.updateFocusIfNeeded()
         let URLStr = "http://www.ishadowsocks.net/"
-        print(self.tableView.mj_header.lastUpdatedTime)
         
-        let dateFormater = NSDateFormatter()
-        dateFormater.dateFormat = "yyyyMMdd"
+        var isNeedRequest: Bool?
         
-        let dateFormaterH = NSDateFormatter()
-        dateFormaterH.dateFormat = "HH"
+        if self.tableView.mj_header.lastUpdatedTime != nil {
+            let dateFormater = NSDateFormatter()
+            dateFormater.dateFormat = "yyyyMMdd"
+            
+            let dateFormaterH = NSDateFormatter()
+            dateFormaterH.dateFormat = "HH"
+            
+            let date = self.tableView.mj_header.lastUpdatedTime
+            let lastDateStr = dateFormater.stringFromDate(date)
+            let lastDateHStr = dateFormaterH.stringFromDate(date)
+            
+            let dateNow = NSDate()
+            let dateNowStr = dateFormater.stringFromDate(dateNow)
+            let dateNowHStr = dateFormaterH.stringFromDate(dateNow)
+            print(lastDateStr, dateNowStr)
+            print(lastDateHStr, dateNowHStr)
+            
+            isNeedRequest = Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6
+        } else {
+            isNeedRequest = true
+        }
         
-        let date = self.tableView.mj_header.lastUpdatedTime
-        let lastDateStr = dateFormater.stringFromDate(date)
-        let lastDateHStr = dateFormaterH.stringFromDate(date)
         
-        let dateNow = NSDate()
-        let dateNowStr = dateFormater.stringFromDate(dateNow)
-        let dateNowHStr = dateFormaterH.stringFromDate(dateNow)
-        print(lastDateStr, dateNowStr)
-        print(lastDateHStr, dateNowHStr)
         
-        if Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6 {
+        if isNeedRequest == true {
             Alamofire.request(.GET, URLStr).responseData { (respose) in
                 
                 if respose.result.error == nil {
