@@ -24,8 +24,9 @@
 
 > 16.06.23: 实现从设备相册读取二维码扫描。
 
-> 16.06.24: 参考[dgytdhy的DGPopUpViewController](https://github.com/dgytdhy/DGPopUpViewController)优化信息输入页面
-> 16.07.31: 增加`3D touch`支持
+> 16.06.24: 参考[dgytdhy的DGPopUpViewController](https://github.com/dgytdhy/DGPopUpViewController)优化信息输入页面。
+
+> 16.07.31: 增加`3D touch`支持。
 
 # TODO
 - [x] 归档用户自己输入的配置信息并生成二维码
