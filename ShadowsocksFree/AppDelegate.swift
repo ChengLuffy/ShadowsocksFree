@@ -70,8 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             nav.pushViewController(scanVC, animated: true)
             break
         default:
-            let qrVC = storyboard.instantiateViewControllerWithIdentifier("qr")
-            nav.pushViewController(qrVC, animated: true)
+            let qrVC = storyboard.instantiateViewControllerWithIdentifier("watch")
+            nav.presentViewController(qrVC, animated: true, completion: nil)
         }
         
     }

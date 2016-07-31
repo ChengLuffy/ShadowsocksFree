@@ -100,7 +100,7 @@
         <!--View Controller-->
         <scene sceneID="gcm-go-arw">
             <objects>
-                <viewController storyboardIdentifier="qr" id="5v3-iu-kkq" customClass="QRViewController" customModule="ShadowsocksFree" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5v3-iu-kkq" customClass="QRViewController" customModule="ShadowsocksFree" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hbt-kO-Bay"/>
                         <viewControllerLayoutGuide type="bottom" id="g3b-Hk-0r4"/>
@@ -134,7 +134,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5aL-2O-CfI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="9EI-mT-aeB">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="9EI-mT-aeB">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="custom" customClass="DismissSegue" customModule="IBAnimatable" id="RHg-S2-Nzt"/>
                             </connections>
@@ -214,6 +214,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7Ib-1I-0gq"/>
+        <segue reference="RHg-S2-Nzt"/>
     </inferredMetricsTieBreakers>
 </document>
