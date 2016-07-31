@@ -25,6 +25,7 @@
 > 16.06.23: 实现从设备相册读取二维码扫描。
 
 > 16.06.24: 参考[dgytdhy的DGPopUpViewController](https://github.com/dgytdhy/DGPopUpViewController)优化信息输入页面
+> 16.07.31: 增加`3D touch`支持
 
 # TODO
 - [x] 归档用户自己输入的配置信息并生成二维码
@@ -34,6 +35,3 @@
 - [x] 增加编辑管理用户自定义节点的选项
 
 - [ ] 买了本 [剑指人心](http://weibo.com/u/1787521145?refer_flag=1005055010_&is_all=1) 大神的《Mac应用开发技术》，想尝试写个Mac端小插件
-
-# 演示
-![](https://github.com/ChengLuffy/ShadowsocksFree/blob/master/demo.gif)
