@@ -31,7 +31,6 @@ class ViewController: UIViewController {
         refreshControl!.addTarget(self, action: #selector(ViewController.getData), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl!)
          */
-        
         self.tableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(ViewController.getData))
         /*
         self.tableView.mj_footer = MJRefreshAutoStateFooter.init(refreshingBlock: {

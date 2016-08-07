@@ -12,7 +12,6 @@ class PopUpViewTextView: UIView {
 
     @IBOutlet var mainView: UIView!
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         mainView = NSBundle.mainBundle().loadNibNamed("PopUpViewTextView", owner: self, options: nil).first as! UIView
@@ -28,6 +27,7 @@ class PopUpViewTextView: UIView {
         label.font = UIFont.boldSystemFontOfSize(30)
         self.addSubview(label)
         self.backgroundColor = UIColor.whiteColor()
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,7 +45,6 @@ class PopUpViewTextView: UIView {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.endEditing(true)
     }
-
 }
 
 extension PopUpViewTextView: UITextFieldDelegate {
@@ -82,3 +81,4 @@ extension PopUpViewTextView: UITextFieldDelegate {
     }
     
 }
+

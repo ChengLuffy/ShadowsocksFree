@@ -37,6 +37,8 @@ class AddInfoViewController:  UIViewController {
         popUpTextView!.layer.shadowRadius = 10
         popUpTextView!.layer.shadowOpacity = 10
         self.view.addSubview(popUpTextView!)
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -92,7 +94,6 @@ class AddInfoViewController:  UIViewController {
         alertVC.addAction(sureAction)
         self.presentViewController(alertVC, animated: true, completion: nil)
     }
-    
     
     // MARK: - Navigation
 

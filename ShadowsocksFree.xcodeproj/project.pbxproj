@@ -21,6 +21,7 @@
 		2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
 		2A33CEC61D1C5FDE000F652A /* PopUpViewTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */; };
 		2A33CEC71D1C5FDE000F652A /* PopUpViewTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */; };
+		2A520E291D5701290023F283 /* method.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A520E281D5701290023F283 /* method.plist */; };
 		2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2827C1CD8520800C4655E /* AppDelegate.swift */; };
 		2AD282821CD8520800C4655E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282801CD8520800C4655E /* Main.storyboard */; };
 		2AD282841CD8520800C4655E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282831CD8520800C4655E /* Assets.xcassets */; };
@@ -52,14 +53,15 @@
 		2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		2A33CEA01D1C067B000F652A /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		2A33CEA11D1C067B000F652A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2A33CEA91D1C06BE000F652A /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
+		2A33CEA91D1C06BE000F652A /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Popover.swift; path = ../Popover.swift; sourceTree = "<group>"; };
 		2A33CEAA1D1C06BE000F652A /* QRCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
 		2A33CEAB1D1C06BE000F652A /* QRCollectionReusableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionReusableHeaderView.xib; sourceTree = "<group>"; };
 		2A33CEAC1D1C06BE000F652A /* QRCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A33CEAD1D1C06BE000F652A /* QRCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionViewCell.xib; sourceTree = "<group>"; };
 		2A33CEB61D1C0711000F652A /* QRImageCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRImageCreate.swift; sourceTree = "<group>"; };
-		2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewTextView.swift; sourceTree = "<group>"; };
-		2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewTextView.xib; sourceTree = "<group>"; };
+		2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewTextView.swift; path = PopUpView/PopUpViewTextView.swift; sourceTree = "<group>"; };
+		2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PopUpViewTextView.xib; path = PopUpView/PopUpViewTextView.xib; sourceTree = "<group>"; };
+		2A520E281D5701290023F283 /* method.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = method.plist; sourceTree = "<group>"; };
 		2AD282791CD8520800C4655E /* ShadowsocksFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowsocksFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2827C1CD8520800C4655E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AD282811CD8520800C4655E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -127,11 +129,12 @@
 		2A33CEA61D1C06BE000F652A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2A33CEA91D1C06BE000F652A /* Popover.swift */,
 				2A33CEAA1D1C06BE000F652A /* QRCollectionReusableHeaderView.swift */,
 				2A33CEAB1D1C06BE000F652A /* QRCollectionReusableHeaderView.xib */,
 				2A33CEAC1D1C06BE000F652A /* QRCollectionViewCell.swift */,
 				2A33CEAD1D1C06BE000F652A /* QRCollectionViewCell.xib */,
+				2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */,
+				2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */,
 				2A33CEC31D1C5FDE000F652A /* PopUpView */,
 			);
 			path = View;
@@ -148,10 +151,17 @@
 		2A33CEC31D1C5FDE000F652A /* PopUpView */ = {
 			isa = PBXGroup;
 			children = (
-				2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */,
-				2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */,
+				2A33CEA91D1C06BE000F652A /* Popover.swift */,
 			);
 			path = PopUpView;
+			sourceTree = "<group>";
+		};
+		2A520E271D5700CE0023F283 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2A520E281D5701290023F283 /* method.plist */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		2AD282701CD8520800C4655E = {
@@ -179,6 +189,7 @@
 		2AD2827B1CD8520800C4655E /* ShadowsocksFree */ = {
 			isa = PBXGroup;
 			children = (
+				2A520E271D5700CE0023F283 /* Resource */,
 				2A33CEB51D1C0711000F652A /* Tool */,
 				2A33CEA61D1C06BE000F652A /* View */,
 				2A33CE9D1D1C067B000F652A /* ViewController */,
@@ -338,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */,
+				2A520E291D5701290023F283 /* method.plist in Resources */,
 				2A33CEC71D1C5FDE000F652A /* PopUpViewTextView.xib in Resources */,
 				2AD282841CD8520800C4655E /* Assets.xcassets in Resources */,
 				2AD282821CD8520800C4655E /* Main.storyboard in Resources */,
