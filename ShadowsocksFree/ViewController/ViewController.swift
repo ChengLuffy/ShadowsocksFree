@@ -82,7 +82,7 @@ class ViewController: UIViewController {
             isNeedRequest = true
         }
         
-        
+//        isNeedRequest = true
         
         if isNeedRequest == true {
             Alamofire.request(.GET, URLStr).responseData { (respose) in
@@ -92,6 +92,11 @@ class ViewController: UIViewController {
                     
                     let html = NSString.init(data: respose.data!, encoding: NSUTF8StringEncoding)
                     do {
+                        
+                        try! realm.write({ 
+                            realm.delete(realm.objects(Model).filter("isNet = true"))
+                        })
+                        
                         let doc = try HTMLDocument(string: html as! String, encoding: NSUTF8StringEncoding)
                         if var free = doc.xpath("//section")[2]?.children(tag: "div")[0].children(tag: "div") {
                             free.removeFirst()

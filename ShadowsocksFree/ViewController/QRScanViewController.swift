@@ -149,7 +149,7 @@ extension QRScanViewController: AVCaptureMetadataOutputObjectsDelegate, UIImageP
             if features.count > 0 {
                 let feature = features[0] as! CIQRCodeFeature
                 let str = feature.messageString
-                print(str)
+//                print(str)
                 if str.hasPrefix("ss://") {
                     let dataStr = str.componentsSeparatedByString("://")[1]
                     let data = NSData(base64EncodedString: dataStr, options: .IgnoreUnknownCharacters)

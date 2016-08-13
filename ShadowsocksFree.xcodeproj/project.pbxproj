@@ -74,7 +74,6 @@
 		2AD282981CD8520800C4655E /* ShadowsocksFreeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShadowsocksFreeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2829C1CD8520800C4655E /* ShadowsocksFreeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsocksFreeUITests.swift; sourceTree = "<group>"; };
 		2AD2829E1CD8520800C4655E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2ADD70E31D04864F0078A749 /* ShadowsocksFree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShadowsocksFree-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksFree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC121B21320A626A75E4D59 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9628EBA50EBD12EDA813B3 /* Pods-ShadowsocksFree.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksFree.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksFree/Pods-ShadowsocksFree.debug.xcconfig"; sourceTree = "<group>"; };
@@ -195,7 +194,6 @@
 				2A33CE9D1D1C067B000F652A /* ViewController */,
 				2A33CE9A1D1C0622000F652A /* Model */,
 				2AD2827C1CD8520800C4655E /* AppDelegate.swift */,
-				2ADD70E31D04864F0078A749 /* ShadowsocksFree-Bridging-Header.h */,
 				2AD282801CD8520800C4655E /* Main.storyboard */,
 				2AD282831CD8520800C4655E /* Assets.xcassets */,
 				2AD282851CD8520800C4655E /* LaunchScreen.storyboard */,
@@ -592,7 +590,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shadowsocksfree.zhengshu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/ShadowsocksFree-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -611,7 +608,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shadowsocksfree.zhengshu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/ShadowsocksFree-Bridging-Header.h";
 			};
 			name = Release;
 		};
