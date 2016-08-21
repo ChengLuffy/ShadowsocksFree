@@ -298,10 +298,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        let str = self.getValueForNum(indexPath.row + 1)
+        
         
         var model = Model()
         if isDelete == false {
+            let str = self.getValueForNum(indexPath.row + 1)
             model = realm.objects(Model)[indexPath.section]
             cell.textLabel?.text = model.valueForKey(str) as? String
         } else {
