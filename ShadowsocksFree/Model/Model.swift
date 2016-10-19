@@ -14,8 +14,9 @@ class Model: Object {
     dynamic var name: String?
     dynamic var adress: String? {
         didSet {
-            if adress!.containsString(":") {
-                name = adress!.componentsSeparatedByString(":")[1].componentsSeparatedByString(".")[0].uppercaseString
+            if adress!.contains(":") {
+//                name = adress!.componentsSeparatedBy(":")[1].componentsSeparatedByString(".")[0].uppercased()
+                name = adress!.components(separatedBy: ":")[1].components(separatedBy: ".")[0].uppercased()
             }
         }
     }

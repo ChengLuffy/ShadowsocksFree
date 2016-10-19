@@ -10,29 +10,29 @@ import UIKit
 
 extension UIImage {
 
-    class func createQRImage(info info: String, scale: CGFloat) -> UIImage {
+    class func createQRImage(info: String, scale: CGFloat) -> UIImage {
         let filter = CIFilter.init(name: "CIQRCodeGenerator")
         filter?.setDefaults()
-        let data = info.dataUsingEncoding(NSUTF8StringEncoding)
+        let data = info.data(using: String.Encoding.utf8)
         filter?.setValue(data, forKey: "inputMessage")
         
         let outputImage = filter?.outputImage
         
-        let ratio: CGFloat = scale / CGRectGetWidth((outputImage?.extent)!)
-        let transform = CGAffineTransformMakeScale(ratio, ratio)
-        let transformImage = outputImage?.imageByApplyingTransform(transform)
+        let ratio: CGFloat = scale / (outputImage?.extent)!.width
+        let transform = CGAffineTransform(scaleX: ratio, y: ratio)
+        let transformImage = outputImage?.applying(transform)
         
         let context = CIContext.init(options: nil)
-        let imageRef = context.createCGImage(transformImage!, fromRect: (transformImage?.extent)!)
+        let imageRef = context.createCGImage(transformImage!, from: (transformImage?.extent)!)
         
-        return UIImage.init(CGImage: imageRef)
+        return UIImage.init(cgImage: imageRef!)
     }
     
 }
 
 extension NSString {
     func base64EncodedString() -> NSString {
-        let data = self.dataUsingEncoding(NSUTF8StringEncoding)
-        return (data?.base64EncodedStringWithOptions(.Encoding64CharacterLineLength))!
+        let data = self.data(using: String.Encoding.utf8.rawValue)
+        return (data?.base64EncodedString(options: .lineLength64Characters))! as NSString
     }
 }

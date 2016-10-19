@@ -33,28 +33,28 @@ public protocol ShadowDesignable {
 }
 
 public extension ShadowDesignable where Self: UIView {
-  public func configShadowColor() {
-    if let unwrappedShadowColor = shadowColor {
+  public func configureShadowColor() {
+    if let shadowColor = shadowColor {
       commonSetup()
-      layer.shadowColor = unwrappedShadowColor.CGColor
+      layer.shadowColor = shadowColor.cgColor
     }
   }
 
-  public func configShadowRadius() {
+  public func configureShadowRadius() {
     if !shadowRadius.isNaN && shadowRadius > 0 {
       commonSetup()
       layer.shadowRadius = shadowRadius
     }
   }
 
-  public func configShadowOpacity() {
+  public func configureShadowOpacity() {
     if !shadowOpacity.isNaN && shadowOpacity >= 0 && shadowOpacity <= 1 {
       commonSetup()
       layer.shadowOpacity = Float(shadowOpacity)
     }
   }
 
-  public func configShadowOffset() {
+  public func configureShadowOffset() {
     if !shadowOffset.x.isNaN {
       commonSetup()
       layer.shadowOffset.width = shadowOffset.x
@@ -66,7 +66,49 @@ public extension ShadowDesignable where Self: UIView {
     }
   }
   
-  private func commonSetup() {
+  public func configureMaskShadow() {
+    commonSetup()
+    
+    // if a `layer.mask` is specified, add a new shadow layer to display the shadow to match the mask shape.
+    if let mask = layer.mask as? CAShapeLayer {
+      // Clear default layer borders
+      layer.shadowColor = nil
+      layer.shadowRadius = 0
+      layer.shadowOpacity = 0
+      
+      // Remove any previous shadow layer
+      layer.superlayer?.sublayers?.filter { $0.name == "shadowLayer-\(Unmanaged.passUnretained(self))" }
+        .forEach { $0.removeFromSuperlayer() }
+      
+      // Create new layer with object's memory reference to make this string unique. Otherwise common name will remove all the shadow layers as it's adding in layer's superview.
+      let shadowLayer = CAShapeLayer()
+      shadowLayer.name = "shadowLayer-\(Unmanaged.passUnretained(self))"
+      shadowLayer.frame = frame
+      
+      // Configure shadow properties
+      if let shadowColor = shadowColor {
+        shadowLayer.shadowColor = shadowColor.cgColor
+      }
+      if !shadowRadius.isNaN && shadowRadius > 0 {
+        shadowLayer.shadowRadius = shadowRadius
+      }
+      if !shadowOpacity.isNaN && shadowOpacity >= 0 && shadowOpacity <= 1 {
+        shadowLayer.shadowOpacity = Float(shadowOpacity)
+      }
+      if !shadowOffset.x.isNaN {
+        shadowLayer.shadowOffset.width = shadowOffset.x
+      }
+      if !shadowOffset.y.isNaN {
+        shadowLayer.shadowOffset.height = shadowOffset.y
+      }
+      shadowLayer.shadowPath = mask.path
+      
+      // Add to layer's superview in order to render shadow otherwise it will clip out due to mask layer.
+      layer.superlayer?.insertSublayer(shadowLayer, below: layer)
+    }
+  }
+  
+  fileprivate func commonSetup() {
     // Need to set `layer.masksToBounds` to `false`. 
     // If `layer.masksToBounds == true` then shadow doesn't work any more.
     if layer.masksToBounds {

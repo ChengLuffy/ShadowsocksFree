@@ -14,19 +14,19 @@ class PopUpViewTextView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        mainView = NSBundle.mainBundle().loadNibNamed("PopUpViewTextView", owner: self, options: nil).first as! UIView
+        mainView = Bundle.main.loadNibNamed("PopUpViewTextView", owner: self, options: nil)?.first as! UIView
         mainView.frame = CGRect(x: 0, y: 0, width: 320, height: 200)
         mainView.center = self.center
         self.addSubview(mainView)
         
         let label = UILabel.init(frame: CGRect(x: 0, y: 0, width: 350, height: 50))
         label.text = "请输入配置信息"
-        label.textAlignment = .Center
+        label.textAlignment = .center
         label.textColor = UIColor(red: 29.0 / 255.0, green: 169.0 / 255.0, blue: 209.0 / 255.0, alpha: 1)
         label.center = CGPoint(x: self.center.x, y: 70)
-        label.font = UIFont.boldSystemFontOfSize(30)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         self.addSubview(label)
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
 
     }
     
@@ -42,41 +42,41 @@ class PopUpViewTextView: UIView {
     }
     */
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.endEditing(true)
     }
 }
 
 extension PopUpViewTextView: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         let basicAnimation = CABasicAnimation.init(keyPath: "transform.scale.x")
         let progressLine = mainView.viewWithTag(textField.tag + 10)
         progressLine!.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
         basicAnimation.duration = 0.3
         basicAnimation.repeatCount = 1
-        basicAnimation.removedOnCompletion = false
-        basicAnimation.fromValue = NSNumber.init(float: 1)
-        basicAnimation.toValue = NSNumber.init(float: 280)
+        basicAnimation.isRemovedOnCompletion = false
+        basicAnimation.fromValue = NSNumber.init(value: 1 as Float)
+        basicAnimation.toValue = NSNumber.init(value: 280 as Float)
         basicAnimation.fillMode = kCAFillModeForwards
         basicAnimation.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseIn)
-        progressLine!.layer.addAnimation(basicAnimation, forKey: nil)
-        NSNotificationCenter.defaultCenter().postNotificationName("TFTag", object: textField)
+        progressLine!.layer.add(basicAnimation, forKey: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "TFTag"), object: textField)
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == "" {
             let basicAnimation = CABasicAnimation.init(keyPath: "transform.scale.x")
             let progressLine = mainView.viewWithTag(textField.tag + 10)
             progressLine!.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
             basicAnimation.duration = 0.3
             basicAnimation.repeatCount = 1
-            basicAnimation.removedOnCompletion = false
-            basicAnimation.fromValue = NSNumber.init(float: Float(280))
-            basicAnimation.toValue = NSNumber.init(float: 1)
+            basicAnimation.isRemovedOnCompletion = false
+            basicAnimation.fromValue = NSNumber.init(value: Float(280) as Float)
+            basicAnimation.toValue = NSNumber.init(value: 1 as Float)
             basicAnimation.fillMode = kCAFillModeForwards
             basicAnimation.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseIn)
-            progressLine!.layer.addAnimation(basicAnimation, forKey: nil)
+            progressLine!.layer.add(basicAnimation, forKey: nil)
         }
     }
     

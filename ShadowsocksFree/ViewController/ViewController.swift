@@ -10,8 +10,8 @@ import UIKit
 import Alamofire
 import Fuzi
 import RealmSwift
-import IBAnimatable
 import MJRefresh
+import IBAnimatable
 
 class ViewController: UIViewController {
     var titles = [String]()
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
         /*
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         self.title = "ShadowsocksFree"
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // self.tableView.mj_header.beginRefreshing()
     }
@@ -61,19 +61,19 @@ class ViewController: UIViewController {
         var isNeedRequest: Bool?
         
         if self.tableView.mj_header.lastUpdatedTime != nil {
-            let dateFormater = NSDateFormatter()
+            let dateFormater = DateFormatter()
             dateFormater.dateFormat = "yyyyMMdd"
             
-            let dateFormaterH = NSDateFormatter()
+            let dateFormaterH = DateFormatter()
             dateFormaterH.dateFormat = "HH"
             
             let date = self.tableView.mj_header.lastUpdatedTime
-            let lastDateStr = dateFormater.stringFromDate(date)
-            let lastDateHStr = dateFormaterH.stringFromDate(date)
+            let lastDateStr = dateFormater.string(from: date!)
+            let lastDateHStr = dateFormaterH.string(from: date!)
             
-            let dateNow = NSDate()
-            let dateNowStr = dateFormater.stringFromDate(dateNow)
-            let dateNowHStr = dateFormaterH.stringFromDate(dateNow)
+            let dateNow = Date()
+            let dateNowStr = dateFormater.string(from: dateNow)
+            let dateNowHStr = dateFormaterH.string(from: dateNow)
             print(lastDateStr, dateNowStr)
             print(lastDateHStr, dateNowHStr)
             
@@ -85,25 +85,27 @@ class ViewController: UIViewController {
 //        isNeedRequest = true
         
         if isNeedRequest == true {
-            Alamofire.request(.GET, URLStr).responseData { (respose) in
+            
+            Alamofire.request(URLStr).responseData { (respose) in
                 
                 if respose.result.error == nil {
-                    print(respose.data?.length)
+                    print(respose.data?.count)
                     
-                    let html = NSString.init(data: respose.data!, encoding: NSUTF8StringEncoding)
+                    let html = NSString.init(data: respose.data!, encoding: String.Encoding.utf8.rawValue)
                     do {
                         
                         try! realm.write({ 
-                            realm.delete(realm.objects(Model).filter("isNet = true"))
+                            realm.delete(realm.objects(Model.self).filter("isNet = true"))
                         })
                         
-                        let doc = try HTMLDocument(string: html as! String, encoding: NSUTF8StringEncoding)
-                        if var free = doc.xpath("//section")[2]?.children(tag: "div")[0].children(tag: "div") {
+                        let doc = try HTMLDocument(string: html as! String, encoding: String.Encoding.utf8)
+                        var free = doc.xpath("//section")[2].children(tag: "div")[0].children(tag: "div")
+                        if free.count > 0 {
                             free.removeFirst()
                             for node in free[0].children(tag: "div") {
                                 let model = Model()
                                 
-                                for (index, sub) in node.children(tag: "h4").enumerate() {
+                                for (index, sub) in node.children(tag: "h4").enumerated() {
                                     
                                     switch index {
                                     case 0: model.adress = sub.stringValue
@@ -142,17 +144,17 @@ class ViewController: UIViewController {
 
     }
     
-    func getValueForNum(num: Int) -> String {
+    func getValueForNum(_ num: Int) -> String {
         var count: UInt32 = 0
         let properties = class_copyPropertyList(Model.self, &count)
-        let str = String.fromCString(property_getName(properties[num]))!
+        let str = String(cString: property_getName(properties?[num]))
         free(properties)
         return str
     }
 
-    @IBAction func QRItemDidClicked(sender: AnyObject) {
-        let point = CGPoint(x: UIScreen.mainScreen().bounds.size.width - 23, y: 50)
-        let options = [.AnimationIn(0.25), .AnimationOut(0.25), .ArrowSize(CGSize(width: 15, height: 20)), PopoverOption.CornerRadius(10), .Type(PopoverType.Down)] as [PopoverOption]
+    @IBAction func QRItemDidClicked(_ sender: AnyObject) {
+        let point = CGPoint(x: UIScreen.main.bounds.size.width - 23, y: 50)
+        let options = [.animationIn(0.25), .animationOut(0.25), .arrowSize(CGSize(width: 15, height: 20)), PopoverOption.cornerRadius(10), .type(PopoverType.down)] as [PopoverOption]
         popoverView = Popover.init(options: options, showHandler: {
             print("show")
         }) {
@@ -160,27 +162,27 @@ class ViewController: UIViewController {
         }
         
         let subView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 80))
-        subView.backgroundColor = UIColor.blueColor()
+        subView.backgroundColor = UIColor.blue
         
-        let scanBtn = UIButton.init(type: .System)
-        scanBtn.setTitle("扫描", forState: .Normal)
-        scanBtn.addTarget(self, action: #selector(ViewController.scanBtnDidClicked(_:)), forControlEvents: .TouchUpInside)
+        let scanBtn = UIButton.init(type: .system)
+        scanBtn.setTitle("扫描", for: UIControlState())
+        scanBtn.addTarget(self, action: #selector(ViewController.scanBtnDidClicked(_:)), for: .touchUpInside)
         scanBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
         subView.addSubview(scanBtn)
         
-        let watchBtn = UIButton.init(type: .System)
-        watchBtn.setTitle("查看", forState: .Normal)
-        watchBtn.addTarget(self, action: #selector(ViewController.watchBtnDidClicked(_:)), forControlEvents: .TouchUpInside)
+        let watchBtn = UIButton.init(type: .system)
+        watchBtn.setTitle("查看", for: UIControlState())
+        watchBtn.addTarget(self, action: #selector(ViewController.watchBtnDidClicked(_:)), for: .touchUpInside)
         watchBtn.frame = CGRect(x: 0, y: 40, width: 100, height: 40)
         subView.addSubview(watchBtn)
         
         popoverView!.show(subView, point: point)
     }
     
-    @IBAction func addItemDidClicked(sender: AnyObject) {
+    @IBAction func addItemDidClicked(_ sender: AnyObject) {
         
         let point = CGPoint(x: 25, y: 50)
-        let options = [.AnimationIn(0.25), .AnimationOut(0.25), .ArrowSize(CGSize(width: 15, height: 20)), PopoverOption.CornerRadius(10), .Type(PopoverType.Down)] as [PopoverOption]
+        let options = [.animationIn(0.25), .animationOut(0.25), .arrowSize(CGSize(width: 15, height: 20)), PopoverOption.cornerRadius(10), .type(PopoverType.down)] as [PopoverOption]
         popoverView = Popover.init(options: options, showHandler: {
             print("show")
         }) {
@@ -188,21 +190,21 @@ class ViewController: UIViewController {
         }
         
         let subView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 80))
-        subView.backgroundColor = UIColor.blueColor()
+        subView.backgroundColor = UIColor.blue
         
-        let addButon = UIButton.init(type: .System)
-        addButon.setTitle("添加", forState: .Normal)
-        addButon.addTarget(self, action: #selector(ViewController.addBtnClicked(_:)), forControlEvents: .TouchUpInside)
+        let addButon = UIButton.init(type: .system)
+        addButon.setTitle("添加", for: UIControlState())
+        addButon.addTarget(self, action: #selector(ViewController.addBtnClicked(_:)), for: .touchUpInside)
         addButon.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
         subView.addSubview(addButon)
         
-        let deleteButton = UIButton.init(type: .System)
+        let deleteButton = UIButton.init(type: .system)
         if isDelete == true {
-            deleteButton.setTitle("完成", forState: .Normal)
+            deleteButton.setTitle("完成", for: UIControlState())
         } else {
-            deleteButton.setTitle("删除", forState: .Normal)
+            deleteButton.setTitle("删除", for: UIControlState())
         }
-        deleteButton.addTarget(self, action: #selector(ViewController.deleteBtnDidClicked(_:)), forControlEvents: .TouchUpInside)
+        deleteButton.addTarget(self, action: #selector(ViewController.deleteBtnDidClicked(_:)), for: .touchUpInside)
         deleteButton.frame = CGRect(x: 0, y: 40, width: 100, height: 40)
         deleteButton.tag = 10
         subView.addSubview(deleteButton)
@@ -211,7 +213,7 @@ class ViewController: UIViewController {
         
     }
     
-    func deleteBtnDidClicked(sender: AnyObject) {
+    func deleteBtnDidClicked(_ sender: AnyObject) {
         popoverView!.dismiss()
         
         if isDelete == false {
@@ -225,40 +227,41 @@ class ViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func addBtnClicked(sender: AnyObject) {
+    func addBtnClicked(_ sender: AnyObject) {
         popoverView!.dismiss()
-        let addInfoVCNav = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("add") as! AnimatableNavigationController
+        let addInfoVCNav = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "add") as! UINavigationController
         let addInfoVC = addInfoVCNav.viewControllers.first as! AddInfoViewController
         weak var weakSelf = self
         addInfoVC.refreshHandle = {
             weakSelf?.tableView.mj_header.beginRefreshing()
         }
-        addInfoVCNav.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Fold(fromDirection: .Right, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
+//        addInfoVCNav.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Fold(fromDirection: .Right, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.15 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-            self.presentViewController(addInfoVCNav, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+            self.present(addInfoVCNav, animated: true, completion: nil)
         })
     }
     
-    func scanBtnDidClicked(sender: AnyObject) {
+    func scanBtnDidClicked(_ sender: AnyObject) {
         popoverView!.dismiss()
-        let QRVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("scan") as! QRScanViewController
+        let QRVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "scan") as! QRScanViewController
         weak var weakSelf = self
         QRVC.refreshHandle = {
             weakSelf?.tableView.mj_header.beginRefreshing()
         }
-        QRVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Portal(direction: .Forward, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pinch(direction: .Close))
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.15 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-            self.presentViewController(QRVC, animated: true, completion: nil)
+//        QRVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Portal(direction: .Forward, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pinch(direction: .Close))
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+            self.present(QRVC, animated: true, completion: nil)
         })
     }
     
-    func watchBtnDidClicked(sender: AnyObject) {
+    func watchBtnDidClicked(_ sender: AnyObject) {
         popoverView!.dismiss()
-        let QRVC = UIStoryboard.init(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("watch")
-        QRVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Explode(params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.15 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-            self.presentViewController(QRVC, animated: true, completion: nil)
+        let QRVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "watch")
+//        QRVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Explode(params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
+        QRVC.transitioningDelegate = TransitionPresenterManager.sharedManager().retrievePresenter(transitionAnimationType: .explode(xFactor: 10, minAngle: 0.01, maxAngle: 0.1), transitionDuration: 1, interactiveGestureType: .pan(from: .left))
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+            self.present(QRVC, animated: true, completion: nil)
         })
     }
     
@@ -266,88 +269,88 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         if isDelete == true {
             return 1
         } else {
             
-            return realm.objects(Model).count
+            return realm.objects(Model.self).count
         }
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isDelete == false {
             return 4
         } else {
             
-            return realm.objects(Model).filter("isNet = false").count
+            return realm.objects(Model.self).filter("isNet = false").count
         }
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if isDelete == false {
-            return realm.objects(Model)[section].name
+            return realm.objects(Model.self)[section].name
         } else {
             return "自定义节点信息列表"
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         
         var model = Model()
         if isDelete == false {
-            let str = self.getValueForNum(indexPath.row + 1)
-            model = realm.objects(Model)[indexPath.section]
-            cell.textLabel?.text = model.valueForKey(str) as? String
+            let str = self.getValueForNum((indexPath as NSIndexPath).row + 1)
+            model = realm.objects(Model.self)[(indexPath as NSIndexPath).section]
+            cell.textLabel?.text = model.value(forKey: str) as? String
         } else {
-            model = realm.objects(Model).filter("isNet = false")[indexPath.row]
+            model = realm.objects(Model.self).filter("isNet = false")[(indexPath as NSIndexPath).row]
             cell.textLabel?.text = model.adress
         }
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 4 {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).row == 4 {
+            tableView.deselectRow(at: indexPath, animated: true)
         } else {
-            let pboard = UIPasteboard.generalPasteboard()
+            let pboard = UIPasteboard.general
             
-            let str = getValueForNum(indexPath.row + 1)
-            let temp = realm.objects(Model)[indexPath.section].valueForKey(str)!.componentsSeparatedByString(":")
+            let str = getValueForNum((indexPath as NSIndexPath).row + 1)
+            let temp = (realm.objects(Model.self)[(indexPath as NSIndexPath).section].value(forKey: str)! as AnyObject).components(separatedBy: ":")
             pboard.string = temp[1]
-            let alertVC = UIAlertController.init(title: temp[0] + "已成功复制", message: "", preferredStyle: .Alert)
+            let alertVC = UIAlertController.init(title: temp[0] + "已成功复制", message: "", preferredStyle: .alert)
             weak var weakSelf = self
-            self.presentViewController(alertVC, animated: true) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                    weakSelf!.dismissViewControllerAnimated(true, completion: {
-                        weakSelf!.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.present(alertVC, animated: true) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+                    weakSelf!.dismiss(animated: true, completion: {
+                        weakSelf!.tableView.deselectRow(at: indexPath, animated: true)
                     })
                 })
             }
         }
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             print("delete")
             
-            let model = realm.objects(Model).filter("isNet = false")[indexPath.row]
+            let model = realm.objects(Model.self).filter("isNet = false")[(indexPath as NSIndexPath).row]
             try! realm.write({
                 realm.delete(model)
             })
-            print(model.invalidated)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            print(model.isInvalidated)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return isDelete
     }
     

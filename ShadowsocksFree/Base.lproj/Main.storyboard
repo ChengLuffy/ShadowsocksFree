@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sDn-2f-QXW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sDn-2f-QXW">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Add Info View Controller-->
@@ -13,14 +14,14 @@
                         <viewControllerLayoutGuide type="bottom" id="aA7-fa-nk4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MH9-co-Oa0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.1137254902" green="0.66274509800000003" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.1137254902" green="0.66274509800000003" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="SfA-Uz-8gA">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="LjO-qo-SgM">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="custom" customClass="DismissSegue" customModule="IBAnimatable" id="Lc3-Yj-qWx"/>
+                                <action selector="dimisisVC:" destination="qaZ-WR-QfG" id="kEw-Lz-hfL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="完成" id="RQi-Sr-zcb">
@@ -43,9 +44,9 @@
                         <viewControllerLayoutGuide type="bottom" id="aR7-a4-1JX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ewJ-bC-Q8b">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aki-3V-RRw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -61,15 +62,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gu7-aD-qcz">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Gu7-aD-qcz" secondAttribute="bottom" id="6aY-sY-I67"/>
                             <constraint firstAttribute="trailing" secondItem="Gu7-aD-qcz" secondAttribute="trailing" id="NNY-ND-Kxf"/>
@@ -106,12 +106,11 @@
                         <viewControllerLayoutGuide type="bottom" id="g3b-Hk-0r4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Asg-lz-Ks7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tMx-XO-Dau">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SHo-I2-5bA">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -125,7 +124,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="g3b-Hk-0r4" firstAttribute="top" secondItem="tMx-XO-Dau" secondAttribute="bottom" id="IrM-sg-0Vt"/>
                             <constraint firstAttribute="trailing" secondItem="tMx-XO-Dau" secondAttribute="trailing" id="aiE-vt-Cze"/>
@@ -170,10 +169,10 @@
             </objects>
             <point key="canvasLocation" x="231" y="138"/>
         </scene>
-        <!--Animatable Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="Ali-d7-idh">
             <objects>
-                <navigationController storyboardIdentifier="watch" automaticallyAdjustsScrollViewInsets="NO" id="gae-pN-Ric" customClass="AnimatableNavigationController" customModule="IBAnimatable" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="watch" automaticallyAdjustsScrollViewInsets="NO" id="gae-pN-Ric" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yui-4E-9eG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -188,10 +187,10 @@
             </objects>
             <point key="canvasLocation" x="-711" y="-694"/>
         </scene>
-        <!--Animatable Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="HEE-21-0Ru">
             <objects>
-                <navigationController storyboardIdentifier="add" automaticallyAdjustsScrollViewInsets="NO" id="CFY-0b-aip" customClass="AnimatableNavigationController" customModule="IBAnimatable" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="add" automaticallyAdjustsScrollViewInsets="NO" id="CFY-0b-aip" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UuE-ye-VVa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -214,6 +213,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="RHg-S2-Nzt"/>
+        <segue reference="7Ib-1I-0gq"/>
     </inferredMetricsTieBreakers>
 </document>

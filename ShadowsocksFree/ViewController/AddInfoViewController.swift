@@ -8,6 +8,26 @@
 
 import UIKit
 import RealmSwift
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class AddInfoViewController:  UIViewController {
     
@@ -18,22 +38,22 @@ class AddInfoViewController:  UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserverForName("TFTag", object: nil, queue: nil) { (notification) in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "TFTag"), object: nil, queue: nil) { (notification) in
             let tf = notification.object as! UITextField
-            self.currentEditingY = tf.convertRect(tf.frame,toView: self.view).maxY
+            self.currentEditingY = tf.convert(tf.frame,to: self.view).maxY
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification, object: nil, queue: nil) { (_) in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillHide, object: nil, queue: nil) { (_) in
             self.popUpTextView?.center = self.view.center
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddInfoViewController.keyBoardShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddInfoViewController.keyBoardShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         popUpTextView = PopUpViewTextView.init(frame: CGRect(x: 0, y: 0, width: 330, height: 400))
         popUpTextView?.center = self.view.center
         popUpTextView!.layer.cornerRadius = 10
-        popUpTextView!.layer.shadowColor = UIColor.blackColor().CGColor
-        popUpTextView!.layer.shadowOffset = CGSizeMake(2, 2)
+        popUpTextView!.layer.shadowColor = UIColor.black.cgColor
+        popUpTextView!.layer.shadowOffset = CGSize(width: 2, height: 2)
         popUpTextView!.layer.shadowRadius = 10
         popUpTextView!.layer.shadowOpacity = 10
         self.view.addSubview(popUpTextView!)
@@ -47,14 +67,21 @@ class AddInfoViewController:  UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func keyBoardShow(notification: NSNotification) {
-        let point = notification.userInfo!["UIKeyboardCenterEndUserInfoKey"]?.CGPointValue()
-        if currentEditingY! + 20 > point?.y {
-            self.popUpTextView?.center.y -= self.currentEditingY! + 80 - point!.y
+    func keyBoardShow(_ notification: Notification) {
+//        let point = ((notification as NSNotification).userInfo!["UIKeyboardCenterEndUserInfoKey"] as AnyObject).cgPointValue
+//        let keys = notification.userInfo?.keys
+//        print(keys)
+        let pointV = notification.userInfo!["UIKeyboardCenterEndUserInfoKey"] as! NSValue
+        let point = pointV.cgPointValue
+        if currentEditingY! + 20 > point.y {
+            self.popUpTextView?.center.y = (self.popUpTextView?.center.y)! - self.currentEditingY! + 80 - point.y
         }
     }
 
-    @IBAction func DoneBtnClicked(sender: AnyObject) {
+    @IBAction func dimisisVC(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
+    }
+    @IBAction func DoneBtnClicked(_ sender: AnyObject) {
         
         let model = Model()
         let adress = (self.popUpTextView!.viewWithTag(1) as! UITextField).text!.characters.count > 0 ? (self.popUpTextView!.viewWithTag(1) as! UITextField).text! : "nil"
@@ -78,27 +105,27 @@ class AddInfoViewController:  UIViewController {
             })
             self.view.endEditing(false)
             weak var weakSelf = self
-            self.dismissViewControllerAnimated(true, completion: {
+            self.dismiss(animated: true, completion: {
                 weakSelf?.refreshHandle!()
             })
         }
         
     }
     
-    func alertMSG(msg: String, tag: Int) {
-        let alertVC = UIAlertController.init(title: "错误提示", message: msg, preferredStyle: .Alert)
-        let sureAction = UIAlertAction.init(title: "确定", style: .Cancel) { (_) in
+    func alertMSG(_ msg: String, tag: Int) {
+        let alertVC = UIAlertController.init(title: "错误提示", message: msg, preferredStyle: .alert)
+        let sureAction = UIAlertAction.init(title: "确定", style: .cancel) { (_) in
             let tf = self.popUpTextView?.viewWithTag(tag) as! UITextField
             tf.becomeFirstResponder()
         }
         alertVC.addAction(sureAction)
-        self.presentViewController(alertVC, animated: true, completion: nil)
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
