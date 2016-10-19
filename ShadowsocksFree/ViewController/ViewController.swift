@@ -236,7 +236,7 @@ class ViewController: UIViewController {
             weakSelf?.tableView.mj_header.beginRefreshing()
         }
 //        addInfoVCNav.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Fold(fromDirection: .Right, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
-        
+        addInfoVCNav.transitioningDelegate = TransitionPresenterManager.sharedManager().retrievePresenter(transitionAnimationType: .fold(from: .right, folds: 6), transitionDuration: 0.5, interactiveGestureType: .pan(from: .left))
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
             self.present(addInfoVCNav, animated: true, completion: nil)
         })
@@ -250,6 +250,7 @@ class ViewController: UIViewController {
             weakSelf?.tableView.mj_header.beginRefreshing()
         }
 //        QRVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Portal(direction: .Forward, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pinch(direction: .Close))
+        QRVC.transitioningDelegate = TransitionPresenterManager.sharedManager().retrievePresenter(transitionAnimationType: .portal(direction: .forward, zoomScale: 0.618), transitionDuration: 0.5, interactiveGestureType: .pinch(direction: .close))
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
             self.present(QRVC, animated: true, completion: nil)
         })
