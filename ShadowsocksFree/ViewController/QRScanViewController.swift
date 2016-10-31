@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AVFoundation
+import AVFoundation.AVCaptureSession
 import RealmSwift
 
 class QRScanViewController: UIViewController {

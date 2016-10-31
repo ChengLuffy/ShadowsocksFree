@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         self.tableView.mj_header.beginRefreshing()
         self.title = "ShadowsocksFree"
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // self.tableView.mj_header.beginRefreshing()
@@ -89,7 +89,7 @@ class ViewController: UIViewController {
             Alamofire.request(URLStr).responseData { (respose) in
                 
                 if respose.result.error == nil {
-                    print(respose.data?.count)
+                    print(respose.data?.count ?? "nil")
                     
                     let html = NSString.init(data: respose.data!, encoding: String.Encoding.utf8.rawValue)
                     do {
@@ -133,7 +133,7 @@ class ViewController: UIViewController {
                         print(error)
                     }
                 } else {
-                    print(respose.result.error)
+                    print(respose.result.error ?? "nil")
                     self.tableView.mj_header.endRefreshing()
                 }
             }
@@ -236,7 +236,7 @@ class ViewController: UIViewController {
             weakSelf?.tableView.mj_header.beginRefreshing()
         }
 //        addInfoVCNav.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Fold(fromDirection: .Right, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
-        addInfoVCNav.transitioningDelegate = TransitionPresenterManager.sharedManager().retrievePresenter(transitionAnimationType: .fold(from: .right, folds: 6), transitionDuration: 0.5, interactiveGestureType: .pan(from: .left))
+        addInfoVCNav.transitioningDelegate = TransitionPresenterManager.sharedManager().retrievePresenter(transitionAnimationType: .fold(from: .right, folds: 3), transitionDuration: 0.5, interactiveGestureType: .pan(from: .left))
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
             self.present(addInfoVCNav, animated: true, completion: nil)
         })
