@@ -28,7 +28,11 @@
 
 > 16.07.31: 增加`3D touch`支持。
 
-> 16.08.21: 增加 [namaho](https://www.namaho.com/) 免费节点。
+> ~~16.08.21: 增加 [namaho](https://www.namaho.com/) 免费节点。~~
+
+> 16.12.22: 删除 ~~namaho~~ 节点，增加 [seeout][380e7a9b] 免费节点。
+
+  [380e7a9b]: http://www.seeout.pw/free/ "seeout"
 
 # TODO
 - [x] 归档用户自己输入的配置信息并生成二维码

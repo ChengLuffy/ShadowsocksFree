@@ -29,7 +29,7 @@ public enum TransitionAnimationType {
   case systemReveal(from: Direction)
   case systemPage(type: PageType)
   case systemCameraIris(hollowState: HollowState)
-  
+
   public var stringValue: String {
     return String(describing: self)
   }
@@ -41,11 +41,11 @@ extension TransitionAnimationType: IBEnum {
       self = .none
       return
     }
-    
+
     let nameAndParams = TransitionAnimationType.extractNameAndParams(from: string)
     let name = nameAndParams.name
     let params = nameAndParams.params
-    
+
     switch name {
     case "systemrippleeffect":
       self = .systemRippleEffect
@@ -130,7 +130,7 @@ extension TransitionAnimationType {
     case `in`
     case out
     case cross
-    
+
     // Convert from direction to CATransition Subtype used in `CATransition`
     var caTransitionSubtype: String {
       switch self {
@@ -148,11 +148,11 @@ extension TransitionAnimationType {
         return ""
       }
     }
-    
+
     var isHorizontal: Bool {
       return self == .left || self == .right
     }
-    
+
     static func fromString(forParams params: [String]) -> Direction? {
       if params.contains("left") {
         return .left
@@ -169,7 +169,7 @@ extension TransitionAnimationType {
       }
       return nil
     }
-    
+
     var opposite: Direction {
       switch self {
       case .left:
@@ -239,5 +239,15 @@ extension TransitionAnimationType {
     case cameraIrisHollowOpen
     case cameraIrisHollowClose
     case rotate
+  }
+}
+
+extension TransitionAnimationType: Hashable {
+  public var hashValue: Int {
+    return stringValue.hashValue
+  }
+  
+  public static func == (lhs: TransitionAnimationType, rhs: TransitionAnimationType) -> Bool {
+    return lhs.stringValue == rhs.stringValue
   }
 }

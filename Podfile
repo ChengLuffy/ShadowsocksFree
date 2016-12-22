@@ -5,5 +5,5 @@ pod 'Alamofire'
 pod 'IBAnimatable'
 pod 'MJRefresh'
 pod 'Fuzi'
-pod 'RealmSwift', '~> 2.0.2'
+pod 'RealmSwift'
 end

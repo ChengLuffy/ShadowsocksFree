@@ -16,7 +16,7 @@ class Model: Object {
         didSet {
             if adress!.contains(":") {
 //                name = adress!.componentsSeparatedBy(":")[1].componentsSeparatedByString(".")[0].uppercased()
-                name = adress!.components(separatedBy: ":")[1].components(separatedBy: ".")[0].uppercased()
+                name = adress!.components(separatedBy: ":")[1].uppercased()
             }
         }
     }

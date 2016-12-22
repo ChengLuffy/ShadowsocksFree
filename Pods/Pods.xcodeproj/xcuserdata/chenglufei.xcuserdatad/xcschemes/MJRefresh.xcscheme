@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0810"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "29DD99664D189A7CA206368F493B1E0B"
+               BlueprintIdentifier = "E14A62900910444707A5504D25EC98DC"
                BuildableName = "MJRefresh.framework"
                BlueprintName = "MJRefresh"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "29DD99664D189A7CA206368F493B1E0B"
+            BlueprintIdentifier = "E14A62900910444707A5504D25EC98DC"
             BuildableName = "MJRefresh.framework"
             BlueprintName = "MJRefresh"
             ReferencedContainer = "container:Pods.xcodeproj">

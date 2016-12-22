@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NetworkExtension
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,35 +18,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        if (UserDefaults.standard.value(forKey: "isFirstOpen") == nil) {
-            print("is")
-            
-            let arr = ["namahoO8K", "namaho5FY", "namahoIKF"]
-            
-            var i = 0
-            
-            while i < 6 {
-                let model = Model()
-                if i < 3 {
-                    model.adress = "\(i)服务器地址:jp01.namaho.com"
-                    model.port = "端口:\(8497 + i)"
-                    model.passWord = "密码:" + arr[i]
-                    model.name = "namahoJP\(i)"
-                } else {
-                    model.adress = "\(i - 3)服务器地址:us02.namaho.com"
-                    model.port = "端口:\(8497 + i - 3)"
-                    model.passWord = "密码:" + arr[i - 3]
-                    model.name = "namahoUS\(i - 3)"
-                }
-                model.encryption = "加密方式:aes-256-cfb"
-                model.isNet = false
-                i += 1
-                try! realm.write({
-                    realm.add(model, update: true)
-                })
-            }
-            UserDefaults.standard.set(false, forKey: "isFirstOpen")
-        }
+//        if (UserDefaults.standard.value(forKey: "isFirstOpen") == nil) {
+//            print("is")
+//            
+//            let arr = ["namahoO8K", "namaho5FY", "namahoIKF"]
+//            
+//            var i = 0
+//            
+//            while i < 6 {
+//                let model = Model()
+//                if i < 3 {
+//                    model.adress = "\(i)服务器地址:jp01.namaho.com"
+//                    model.port = "端口:\(8497 + i)"
+//                    model.passWord = "密码:" + arr[i]
+//                    model.name = "namahoJP\(i)"
+//                } else {
+//                    model.adress = "\(i - 3)服务器地址:us02.namaho.com"
+//                    model.port = "端口:\(8497 + i - 3)"
+//                    model.passWord = "密码:" + arr[i - 3]
+//                    model.name = "namahoUS\(i - 3)"
+//                }
+//                model.encryption = "加密方式:aes-256-cfb"
+//                model.isNet = false
+//                i += 1
+//                try! realm.write({
+//                    realm.add(model, update: true)
+//                })
+//            }
+//            UserDefaults.standard.set(false, forKey: "isFirstOpen")
+//        }
         
        
         

@@ -62,7 +62,6 @@
 		2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewTextView.swift; path = PopUpView/PopUpViewTextView.swift; sourceTree = "<group>"; };
 		2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PopUpViewTextView.xib; path = PopUpView/PopUpViewTextView.xib; sourceTree = "<group>"; };
 		2A520E281D5701290023F283 /* method.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = method.plist; sourceTree = "<group>"; };
-		2A8FAED01DB6081700723AED /* ShadowsocksFree.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShadowsocksFree.entitlements; sourceTree = "<group>"; };
 		2AD282791CD8520800C4655E /* ShadowsocksFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowsocksFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2827C1CD8520800C4655E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AD282811CD8520800C4655E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -189,7 +188,6 @@
 		2AD2827B1CD8520800C4655E /* ShadowsocksFree */ = {
 			isa = PBXGroup;
 			children = (
-				2A8FAED01DB6081700723AED /* ShadowsocksFree.entitlements */,
 				2A520E271D5700CE0023F283 /* Resource */,
 				2A33CEB51D1C0711000F652A /* Tool */,
 				2A33CEA61D1C06BE000F652A /* View */,
@@ -306,12 +304,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "成璐飞";
 				TargetAttributes = {
 					2AD282781CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = N7XNKCS3XY;
+						DevelopmentTeam = 7H6D42UGU5;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -598,14 +596,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = N7XNKCS3XY;
+				DEVELOPMENT_TEAM = 7H6D42UGU5;
 				INFOPLIST_FILE = ShadowsocksFree/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LLVM_LTO = NO;
 				NEW_SETTING = "";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shadowsocksfree;
+				PRODUCT_BUNDLE_IDENTIFIER = test.chengluffy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -620,14 +618,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = N7XNKCS3XY;
+				DEVELOPMENT_TEAM = 7H6D42UGU5;
 				INFOPLIST_FILE = ShadowsocksFree/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LLVM_LTO = NO;
 				NEW_SETTING = "";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shadowsocksfree;
+				PRODUCT_BUNDLE_IDENTIFIER = test.chengluffy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;

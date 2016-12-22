@@ -35,8 +35,6 @@ if ! [ -z "${JENKINS_HOME}" ]; then
     CODESIGN_PARAMS="CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO"
 fi
 
-export REALM_SKIP_DEBUGGER_CHECKS=YES
-
 usage() {
 cat <<EOF
 Usage: sh $0 command [argument]
@@ -284,15 +282,20 @@ fi
 # Downloading
 ######################################
 
+kill_object_server() {
+    (pgrep -f realm-object-server || true) | while read pid; do
+        kill $pid 2>/dev/null
+    done
+}
+
 download_object_server() {
-    local archive_name="realm-object-server-bundled_node_darwin-$REALM_OBJECT_SERVER_VERSION.tar.gz"
+    local archive_name="realm-object-server-bundled_node_darwin-developer-$REALM_OBJECT_SERVER_VERSION.tar.gz"
     curl -L -O "https://static.realm.io/downloads/object-server/$archive_name"
     rm -rf sync
     mkdir sync
     tar xf $archive_name -C sync
     rm $archive_name
-    echo "\nenterprise:\n  skip_setup: true" >> "sync/object-server/configuration.yml"
-    sed -i '' -e "s/    listen_address: '0\.0\.0\.0'/    listen_address: '::'/" "sync/object-server/configuration.yml"
+    cp Configuration/object-server-config.yml sync/object-server/configuration.yml
     touch "sync/object-server/do_not_open_browser"
 }
 
@@ -395,15 +398,23 @@ case "$COMMAND" in
         ;;
 
     "start-object-server")
-        # kill any object servers that are still running
-        (pgrep -f realm-object-server || true) | while read pid; do
-            kill $pid
-        done
+        kill_object_server
         ./sync/start-object-server.command
         exit 0
         ;;
 
+    "reset-object-server-between-tests")
+        # Leave the server files alone to avoid 'bad_server_ident' errors
+        rm -rf "~/Library/Application Support/xctest"
+        rm -rf "~/Library/Application Support/io.realm.TestHost"
+        rm -rf "~/Library/Application Support/xctest-child"
+        exit 0
+        ;;
+
     "reset-object-server")
+        kill_object_server
+        # Add a short delay, so file system doesn't complain about files in use
+        sleep 1
         package="${source_root}/sync"
         for file in "$package"/realm-object-server-*; do
             if [ -d "$file" ]; then
@@ -413,6 +424,7 @@ case "$COMMAND" in
         done
         rm -rf "$package/object-server/root_dir/"
         rm -rf "$package/object-server/temp_dir/"
+        sh build.sh reset-object-server-between-tests
         exit 0
         ;;
 
@@ -630,7 +642,7 @@ case "$COMMAND" in
         ;;
 
     "test-ios-devices-objc")
-        test_devices iphoneos "Realm iOS static" "$CONFIGURATION"
+        test_devices iphoneos "Realm" "$CONFIGURATION"
         exit $?
         ;;
 
@@ -814,6 +826,7 @@ case "$COMMAND" in
     "verify-osx-object-server")
         sh build.sh download-object-server
         sh build.sh test-osx-object-server
+        sh build.sh reset-object-server
         exit 0
         ;;
 
@@ -850,6 +863,7 @@ case "$COMMAND" in
         xc "-workspace $workspace -scheme GroupedTableView -configuration $CONFIGURATION -destination 'name=iPhone 6' build ${CODESIGN_PARAMS}"
         xc "-workspace $workspace -scheme RACTableView -configuration $CONFIGURATION -destination 'name=iPhone 6' build ${CODESIGN_PARAMS}"
         xc "-workspace $workspace -scheme Encryption -configuration $CONFIGURATION -destination 'name=iPhone 6' build ${CODESIGN_PARAMS}"
+        xc "-workspace $workspace -scheme Draw -configuration $CONFIGURATION -destination 'name=iPhone 6' build ${CODESIGN_PARAMS}"
 
         if [ ! -z "${JENKINS_HOME}" ]; then
             xc "-workspace $workspace -scheme Extension -configuration $CONFIGURATION -destination 'name=iPhone 6' build ${CODESIGN_PARAMS}"
@@ -984,10 +998,11 @@ EOM
           mkdir -p include
           mv core/include include/core
 
-          mkdir -p include/impl/apple
-          mkdir -p include/util/apple
+          mkdir -p include/impl/apple include/util/apple include/sync/impl
           cp Realm/*.hpp include
           cp Realm/ObjectStore/src/*.hpp include
+          cp Realm/ObjectStore/src/sync/*.hpp include/sync
+          cp Realm/ObjectStore/src/sync/impl/*.hpp include/sync/impl
           cp Realm/ObjectStore/src/impl/*.hpp include/impl
           cp Realm/ObjectStore/src/impl/apple/*.hpp include/impl/apple
           cp Realm/ObjectStore/src/util/*.hpp include/util
@@ -1031,12 +1046,13 @@ EOM
             export CONFIGURATION=$configuration
             export REALM_EXTRA_BUILD_ARGUMENTS='GCC_GENERATE_DEBUGGING_SYMBOLS=NO REALM_PREFIX_HEADER=Realm/RLMPrefix.h'
             sh build.sh prelaunch-simulator
+            rm ~/Library/Logs/CoreSimulator/CoreSimulator.log
             # Verify that no Realm files still exist
             ! find ~/Library/Developer/CoreSimulator/Devices/ -name '*.realm' | grep -q .
 
             failed=0
             sh build.sh verify-$target 2>&1 | tee build/build.log | xcpretty -r junit -o build/reports/junit.xml || failed=1
-            if [ "$failed" = "1" ] && cat build/build.log | grep -E 'DTXProxyChannel|DTXChannel|out of date and needs to be rebuilt'; then
+            if [ "$failed" = "1" ] && cat build/build.log | grep -E 'DTXProxyChannel|DTXChannel|out of date and needs to be rebuilt|operation never finished bootstrapping'; then
                 echo "Known Xcode error detected. Running job again."
                 failed=0
                 sh build.sh verify-$target | tee build/build.log | xcpretty -r junit -o build/reports/junit.xml || failed=1
@@ -1127,24 +1143,24 @@ EOM
 
     "package-ios-swift")
         cd tightdb_objc
-        for version in 2.2 2.3 3.0; do
+        for version in 2.2 2.3 3.0 3.0.1 3.0.2; do
             REALM_SWIFT_VERSION="$version" sh build.sh prelaunch-simulator
             REALM_SWIFT_VERSION="$version" sh build.sh ios-swift
         done
 
         cd build/ios
-        zip --symlinks -r realm-swift-framework-ios.zip swift-2.2 swift-2.3 swift-3.0
+        zip --symlinks -r realm-swift-framework-ios.zip swift-2.2 swift-2.3 swift-3.0 swift-3.0.1 swift-3.0.2
         ;;
 
     "package-osx-swift")
         cd tightdb_objc
-        for version in 2.2 2.3 3.0; do
+        for version in 2.2 2.3 3.0 3.0.1 3.0.2; do
             REALM_SWIFT_VERSION="$version" sh build.sh prelaunch-simulator
             REALM_SWIFT_VERSION="$version" sh build.sh osx-swift
         done
 
         cd build/osx
-        zip --symlinks -r realm-swift-framework-osx.zip swift-2.2 swift-2.3 swift-3.0
+        zip --symlinks -r realm-swift-framework-osx.zip swift-2.2 swift-2.3 swift-3.0 swift-3.0.1 swift-3.0.2
         ;;
 
     "package-watchos")
@@ -1157,13 +1173,13 @@ EOM
 
     "package-watchos-swift")
         cd tightdb_objc
-        for version in 2.2 2.3 3.0; do
+        for version in 2.2 2.3 3.0 3.0.1 3.0.2; do
             REALM_SWIFT_VERSION="$version" sh build.sh prelaunch-simulator
             REALM_SWIFT_VERSION="$version" sh build.sh watchos-swift
         done
 
         cd build/watchos
-        zip --symlinks -r realm-swift-framework-watchos.zip swift-2.2 swift-2.3 swift-3.0
+        zip --symlinks -r realm-swift-framework-watchos.zip swift-2.2 swift-2.3 swift-3.0 swift-3.0.1 swift-3.0.2
         ;;
 
     "package-tvos")
@@ -1176,13 +1192,13 @@ EOM
 
     "package-tvos-swift")
         cd tightdb_objc
-        for version in 2.2 2.3 3.0; do
+        for version in 2.2 2.3 3.0 3.0.1 3.0.2; do
             REALM_SWIFT_VERSION="$version" sh build.sh prelaunch-simulator
             REALM_SWIFT_VERSION="$version" sh build.sh tvos-swift
         done
 
         cd build/tvos
-        zip --symlinks -r realm-swift-framework-tvos.zip swift-2.2 swift-2.3 swift-3.0
+        zip --symlinks -r realm-swift-framework-tvos.zip swift-2.2 swift-2.3 swift-3.0 swift-3.0.1 swift-3.0.2
         ;;
 
     "package-release")
@@ -1356,7 +1372,11 @@ EOF
 x.x.x Release notes (yyyy-MM-dd)
 =============================================================
 
-### API breaking changes
+### Sync Breaking Changes (In Beta)
+
+* None.
+
+### API Breaking Changes
 
 * None.
 

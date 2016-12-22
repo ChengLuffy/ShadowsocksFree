@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0810"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3E19FB5CFCB8600C109A178F9D1E75A6"
+               BlueprintIdentifier = "3E765B8AB74C35B1FEF51FA254D5C734"
                BuildableName = "Fuzi.framework"
                BlueprintName = "Fuzi"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3E19FB5CFCB8600C109A178F9D1E75A6"
+            BlueprintIdentifier = "3E765B8AB74C35B1FEF51FA254D5C734"
             BuildableName = "Fuzi.framework"
             BlueprintName = "Fuzi"
             ReferencedContainer = "container:Pods.xcodeproj">

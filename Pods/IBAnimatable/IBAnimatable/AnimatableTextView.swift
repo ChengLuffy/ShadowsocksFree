@@ -6,21 +6,33 @@
 import UIKit
 
 @IBDesignable open class AnimatableTextView: UITextView, CornerDesignable, FillDesignable, BorderDesignable, Animatable, PlaceholderDesignable {
-  
+
   // MARK: - CornerDesignable
   @IBInspectable open var cornerRadius: CGFloat = CGFloat.nan {
     didSet {
       configureCornerRadius()
     }
   }
-  
+
+  open var cornerSides: CornerSides  = .AllSides {
+    didSet {
+      configureCornerRadius()
+    }
+  }
+
+  @IBInspectable var _cornerSides: String? {
+    didSet {
+      cornerSides = CornerSides(rawValue: _cornerSides)
+    }
+  }
+
   // MARK: - FillDesignable
   @IBInspectable open var fillColor: UIColor? {
     didSet {
       configureFillColor()
     }
   }
-  
+
   open var predefinedColor: ColorType? {
     didSet {
       configureFillColor()
@@ -31,7 +43,7 @@ import UIKit
       predefinedColor = ColorType(string: _predefinedColor)
     }
   }
-  
+
   @IBInspectable open var opacity: CGFloat = CGFloat.nan {
     didSet {
       configureOpacity()
@@ -44,19 +56,19 @@ import UIKit
       configureBorder()
     }
   }
-  
+
   @IBInspectable open var borderWidth: CGFloat = CGFloat.nan {
     didSet {
       configureBorder()
     }
   }
-  
+
   open var borderSides: BorderSides  = .AllSides {
     didSet {
       configureBorder()
     }
   }
-  
+
   @IBInspectable var _borderSides: String? {
     didSet {
       borderSides = BorderSides(rawValue: _borderSides)
@@ -88,7 +100,7 @@ import UIKit
   @IBInspectable open var damping: CGFloat = CGFloat.nan
   @IBInspectable open var velocity: CGFloat = CGFloat.nan
   @IBInspectable open var force: CGFloat = CGFloat.nan
-  
+
   // MARK: Override properties
   override open var font: UIFont! {
     didSet {
@@ -129,12 +141,12 @@ import UIKit
     super.prepareForInterfaceBuilder()
     configureInspectableProperties()
   }
-  
+
   open override func awakeFromNib() {
     super.awakeFromNib()
     configureInspectableProperties()
   }
-  
+
   open override func layoutSubviews() {
     super.layoutSubviews()
     configureAfterLayoutSubviews()
@@ -144,7 +156,7 @@ import UIKit
   deinit {
     NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextViewTextDidChange, object: nil)
   }
-  
+
   // MARK: - Private
   private func configureInspectableProperties() {
     configureAnimatableProperties()
@@ -157,6 +169,7 @@ import UIKit
   }
 
   private func configureAfterLayoutSubviews() {
+    configureCornerRadius()
     configureBorder()
     placeholderLabel.preferredMaxLayoutWidth = textContainer.size.width - textContainer.lineFragmentPadding * 2.0
   }

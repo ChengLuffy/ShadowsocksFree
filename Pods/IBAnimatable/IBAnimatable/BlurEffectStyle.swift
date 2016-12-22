@@ -5,7 +5,6 @@
 
 import UIKit
 
-
 extension UIBlurEffectStyle : IBEnum {
   /** initialize a UIBlurEffectStyle from string. `extraLight`, `light`, `dark`, `prominent` (iOS 10+), `extraLight` (iOS 10+)
   */
@@ -13,7 +12,7 @@ extension UIBlurEffectStyle : IBEnum {
     guard let string = string?.lowercased() else {
       return nil
     }
-    
+
     switch string {
     case "extralight":
       self = .extraLight

@@ -14,14 +14,14 @@ Design and prototype customized UI, interaction, navigation, transition and anim
 **The app was made in Interface Builder with `IBAnimatable` without a single line of code**. Due to the size of [the GIF file on Dribbble](https://dribbble.com/shots/2453933-IBAnimatable-Design-App-Store-ready-Apps-in-Interface-Builder), it only demonstrates a subset of features. We can also find the full HD version on [YouTube](https://www.youtube.com/watch?v=dvD8X6J1YLM) or [MP4 on Github](https://github.com/IBAnimatable/IBAnimatable-Misc/blob/master/Videos/IBAnimatable.mp4?raw=true)
 
 ## Key features
-* **100% compatible with `UIKit`**. All `IBAnimatable` APIs are extensions of `UIKit`. No pollutions to `UIKit`'s APIs.
-* **100% compatible with Auto Layout and Size Classes**. No custom layout system.
-* **User interface design and preview in IB**: corner radius, border, mask, shadow, gradient colors, tint color, blur effect etc.
-* **Animation design in IB**: slide in/out, fade in/out, zoom in/out, flip, pop, shake, rotate, move etc.
-* **Transition design in IB**: fade, slide, flip, cube, portal, fold, explosion etc.
-* **Interactive gesture design in IB**: pan, screen edge pan, pinch etc. 
-* **Presentation design in IB**: flip, cover, zoom, dropdown etc.
-* **Activity indicator design in IB**: ball beat, ball rotate, cube transition, Pacman etc.  
+- [x] **100% compatible with `UIKit`**. All `IBAnimatable` APIs are extensions of `UIKit`. No pollutions to `UIKit`'s APIs.
+- [x] **100% compatible with Auto Layout and Size Classes**. No custom layout system.
+- [x] **User interface design and preview in IB**: corner radius, border, mask, shadow, gradient colors, tint color, blur effect etc.
+- [x] **Animation design in IB**: slide in/out, fade in/out, zoom in/out, flip, pop, shake, rotate, move etc.
+- [x] **Transition design in IB**: fade, slide, flip, cube, portal, fold, explosion etc.
+- [x] **Interactive gesture design in IB**: pan, screen edge pan, pinch etc. 
+- [x] **Presentation design in IB**: flip, cover, zoom, dropdown etc.
+- [x] **Activity indicator design in IB**: ball beat, ball rotate, cube transition, Pacman etc.  
 
 
 ![StoryboardPreview](https://raw.githubusercontent.com/IBAnimatable/IBAnimatable-Misc/master/IBAnimatable/Storyboard.jpg)
@@ -38,18 +38,18 @@ IBAnimatable 3.0 is the latest major release of IBAnimatable. This version follo
 If you are using Xcode 8 with Swift 3, please use the latest tagged 3.x release.
 
 ## Swift 2.2 or 2.3?
-If you are using Xcode 7.3.1 with Swift 2.2 please use IBAnimatable 2.7. If you are using Xcode 8 with Swift 2.3, please use the latest tagged 2.x release (version 2.8.1). If you find any issue and create a PR for Swift 2.3, please PR to `swift2` branch.
+If you are using Xcode 7.3.1 with Swift 2.2 please use IBAnimatable 2.7. If you are using Xcode 8 with Swift 2.3, please use the latest tagged 2.x release (version 2.8.1). If you find any issue and create a PR for Swift 2.3, please PR to `swift2` branch. When you use Swift 2.3 with IBAnimatable, you may see some issue like `dlopen(IBAnimatable.framework, 1): Symbol not found: __TMVs20_DisabledRangeIndex_`. That's a bug of Xcode 8, please have a look at [Issue - Failed to render and update auto layout status](https://github.com/IBAnimatable/IBAnimatable/issues/349)
 
 ## Languages
 [中文](Documentation/README.zh.md)
 
 ## Features
-* From prototype to shippable App Store ready App - What you design in Interface Builder is what the App exactly looks. 
+* From prototype to shippable App Store ready App - What you design in Interface Builder is what the App exactly looks. More details can be found in this talk [Prototype and Design App Store ready Apps in Interface Builder (/dev/world/2016)](https://youtu.be/HaB2_ki_67w)
 * Designer-friendly - Sketch style configuration panel on Attributes inspector (![Attributes inspector](https://raw.githubusercontent.com/IBAnimatable/IBAnimatable-Misc/master/IBAnimatable/AttributesInspector.png)) to lower the learning curve for using Interface Builder.   
 * Animation design support in Swift playground - Similar to Framer, we can prototype animations in Swift playground to save time for running on a simulator or actual iOS devices. 
 * Built-in Auto Layout support - We can use Auto Layout and Size Classes with `IBAnimatable` to support orientations and multiple iOS devices. 
 * Navigation and transition support - We can use default navigation pattern in the App. `IBAnimatable` also has custom transition animators and segues to support transition animations and gesture interactions.
-* Protocol-oriented programming - `IBAnimatable` uses a protocol-oriented programming paradigm. With Swift protocol extension, it is easy to support more designable or animatable features. We can even use these protocol extensions to create other custom UI elements instead of using the default ones from `IBAnimatable`.  
+* Protocol-oriented programming - `IBAnimatable` uses a protocol-oriented programming paradigm. With Swift protocol extension, it is easy to support more designable or animatable features. We can even use these protocol extensions to create other custom UI elements instead of using the default ones from `IBAnimatable`. More details can be found in this talk [Prototype and Design App Store ready Apps in Interface Builder (/dev/world/2016) - Part 2: Protocol oriented programming](https://youtu.be/HaB2_ki_67w?t=24m13s)
 
 ## Use cases
 * Prototyping - Create interactive prototypes to validate ideas quickly.
@@ -59,6 +59,7 @@ If you are using Xcode 7.3.1 with Swift 2.2 please use IBAnimatable 2.7. If you 
 ## Documentations
 * [<del>Fully</del> Mostly documented API Reference](Documentation/APIs.md) 
 * [How to design and prototype custom transition animation and gesture interaction in Interface Builder with IBAnimatable](Documentation/Transitions.md)
+* Youtube video:  [Prototype and Design App Store ready Apps in Interface Builder (/dev/world/2016) - Part 2: Protocol oriented programming](https://youtu.be/HaB2_ki_67w)
 
 ## How to run the example App
 The easy way to learn and understand how powerful of `IBAnimatable`is to run the example App and play around the settings in Interface Builder. Just a few steps we can run the App as below, to see more features, we can tap on "Forget Password" button to unlock them. 😉
@@ -168,7 +169,7 @@ Add `pod 'IBAnimatable'` to your Podfile.
 
 Add `github "IBanimatable/IBAnimatable"` to your Cartfile.
 
-Please Notice, there is [a limitation of a built framework for `@IBDesignable` and `@IBInspectable`](https://github.com/Carthage/Carthage/issues/335), that will impact on `IBAnimatable` when you use Carthage.
+Please Notice, there is [a limitation of a built framework for `@IBDesignable` and `@IBInspectable`](https://github.com/Carthage/Carthage/issues/335), that will impact on `IBAnimatable` when you use Carthage. There is a workaround to use Carthage or Swift package manager with `IBAnimatable`, please have a look at [Carthage – no Animatable UI Classes appearing in Storyboard](https://github.com/IBAnimatable/IBAnimatable/issues/354)
 
 ### Git submodule
 
@@ -196,6 +197,7 @@ Many thanks to [all contributors](graphs/contributors) 🤗 especially to [@tbar
 * Framer Studio - Design and preview animations in one place.
 * [Spring by Meng To](https://github.com/MengTo/Spring) - steal a lot of animation parameters from this project.
 * [VCTransitionsLibrary by Colin Eberhardt](https://github.com/ColinEberhardt/VCTransitionsLibrary) - port all transition animations from this project, and add parameters support and fix bugs.
+* [NVActivityIndicatorView by Vinh Nguyen](NVActivityIndicatorView by Vinh Nguyen - port all activity indicator animations from this project.) - port all activity indicator animations from this project.
 * [Invision ToDo App UI Kit](http://www.invisionapp.com/do), The demo App's original design is from this UI Kit and redone in Interface Builder. We also added interaction, navigation and animations.
 
 ## Change Log

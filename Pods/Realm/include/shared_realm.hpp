@@ -22,6 +22,7 @@
 #include "schema.hpp"
 
 #include <realm/util/optional.hpp>
+#include <realm/version_id.hpp>
 
 #if REALM_ENABLE_SYNC
 #include <realm/sync/client.hpp>
@@ -44,6 +45,12 @@ struct VersionID;
 typedef std::shared_ptr<Realm> SharedRealm;
 typedef std::weak_ptr<Realm> WeakRealm;
 
+// Sets a path to a directory where Realm can write temporary files and named pipes.
+// This string should include a trailing slash '/'.
+void set_temporary_directory(std::string directory_path);
+
+const std::string& get_temporary_directory() noexcept;
+
 namespace _impl {
     class AnyHandover;
     class CollectionNotifier;
@@ -59,11 +66,11 @@ enum class SchemaMode : uint8_t {
     // changes, then call the migration function.
     //
     // If the schema version has not changed, verify that the only
-    // changes are to add new tables and add or remvoe indexes, and then
+    // changes are to add new tables and add or remove indexes, and then
     // apply them if so. Does not call the migration function.
     //
     // This mode does not automatically remove tables which are not
-    // present in the schea; that must be manually done in the migration
+    // present in the schema that must be manually done in the migration
     // function, to support sharing a Realm file between processes using
     // different class subsets.
     //
@@ -214,7 +221,7 @@ public:
     Realm(Realm&&) = delete;
     Realm& operator=(Realm&&) = delete;
     ~Realm();
-    
+
     // Pins the current version and exports each object for handover.
     HandoverPackage package_for_handover(std::vector<AnyThreadConfined> objects_to_hand_over);
 
@@ -236,24 +243,6 @@ public:
     private:
         friend HandoverPackage Realm::package_for_handover(std::vector<AnyThreadConfined> objects_to_hand_over);
         friend std::vector<AnyThreadConfined> Realm::accept_handover(Realm::HandoverPackage handover);
-
-        struct VersionID { // SharedGroup::VersionID without including header
-            uint_fast64_t version;
-            uint_fast32_t index;
-
-            VersionID();
-
-            template<typename T>
-            VersionID(T value) : version(value.version), index(value.index) { }
-
-            template<typename T>
-            operator T() const {
-                T version_id; // Don't use initializer list for better type safety
-                version_id.version = version;
-                version_id.index = index;
-                return version_id;
-            }
-        };
 
         VersionID m_version_id;
         std::vector<_impl::AnyHandover> m_objects;
@@ -325,8 +314,10 @@ private:
     // File format versions populated when a file format upgrade takes place during realm opening
     int upgrade_initial_version = 0, upgrade_final_version = 0;
 
+    bool m_is_sending_notifications = false;
+
     void set_schema(Schema schema, uint64_t version);
-    void reset_file_if_needed(Schema const& schema, uint64_t version, std::vector<SchemaChange>& changes_required);
+    bool reset_file_if_needed(Schema& schema, uint64_t version, std::vector<SchemaChange>& changes_required);
 
     // Ensure that m_schema and m_schema_version match that of the current
     // version of the file, and return true if it changed
@@ -346,6 +337,8 @@ public:
     enum class Kind {
         /** Thrown for any I/O related exception scenarios when a realm is opened. */
         AccessError,
+        /** Thrown if the history type of the on-disk Realm is unexpected or incompatible. */
+        BadHistoryError,
         /** Thrown if the user does not have permission to open or create
          the specified file in the specified access mode when the realm is opened. */
         PermissionDenied,

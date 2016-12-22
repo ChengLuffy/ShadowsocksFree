@@ -240,7 +240,7 @@ public:
         , m_dT(from.m_dT)
         , m_probes(from.m_probes)
         , m_matches(from.m_matches)
-        , m_table(from.m_table)
+        , m_table(patches ? ConstTableRef{} : from.m_table)
     {
     }
 
@@ -300,10 +300,8 @@ protected:
                      const QueryNodeHandoverPatches* patches)
     {
         if (src.m_column) {
-            if (patches) {
+            if (patches)
                 dst_idx = src.m_column->get_column_index();
-                REALM_ASSERT_DEBUG(dst_idx < m_table->get_column_count());
-            }
             else
                 dst.init(src.m_column);
         }
@@ -1227,9 +1225,7 @@ public:
                     // todo: Apparently we can't use m_index.get_alloc() because it uses default allocator which
                     // simply makes
                     // translate(x) = x. Shouldn't it inherit owner column's allocator?!
-                    m_index_matches.reset(new IntegerColumn(IntegerColumn::unattached_root_tag(),
-                                                            m_condition_column->get_alloc())); // Throws
-                    m_index_matches->get_root_array()->init_from_ref(res.payload);
+                    m_index_matches.reset(new IntegerColumn(m_condition_column->get_alloc(), res.payload)); // Throws
                     m_results_start = res.start_ndx;
                     m_results_end = res.end_ndx;
 
