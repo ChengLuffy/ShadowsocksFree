@@ -88,7 +88,7 @@ class ViewController: UIViewController {
 //        isNeedRequest = true
         
         if isNeedRequest == true {
-            
+        
             Alamofire.request(URLStr).responseData { (respose) in
                 
                 if respose.result.error == nil {
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
                     do {
                         
                         try! realm.write({ 
-                            realm.delete(realm.objects(Model.self).filter("isNet = true"))
+                            realm.delete(realm.objects(Model.self).filter("server = 'ishadowsocks'"))
                         })
                         
                         let doc = try HTMLDocument(string: html as! String, encoding: String.Encoding.utf8)
@@ -120,6 +120,7 @@ class ViewController: UIViewController {
                                         break
                                     }
                                     model.isNet = true
+                                    model.server = "ishadowsocks"
                                 }
                                 
                                 try! realm.write({
@@ -144,7 +145,7 @@ class ViewController: UIViewController {
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
         }
-        
+    
         if seeoutNeedUpdate == true {
             Alamofire.request("http://www.seeout.pw/free/").responseString { (response) in
                 if response.result.error == nil {
@@ -152,6 +153,10 @@ class ViewController: UIViewController {
                         let html = response.result.value
                         
                         do {
+                            
+                            try! realm.write({
+                                realm.delete(realm.objects(Model.self).filter("server = 'seeout'"))
+                            })
                             
                             let doc = try HTMLDocument(string: html!, encoding: .utf8)
                             let bodys = doc.body?.children(tag: "div")[0].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")[0].children(tag: "table")[0].children(tag: "tbody")[0].children(tag: "tr")
@@ -171,6 +176,7 @@ class ViewController: UIViewController {
                                         break
                                     }
                                     model.isNet = true
+                                    model.server = "seeout"
                                 }
                                 try! realm.write({
                                     realm.add(model, update: true)

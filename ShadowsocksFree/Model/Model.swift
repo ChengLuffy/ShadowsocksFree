@@ -25,6 +25,7 @@ class Model: Object {
     dynamic var encryption: String?
     dynamic var stutas: String?
     dynamic var isNet: Bool = true
+    dynamic var server: String?
 //    dynamic override var invalidated: Bool { return super.invalidated }
     
     /**
