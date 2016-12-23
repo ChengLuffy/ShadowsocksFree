@@ -79,7 +79,7 @@ class ViewController: UIViewController {
             print(lastDateHStr, dateNowHStr)
             
             isNeedRequest = Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6
-            seeoutNeedUpdate = Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 12 > Int(lastDateHStr)! / 12
+//            seeoutNeedUpdate = Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 12 > Int(lastDateHStr)! / 12
         } else {
             isNeedRequest = true
             seeoutNeedUpdate = true
@@ -146,7 +146,7 @@ class ViewController: UIViewController {
             self.tableView.mj_header.endRefreshing()
         }
     
-        if seeoutNeedUpdate == true {
+//        if seeoutNeedUpdate == true {
             Alamofire.request("http://www.seeout.pw/free/").responseString { (response) in
                 if response.result.error == nil {
                     if response.result.error == nil {
@@ -201,7 +201,7 @@ class ViewController: UIViewController {
                 }
             }
 
-        }
+//        }
     }
     
     func getValueForNum(_ num: Int) -> String {
