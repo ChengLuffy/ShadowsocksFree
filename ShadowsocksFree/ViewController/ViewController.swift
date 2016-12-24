@@ -127,81 +127,89 @@ class ViewController: UIViewController {
                                     realm.add(model, update: true)
                                 })
                             }
-                            self.tableView.reloadData()
-                            self.tableView.mj_header.endRefreshing()
+//                            self.tableView.reloadData()
+//                            self.tableView.mj_header.endRefreshing()
+                            self.getDataFromSeeOut()
                         } else {
                             print("nil")
+                            self.getDataFromSeeOut()
                         }
                         
                     } catch let error  {
                         print(error)
+                        self.getDataFromSeeOut()
                     }
                 } else {
                     print(respose.result.error ?? "nil")
-                    self.tableView.mj_header.endRefreshing()
+//                    self.tableView.mj_header.endRefreshing()
+                    self.getDataFromSeeOut()
                 }
             }
         } else {
-            self.tableView.reloadData()
-            self.tableView.mj_header.endRefreshing()
+//            self.tableView.reloadData()
+//            self.tableView.mj_header.endRefreshing()
+            getDataFromSeeOut()
         }
     
 //        if seeoutNeedUpdate == true {
-            Alamofire.request("http://www.seeout.pw/free/").responseString { (response) in
+
+//        }
+    }
+    
+    func getDataFromSeeOut() {
+        Alamofire.request("http://www.seeout.pw/free/").responseString { (response) in
+            if response.result.error == nil {
                 if response.result.error == nil {
-                    if response.result.error == nil {
-                        let html = response.result.value
+                    let html = response.result.value
+                    
+                    do {
                         
-                        do {
-                            
-                            try! realm.write({
-                                realm.delete(realm.objects(Model.self).filter("server = 'seeout'"))
-                            })
-                            
-                            let doc = try HTMLDocument(string: html!, encoding: .utf8)
-                            let bodys = doc.body?.children(tag: "div")[0].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")[0].children(tag: "table")[0].children(tag: "tbody")[0].children(tag: "tr")
-                            // bodys!.children(tag: "tr")[0].children(tag: "td")[1].stringValue
-                            print(bodys!.count)
-                            
-                            for node in bodys! {
-                                let model = Model()
-                                for (index, sub) in node.children(tag: "td").enumerated() {
-                                    switch index {
-                                    case 1: model.adress = "seeout服务器地址:"+sub.stringValue
-                                    case 2: model.port = "端口:"+sub.children(tag: "code")[0].stringValue
-                                    case 3: model.passWord = "密码:"+sub.children(tag: "code")[0].stringValue
-                                    case 4: model.encryption = "加密方式:"+sub.children(tag: "code")[0].stringValue
-                                        
-                                    default :
-                                        break
-                                    }
-                                    model.isNet = true
-                                    model.server = "seeout"
+                        try! realm.write({
+                            realm.delete(realm.objects(Model.self).filter("server = 'seeout'"))
+                        })
+                        
+                        let doc = try HTMLDocument(string: html!, encoding: .utf8)
+                        let bodys = doc.body?.children(tag: "div")[0].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")[0].children(tag: "table")[0].children(tag: "tbody")[0].children(tag: "tr")
+                        // bodys!.children(tag: "tr")[0].children(tag: "td")[1].stringValue
+                        print(bodys!.count)
+                        
+                        for node in bodys! {
+                            let model = Model()
+                            for (index, sub) in node.children(tag: "td").enumerated() {
+                                switch index {
+                                case 1: model.adress = "seeout服务器地址:"+sub.stringValue
+                                case 2: model.port = "端口:"+sub.children(tag: "code")[0].stringValue
+                                case 3: model.passWord = "密码:"+sub.children(tag: "code")[0].stringValue
+                                case 4: model.encryption = "加密方式:"+sub.children(tag: "code")[0].stringValue
+                                    
+                                default :
+                                    break
                                 }
-                                try! realm.write({
-                                    realm.add(model, update: true)
-                                })
+                                model.isNet = true
+                                model.server = "seeout"
                             }
-                            
-                            self.tableView.reloadData()
-                            self.tableView.mj_header.endRefreshing()
-                        } catch let error {
-                            print(error)
+                            try! realm.write({
+                                realm.add(model, update: true)
+                            })
                         }
                         
-                    } else {
-                        print(response.result.error ?? "something wrong with seeout request")
                         self.tableView.reloadData()
                         self.tableView.mj_header.endRefreshing()
+                    } catch let error {
+                        print(error)
                     }
+                    
                 } else {
                     print(response.result.error ?? "something wrong with seeout request")
                     self.tableView.reloadData()
                     self.tableView.mj_header.endRefreshing()
                 }
+            } else {
+                print(response.result.error ?? "something wrong with seeout request")
+                self.tableView.reloadData()
+                self.tableView.mj_header.endRefreshing()
             }
-
-//        }
+        }
     }
     
     func getValueForNum(_ num: Int) -> String {
