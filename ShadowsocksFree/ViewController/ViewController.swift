@@ -129,20 +129,20 @@ class ViewController: UIViewController {
                             }
 //                            self.tableView.reloadData()
 //                            self.tableView.mj_header.endRefreshing()
-                            self.getDataFromSeeOut()
+//                            self.getDataFromSeeOut()
                         } else {
                             print("nil")
-                            self.getDataFromSeeOut()
+//                            self.getDataFromSeeOut()
                         }
                         
                     } catch let error  {
                         print(error)
-                        self.getDataFromSeeOut()
+//                        self.getDataFromSeeOut()
                     }
                 } else {
                     print(respose.result.error ?? "nil")
 //                    self.tableView.mj_header.endRefreshing()
-                    self.getDataFromSeeOut()
+//                    self.getDataFromSeeOut()
                 }
             }
         } else {
