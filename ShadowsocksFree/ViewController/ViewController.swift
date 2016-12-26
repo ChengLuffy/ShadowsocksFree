@@ -127,8 +127,8 @@ class ViewController: UIViewController {
                                     realm.add(model, update: true)
                                 })
                             }
-//                            self.tableView.reloadData()
-//                            self.tableView.mj_header.endRefreshing()
+                            self.tableView.reloadData()
+                            self.tableView.mj_header.endRefreshing()
 //                            self.getDataFromSeeOut()
                         } else {
                             print("nil")
@@ -141,14 +141,14 @@ class ViewController: UIViewController {
                     }
                 } else {
                     print(respose.result.error ?? "nil")
-//                    self.tableView.mj_header.endRefreshing()
-//                    self.getDataFromSeeOut()
+                    self.tableView.mj_header.endRefreshing()
+                    self.getDataFromSeeOut()
                 }
             }
         } else {
-//            self.tableView.reloadData()
-//            self.tableView.mj_header.endRefreshing()
-            getDataFromSeeOut()
+            self.tableView.reloadData()
+            self.tableView.mj_header.endRefreshing()
+//            getDataFromSeeOut()
         }
     
 //        if seeoutNeedUpdate == true {
