@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     
     func getData() {
         tableView.updateFocusIfNeeded()
-        let URLStr = "http://www.ishadowsocks.net/"
+        let URLStr = "http://www.ishadow.site/"
         
         var isNeedRequest: Bool?
         var seeoutNeedUpdate: Bool?
