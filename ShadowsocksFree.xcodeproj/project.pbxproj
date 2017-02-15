@@ -21,13 +21,13 @@
 		2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
 		2A33CEC61D1C5FDE000F652A /* PopUpViewTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */; };
 		2A33CEC71D1C5FDE000F652A /* PopUpViewTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */; };
-		2A520E291D5701290023F283 /* method.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A520E281D5701290023F283 /* method.plist */; };
 		2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2827C1CD8520800C4655E /* AppDelegate.swift */; };
 		2AD282821CD8520800C4655E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282801CD8520800C4655E /* Main.storyboard */; };
 		2AD282841CD8520800C4655E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282831CD8520800C4655E /* Assets.xcassets */; };
 		2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282851CD8520800C4655E /* LaunchScreen.storyboard */; };
 		2AD282921CD8520800C4655E /* ShadowsocksFreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD282911CD8520800C4655E /* ShadowsocksFreeTests.swift */; };
 		2AD2829D1CD8520800C4655E /* ShadowsocksFreeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2829C1CD8520800C4655E /* ShadowsocksFreeUITests.swift */; };
+		E989C101DA0FEE619AC011D7 /* Pods-ShadowsocksFree-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7C0EDB3D1CD2109DBF025 /* Pods-ShadowsocksFree-metadata.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +61,6 @@
 		2A33CEB61D1C0711000F652A /* QRImageCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRImageCreate.swift; sourceTree = "<group>"; };
 		2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewTextView.swift; path = PopUpView/PopUpViewTextView.swift; sourceTree = "<group>"; };
 		2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PopUpViewTextView.xib; path = PopUpView/PopUpViewTextView.xib; sourceTree = "<group>"; };
-		2A520E281D5701290023F283 /* method.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = method.plist; sourceTree = "<group>"; };
 		2AD282791CD8520800C4655E /* ShadowsocksFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowsocksFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2827C1CD8520800C4655E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AD282811CD8520800C4655E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		2AD282981CD8520800C4655E /* ShadowsocksFreeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShadowsocksFreeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2829C1CD8520800C4655E /* ShadowsocksFreeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsocksFreeUITests.swift; sourceTree = "<group>"; };
 		2AD2829E1CD8520800C4655E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CE7C0EDB3D1CD2109DBF025 /* Pods-ShadowsocksFree-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-ShadowsocksFree-metadata.plist"; path = "Pods/Pods-ShadowsocksFree-metadata.plist"; sourceTree = "<group>"; };
 		9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksFree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC121B21320A626A75E4D59 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9628EBA50EBD12EDA813B3 /* Pods-ShadowsocksFree.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksFree.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksFree/Pods-ShadowsocksFree.debug.xcconfig"; sourceTree = "<group>"; };
@@ -158,7 +158,6 @@
 		2A520E271D5700CE0023F283 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				2A520E281D5701290023F283 /* method.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -234,6 +233,7 @@
 			children = (
 				9E9628EBA50EBD12EDA813B3 /* Pods-ShadowsocksFree.debug.xcconfig */,
 				AC923A7DB871A38B57BD3C23 /* Pods-ShadowsocksFree.release.xcconfig */,
+				7CE7C0EDB3D1CD2109DBF025 /* Pods-ShadowsocksFree-metadata.plist */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -355,12 +355,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */,
-				2A520E291D5701290023F283 /* method.plist in Resources */,
 				2A33CEC71D1C5FDE000F652A /* PopUpViewTextView.xib in Resources */,
 				2AD282841CD8520800C4655E /* Assets.xcassets in Resources */,
 				2AD282821CD8520800C4655E /* Main.storyboard in Resources */,
 				2A33CEB21D1C06BE000F652A /* QRCollectionReusableHeaderView.xib in Resources */,
 				2A33CEB41D1C06BE000F652A /* QRCollectionViewCell.xib in Resources */,
+				E989C101DA0FEE619AC011D7 /* Pods-ShadowsocksFree-metadata.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

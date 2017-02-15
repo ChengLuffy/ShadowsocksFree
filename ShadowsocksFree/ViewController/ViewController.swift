@@ -59,7 +59,6 @@ class ViewController: UIViewController {
         let URLStr = "http://www.ishadow.site/"
         
         var isNeedRequest: Bool?
-        var seeoutNeedUpdate: Bool?
         
         if self.tableView.mj_header.lastUpdatedTime != nil {
             let dateFormater = DateFormatter()
@@ -79,13 +78,10 @@ class ViewController: UIViewController {
             print(lastDateHStr, dateNowHStr)
             
             isNeedRequest = Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6
-//            seeoutNeedUpdate = Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 12 > Int(lastDateHStr)! / 12
         } else {
             isNeedRequest = true
-            seeoutNeedUpdate = true
         }
         
-//        isNeedRequest = true
         
         if isNeedRequest == true {
         
@@ -137,78 +133,15 @@ class ViewController: UIViewController {
                         
                     } catch let error  {
                         print(error)
-//                        self.getDataFromSeeOut()
                     }
                 } else {
                     print(respose.result.error ?? "nil")
                     self.tableView.mj_header.endRefreshing()
-                    self.getDataFromSeeOut()
                 }
             }
         } else {
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
-//            getDataFromSeeOut()
-        }
-    
-//        if seeoutNeedUpdate == true {
-
-//        }
-    }
-    
-    func getDataFromSeeOut() {
-        Alamofire.request("http://www.seeout.pw/free/").responseString { (response) in
-            if response.result.error == nil {
-                if response.result.error == nil {
-                    let html = response.result.value
-                    
-                    do {
-                        
-                        try! realm.write({
-                            realm.delete(realm.objects(Model.self).filter("server = 'seeout'"))
-                        })
-                        
-                        let doc = try HTMLDocument(string: html!, encoding: .utf8)
-                        let bodys = doc.body?.children(tag: "div")[0].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")[0].children(tag: "table")[0].children(tag: "tbody")[0].children(tag: "tr")
-                        // bodys!.children(tag: "tr")[0].children(tag: "td")[1].stringValue
-                        print(bodys!.count)
-                        
-                        for node in bodys! {
-                            let model = Model()
-                            for (index, sub) in node.children(tag: "td").enumerated() {
-                                switch index {
-                                case 1: model.adress = "seeout服务器地址:"+sub.stringValue
-                                case 2: model.port = "端口:"+sub.children(tag: "code")[0].stringValue
-                                case 3: model.passWord = "密码:"+sub.children(tag: "code")[0].stringValue
-                                case 4: model.encryption = "加密方式:"+sub.children(tag: "code")[0].stringValue
-                                    
-                                default :
-                                    break
-                                }
-                                model.isNet = true
-                                model.server = "seeout"
-                            }
-                            try! realm.write({
-                                realm.add(model, update: true)
-                            })
-                        }
-                        
-                        self.tableView.reloadData()
-                        self.tableView.mj_header.endRefreshing()
-                    } catch let error {
-                        print(error)
-                    }
-                    
-                } else {
-                    print(response.result.error ?? "something wrong with seeout request")
-                    self.tableView.reloadData()
-                    self.tableView.mj_header.endRefreshing()
-                }
-            } else {
-                print(response.result.error ?? "something wrong with seeout request")
-                self.tableView.reloadData()
-                self.tableView.mj_header.endRefreshing()
-            }
         }
     }
     
@@ -303,7 +236,6 @@ class ViewController: UIViewController {
         addInfoVC.refreshHandle = {
             weakSelf?.tableView.mj_header.beginRefreshing()
         }
-//        addInfoVCNav.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Fold(fromDirection: .Right, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
         addInfoVCNav.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .fold(from: .right, folds: 3), transitionDuration: 0.5, interactiveGestureType: .pan(from: .left))
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
             self.present(addInfoVCNav, animated: true, completion: nil)
@@ -317,7 +249,6 @@ class ViewController: UIViewController {
         QRVC.refreshHandle = {
             weakSelf?.tableView.mj_header.beginRefreshing()
         }
-//        QRVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Portal(direction: .Forward, params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pinch(direction: .Close))
         QRVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .portal(direction: .forward, zoomScale: 0.618), transitionDuration: 0.5, interactiveGestureType: .pinch(direction: .close))
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
             self.present(QRVC, animated: true, completion: nil)
@@ -327,7 +258,6 @@ class ViewController: UIViewController {
     func watchBtnDidClicked(_ sender: AnyObject) {
         popoverView!.dismiss()
         let QRVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "watch")
-//        QRVC.transitioningDelegate = PresenterManager.sharedManager().retrievePresenter(.Explode(params: [""]), transitionDuration: 0.5, interactiveGestureType: .Pan(fromDirection: .Left))
         QRVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .explode(xFactor: 10, minAngle: 0.01, maxAngle: 0.1), transitionDuration: 1, interactiveGestureType: .pan(from: .left))
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
             self.present(QRVC, animated: true, completion: nil)

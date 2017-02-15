@@ -32,7 +32,7 @@
 
 > 16.12.22: 删除 ~~namaho~~ 节点，~~增加 [seeout][380e7a9b] 免费节点。~~
 
-> 17.01.17: 由于 `seeout` 以及 `mian233` 免费节点不稳定，所以加到 `servers` 分支。
+> 17.01.17: ~~由于 `seeout` 以及 `mian233` 免费节点不稳定，所以加到 `servers` 分支。~~
 
   [380e7a9b]: http://www.seeout.pw/free/ "seeout"
 
