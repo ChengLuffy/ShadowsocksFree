@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     
     func getData() {
         tableView.updateFocusIfNeeded()
-        let URLStr = "http://www.ishadow.site/"
+        let URLStr = "http://ss.ishadowx.com"
         
         var isNeedRequest: Bool?
         
@@ -97,21 +97,20 @@ class ViewController: UIViewController {
                             realm.delete(realm.objects(Model.self).filter("server = 'ishadowsocks'"))
                         })
                         
-                        let doc = try HTMLDocument(string: html as! String, encoding: String.Encoding.utf8)
-                        var free = doc.xpath("//section")[2].children(tag: "div")[0].children(tag: "div")
+                        let doc = try HTMLDocument(string: html! as String, encoding: String.Encoding.utf8)
+                        let free = doc.xpath("//body")[0].children(tag: "div")[2].children(tag: "div")[1].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")
                         if free.count > 0 {
-                            free.removeFirst()
-                            for node in free[0].children(tag: "div") {
+                            for node in free {
                                 let model = Model()
                                 
-                                for (index, sub) in node.children(tag: "h4").enumerated() {
+                                for (index, sub) in node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").enumerated() {
                                     
                                     switch index {
-                                    case 0: model.adress = sub.stringValue
-                                    case 1: model.port = sub.stringValue
-                                    case 2: model.passWord = sub.stringValue
-                                    case 3: model.encryption = sub.stringValue
-                                    case 4: model.stutas = sub.stringValue
+                                    case 0: model.adress = "服务器地址:" + (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+                                    case 1: model.port = "端口地址:" + sub.stringValue.components(separatedBy: "：").last!
+                                    case 2: model.passWord = "密码:" + (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+                                    case 3: model.encryption = "加密方式:" + sub.stringValue.components(separatedBy: ":").last!
+//                                    case 4: model.name = sub.children[0].attr("title")
                                     default :
                                         break
                                     }
