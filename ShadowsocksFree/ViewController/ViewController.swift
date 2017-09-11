@@ -124,10 +124,8 @@ class ViewController: UIViewController {
                             }
                             self.tableView.reloadData()
                             self.tableView.mj_header.endRefreshing()
-//                            self.getDataFromSeeOut()
                         } else {
                             print("nil")
-//                            self.getDataFromSeeOut()
                         }
                         
                     } catch let error  {
