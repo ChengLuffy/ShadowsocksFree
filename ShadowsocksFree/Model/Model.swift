@@ -11,8 +11,8 @@ import RealmSwift
 
 class Model: Object {
 
-    dynamic var name: String?
-    dynamic var adress: String? {
+    @objc dynamic var name: String?
+    @objc dynamic var adress: String? {
         didSet {
             if adress!.contains(":") {
 //                name = adress!.componentsSeparatedBy(":")[1].componentsSeparatedByString(".")[0].uppercased()
@@ -20,12 +20,12 @@ class Model: Object {
             }
         }
     }
-    dynamic var port: String?
-    dynamic var passWord: String?
-    dynamic var encryption: String?
-    dynamic var stutas: String?
-    dynamic var isNet: Bool = true
-    dynamic var server: String?
+    @objc dynamic var port: String?
+    @objc dynamic var passWord: String?
+    @objc dynamic var encryption: String?
+    @objc dynamic var stutas: String?
+    @objc dynamic var isNet: Bool = true
+    @objc dynamic var server: String?
 //    dynamic override var invalidated: Bool { return super.invalidated }
     
     /**

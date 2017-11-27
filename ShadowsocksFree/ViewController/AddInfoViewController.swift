@@ -67,7 +67,7 @@ class AddInfoViewController:  UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func keyBoardShow(_ notification: Notification) {
+    @objc func keyBoardShow(_ notification: Notification) {
 //        let point = ((notification as NSNotification).userInfo!["UIKeyboardCenterEndUserInfoKey"] as AnyObject).cgPointValue
 //        let keys = notification.userInfo?.keys
 //        print(keys)

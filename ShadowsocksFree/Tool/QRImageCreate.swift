@@ -20,7 +20,7 @@ extension UIImage {
         
         let ratio: CGFloat = scale / (outputImage?.extent)!.width
         let transform = CGAffineTransform(scaleX: ratio, y: ratio)
-        let transformImage = outputImage?.applying(transform)
+        let transformImage = outputImage?.transformed(by: transform)
         
         let context = CIContext.init(options: nil)
         let imageRef = context.createCGImage(transformImage!, from: (transformImage?.extent)!)

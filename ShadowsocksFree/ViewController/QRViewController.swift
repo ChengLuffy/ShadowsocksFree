@@ -141,7 +141,7 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
         self.present(alertVC, animated: true, completion: nil)
     }
     // - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
-    func image(_ image: UIImage, didFinishSavingWithError: NSError?, contextInfo: AnyObject) {
+    @objc func image(_ image: UIImage, didFinishSavingWithError: NSError?, contextInfo: AnyObject) {
         let str: String?
         if didFinishSavingWithError != nil {
             print("错误")

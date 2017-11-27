@@ -33,24 +33,25 @@ class QRScanViewController: UIViewController {
         imagePickerBtn.addTarget(self, action: #selector(QRScanViewController.imagePickerBtnDidClicker(_:)), for: .touchUpInside)
         self.view.addSubview(imagePickerBtn)
         
-        let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+//        let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        let device = AVCaptureDevice.default(for: AVMediaType.video)
         
         do {
-            let input = try AVCaptureDeviceInput.init(device: device) as AVCaptureDeviceInput
+            let input = try AVCaptureDeviceInput.init(device: device!) as AVCaptureDeviceInput
             let output = AVCaptureMetadataOutput.init()
             output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             output.rectOfInterest = self.view.bounds
             
             session = AVCaptureSession.init()
-            session?.canSetSessionPreset(AVCaptureSessionPresetHigh)
+            session?.canSetSessionPreset(AVCaptureSession.Preset.high)
             session?.addInput(input)
             session?.addOutput(output)
-            output.metadataObjectTypes = [AVMetadataObjectTypeQRCode,AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeEAN8Code, AVMetadataObjectTypeCode128Code]
+            output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr,AVMetadataObject.ObjectType.ean13, AVMetadataObject.ObjectType.ean8, AVMetadataObject.ObjectType.code128]
             
-            let layer = AVCaptureVideoPreviewLayer.init(session: session)
-            layer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-            layer?.frame = self.view.bounds
-            self.view.layer.insertSublayer(layer!, at: 0)
+            let layer = AVCaptureVideoPreviewLayer.init(session: session!)
+            layer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            layer.frame = self.view.bounds
+            self.view.layer.insertSublayer(layer, at: 0)
             
             session?.startRunning()
             
@@ -79,7 +80,7 @@ class QRScanViewController: UIViewController {
     }
     */
     
-    func imagePickerBtnDidClicker(_ sender: AnyObject) {
+    @objc func imagePickerBtnDidClicker(_ sender: AnyObject) {
         session?.stopRunning()
         self.present(imagePickerVC, animated: true, completion: nil)
     }

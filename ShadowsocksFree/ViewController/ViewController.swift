@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getData() {
+    @objc func getData() {
         tableView.updateFocusIfNeeded()
         let URLStr = "http://ss.ishadowx.com"
         
@@ -145,7 +145,7 @@ class ViewController: UIViewController {
     func getValueForNum(_ num: Int) -> String {
         var count: UInt32 = 0
         let properties = class_copyPropertyList(Model.self, &count)
-        let str = String(cString: property_getName(properties?[num]))
+        let str = String(cString: property_getName((properties?[num])!))
         free(properties)
         return str
     }
@@ -211,7 +211,7 @@ class ViewController: UIViewController {
         
     }
     
-    func deleteBtnDidClicked(_ sender: AnyObject) {
+    @objc func deleteBtnDidClicked(_ sender: AnyObject) {
         popoverView!.dismiss()
         
         if isDelete == false {
@@ -225,7 +225,7 @@ class ViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func addBtnClicked(_ sender: AnyObject) {
+    @objc func addBtnClicked(_ sender: AnyObject) {
         popoverView!.dismiss()
         let addInfoVCNav = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "add") as! UINavigationController
         let addInfoVC = addInfoVCNav.viewControllers.first as! AddInfoViewController
@@ -239,7 +239,7 @@ class ViewController: UIViewController {
         })
     }
     
-    func scanBtnDidClicked(_ sender: AnyObject) {
+    @objc func scanBtnDidClicked(_ sender: AnyObject) {
         popoverView!.dismiss()
         let QRVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "scan") as! QRScanViewController
         weak var weakSelf = self
@@ -252,10 +252,10 @@ class ViewController: UIViewController {
         })
     }
     
-    func watchBtnDidClicked(_ sender: AnyObject) {
+    @objc func watchBtnDidClicked(_ sender: AnyObject) {
         popoverView!.dismiss()
         let QRVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "watch")
-        QRVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .explode(xFactor: 10, minAngle: 0.01, maxAngle: 0.1), transitionDuration: 1, interactiveGestureType: .pan(from: .left))
+        QRVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .left))
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
             self.present(QRVC, animated: true, completion: nil)
         })
