@@ -83,14 +83,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="ShadowsocksFree" id="T3q-cY-nUC">
-                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="add" id="ciK-6H-v85">
+                        <barButtonItem key="leftBarButtonItem" image="qr" id="v9E-zX-jVs">
                             <connections>
-                                <action selector="addItemDidClicked:" destination="BYZ-38-t0r" id="avX-Nm-6r2"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="QR" id="v9E-zX-jVs">
-                            <connections>
-                                <action selector="QRItemDidClicked:" destination="BYZ-38-t0r" id="Jea-ml-ib3"/>
+                                <action selector="watchBtnDidClicked:" destination="BYZ-38-t0r" id="0Mn-UP-Bf9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -218,6 +213,9 @@
             <point key="canvasLocation" x="1040" y="-694"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="qr" width="20" height="20"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7Ib-1I-0gq"/>
     </inferredMetricsTieBreakers>

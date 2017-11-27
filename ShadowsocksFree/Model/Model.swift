@@ -14,10 +14,7 @@ class Model: Object {
     @objc dynamic var name: String?
     @objc dynamic var adress: String? {
         didSet {
-            if adress!.contains(":") {
-//                name = adress!.componentsSeparatedBy(":")[1].componentsSeparatedByString(".")[0].uppercased()
-                name = adress!.components(separatedBy: ":")[1].uppercased()
-            }
+            name = adress!.uppercased()
         }
     }
     @objc dynamic var port: String?

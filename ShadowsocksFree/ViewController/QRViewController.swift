@@ -62,18 +62,18 @@ class QRViewController: UIViewController {
     func getSSQRStr(_ num: Int) -> String! {
         let model = realm.objects(Model.self)[num]
         print(model.adress!)
-        let method: NSString = (model.encryption?.components(separatedBy: ":")[1])! as NSString
+        let method: NSString = model.encryption! as NSString
         
         let passWord: NSString?
         if model.passWord?.characters.count > 5 {
-            passWord = model.passWord?.components(separatedBy: ":")[1] as NSString?
+            passWord = model.passWord as NSString?
         } else {
             passWord = ""
         }
         
-        let adress: NSString = (model.adress?.components(separatedBy: ":")[1])! as NSString
+        let adress: NSString = model.adress! as NSString
         
-        let port: NSString = (model.port?.components(separatedBy: ":")[1])! as NSString
+        let port: NSString = model.port! as NSString
         let temp: NSString = NSString.init(format: "\(method):\(passWord!)@\(adress):\(port)" as NSString)
         let temp1 = temp.base64EncodedString()
         let retStr = "ss://" + (temp1 as String)

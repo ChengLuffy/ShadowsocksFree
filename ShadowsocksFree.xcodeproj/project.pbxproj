@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */; };
+		1D8D0A271FCBCE6500DA470A /* AddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D0A261FCBCE6400DA470A /* AddInfoViewController.swift */; };
+		1D8D0A291FCBED0200DA470A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D0A281FCBED0200DA470A /* HeaderView.swift */; };
 		2A33CE9C1D1C0642000F652A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9B1D1C0642000F652A /* Model.swift */; };
-		2A33CEA21D1C067B000F652A /* AddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9E1D1C067B000F652A /* AddInfoViewController.swift */; };
 		2A33CEA31D1C067B000F652A /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */; };
 		2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA01D1C067B000F652A /* QRViewController.swift */; };
 		2A33CEA51D1C067B000F652A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA11D1C067B000F652A /* ViewController.swift */; };
@@ -48,8 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D8D0A261FCBCE6400DA470A /* AddInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInfoViewController.swift; sourceTree = "<group>"; };
+		1D8D0A281FCBED0200DA470A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		2A33CE9B1D1C0642000F652A /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		2A33CE9E1D1C067B000F652A /* AddInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInfoViewController.swift; sourceTree = "<group>"; };
 		2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		2A33CEA01D1C067B000F652A /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		2A33CEA11D1C067B000F652A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +119,7 @@
 		2A33CE9D1D1C067B000F652A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2A33CE9E1D1C067B000F652A /* AddInfoViewController.swift */,
+				1D8D0A261FCBCE6400DA470A /* AddInfoViewController.swift */,
 				2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */,
 				2A33CEA01D1C067B000F652A /* QRViewController.swift */,
 				2A33CEA11D1C067B000F652A /* ViewController.swift */,
@@ -135,6 +137,7 @@
 				2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */,
 				2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */,
 				2A33CEC31D1C5FDE000F652A /* PopUpView */,
+				1D8D0A281FCBED0200DA470A /* HeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -456,9 +459,10 @@
 				2A33CEC61D1C5FDE000F652A /* PopUpViewTextView.swift in Sources */,
 				2A33CEB31D1C06BE000F652A /* QRCollectionViewCell.swift in Sources */,
 				2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */,
+				1D8D0A291FCBED0200DA470A /* HeaderView.swift in Sources */,
 				2A33CEA51D1C067B000F652A /* ViewController.swift in Sources */,
-				2A33CEA21D1C067B000F652A /* AddInfoViewController.swift in Sources */,
 				2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */,
+				1D8D0A271FCBCE6500DA470A /* AddInfoViewController.swift in Sources */,
 				2A33CE9C1D1C0642000F652A /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

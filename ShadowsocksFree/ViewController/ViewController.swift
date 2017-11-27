@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         /*
@@ -106,11 +106,10 @@ class ViewController: UIViewController {
                                 for (index, sub) in node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").enumerated() {
                                     
                                     switch index {
-                                    case 0: model.adress = "服务器地址:" + (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-                                    case 1: model.port = "端口地址:" + sub.stringValue.components(separatedBy: "：").last!
-                                    case 2: model.passWord = "密码:" + (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-                                    case 3: model.encryption = "加密方式:" + sub.stringValue.components(separatedBy: ":").last!
-//                                    case 4: model.name = sub.children[0].attr("title")
+                                    case 0: model.adress = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+                                    case 1: model.port = sub.stringValue.components(separatedBy: ":").last!
+                                    case 2: model.passWord = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+                                    case 3: model.encryption = sub.stringValue.components(separatedBy: ":").last!
                                     default :
                                         break
                                     }
@@ -149,111 +148,8 @@ class ViewController: UIViewController {
         free(properties)
         return str
     }
-
-    @IBAction func QRItemDidClicked(_ sender: AnyObject) {
-        let point = CGPoint(x: UIScreen.main.bounds.size.width - 23, y: 50)
-        let options = [.animationIn(0.25), .animationOut(0.25), .arrowSize(CGSize(width: 15, height: 20)), PopoverOption.cornerRadius(10), .type(PopoverType.down)] as [PopoverOption]
-        popoverView = Popover.init(options: options, showHandler: {
-            print("show")
-        }) {
-            print("dismiss")
-        }
-        
-        let subView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 80))
-        subView.backgroundColor = UIColor.blue
-        
-        let scanBtn = UIButton.init(type: .system)
-        scanBtn.setTitle("扫描", for: UIControlState())
-        scanBtn.addTarget(self, action: #selector(ViewController.scanBtnDidClicked(_:)), for: .touchUpInside)
-        scanBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        subView.addSubview(scanBtn)
-        
-        let watchBtn = UIButton.init(type: .system)
-        watchBtn.setTitle("查看", for: UIControlState())
-        watchBtn.addTarget(self, action: #selector(ViewController.watchBtnDidClicked(_:)), for: .touchUpInside)
-        watchBtn.frame = CGRect(x: 0, y: 40, width: 100, height: 40)
-        subView.addSubview(watchBtn)
-        
-        popoverView!.show(subView, point: point)
-    }
     
-    @IBAction func addItemDidClicked(_ sender: AnyObject) {
-        
-        let point = CGPoint(x: 25, y: 50)
-        let options = [.animationIn(0.25), .animationOut(0.25), .arrowSize(CGSize(width: 15, height: 20)), PopoverOption.cornerRadius(10), .type(PopoverType.down)] as [PopoverOption]
-        popoverView = Popover.init(options: options, showHandler: {
-            print("show")
-        }) {
-            print("dismiss")
-        }
-        
-        let subView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 80))
-        subView.backgroundColor = UIColor.blue
-        
-        let addButon = UIButton.init(type: .system)
-        addButon.setTitle("添加", for: UIControlState())
-        addButon.addTarget(self, action: #selector(ViewController.addBtnClicked(_:)), for: .touchUpInside)
-        addButon.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        subView.addSubview(addButon)
-        
-        let deleteButton = UIButton.init(type: .system)
-        if isDelete == true {
-            deleteButton.setTitle("完成", for: UIControlState())
-        } else {
-            deleteButton.setTitle("删除", for: UIControlState())
-        }
-        deleteButton.addTarget(self, action: #selector(ViewController.deleteBtnDidClicked(_:)), for: .touchUpInside)
-        deleteButton.frame = CGRect(x: 0, y: 40, width: 100, height: 40)
-        deleteButton.tag = 10
-        subView.addSubview(deleteButton)
-
-        popoverView!.show(subView, point: point)
-        
-    }
-    
-    @objc func deleteBtnDidClicked(_ sender: AnyObject) {
-        popoverView!.dismiss()
-        
-        if isDelete == false {
-            isDelete = true
-            tableView.setEditing(true, animated: true)
-        } else {
-            isDelete = false
-            tableView.setEditing(false, animated: true)
-        }
-        
-        tableView.reloadData()
-    }
-    
-    @objc func addBtnClicked(_ sender: AnyObject) {
-        popoverView!.dismiss()
-        let addInfoVCNav = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "add") as! UINavigationController
-        let addInfoVC = addInfoVCNav.viewControllers.first as! AddInfoViewController
-        weak var weakSelf = self
-        addInfoVC.refreshHandle = {
-            weakSelf?.tableView.mj_header.beginRefreshing()
-        }
-        addInfoVCNav.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .fold(from: .right, folds: 3), transitionDuration: 0.5, interactiveGestureType: .pan(from: .left))
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
-            self.present(addInfoVCNav, animated: true, completion: nil)
-        })
-    }
-    
-    @objc func scanBtnDidClicked(_ sender: AnyObject) {
-        popoverView!.dismiss()
-        let QRVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "scan") as! QRScanViewController
-        weak var weakSelf = self
-        QRVC.refreshHandle = {
-            weakSelf?.tableView.mj_header.beginRefreshing()
-        }
-        QRVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .portal(direction: .forward, zoomScale: 0.618), transitionDuration: 0.5, interactiveGestureType: .pinch(direction: .close))
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
-            self.present(QRVC, animated: true, completion: nil)
-        })
-    }
-    
-    @objc func watchBtnDidClicked(_ sender: AnyObject) {
-        popoverView!.dismiss()
+    @IBAction func watchBtnDidClicked(_ sender: AnyObject) {
         let QRVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "watch")
         QRVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .left))
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
@@ -294,22 +190,88 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        weak var weakSelf = self
+        let headerView = HeaderView(frame: CGRect.zero) { (section) in
+            let model = realm.objects(Model.self)[section]
+            let name = model.name
+            let address = model.adress
+            let port = model.port
+            let encryption = model.encryption?.components(separatedBy: "\n").first
+            let password = model.passWord
+            let sheet = UIAlertController(title: "Which type", message: nil, preferredStyle: .actionSheet)
+            let surgeStringAction = UIAlertAction(title: "Surge Proxy String", style: .default, handler: { (action) in
+                let str = name! + " = custom, " + address! + ", " + port! + ", " + encryption! + ", " + password! + ", https://raw.githubusercontent.com/moreoronce/SSEncrypt.module/master/SSEncrypt.module"
+                let alertVC = UIAlertController.init(title: realm.objects(Model.self)[section].name, message: str, preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+                })
+                let action = UIAlertAction(title: "Copy", style: .default, handler: { (_) in
+                    let pboard = UIPasteboard.general
+                    pboard.string = str
+                })
+                alertVC.addAction(action)
+                alertVC.addAction(cancel)
+                self.present(alertVC, animated: true) {
+                }
+            })
+            let shadowsocksProxyString = UIAlertAction(title: "Shadowsocks Proxy String", style: .default, handler: { (action) in
+                let temp: NSString = NSString.init(format: "\(encryption!):\(password!)@\(address!):\(port!)" as NSString)
+                let temp1 = temp.base64EncodedString()
+                let retStr = "ss://" + (temp1 as String)
+                let alertVC = UIAlertController.init(title: realm.objects(Model.self)[section].name, message: retStr, preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+                })
+                let action = UIAlertAction(title: "Copy", style: .default, handler: { (_) in
+                    let pboard = UIPasteboard.general
+                    pboard.string = retStr
+                })
+                let open = UIAlertAction(title: "Open", style: .default, handler: { (_) in
+                    UIApplication.shared.openURL(URL.init(string: retStr)!)
+                })
+                alertVC.addAction(open)
+                alertVC.addAction(action)
+                alertVC.addAction(cancel)
+                self.present(alertVC, animated: true) {
+                }
+            })
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                
+            })
+            sheet.addAction(surgeStringAction)
+            sheet.addAction(shadowsocksProxyString)
+            sheet.addAction(cancel)
+            weakSelf?.present(sheet, animated: true, completion: nil)
+        }
+        headerView.row = section
+        headerView.title = realm.objects(Model.self)[section].name
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         
+        let title = ["Address:", "Port:", "Password:", "Encryption:"]
         
         var model = Model()
         if isDelete == false {
+            if cell == nil {
+                cell = UITableViewCell.init(style: .value2, reuseIdentifier: "cell")
+            }
             let str = self.getValueForNum((indexPath as NSIndexPath).row + 1)
             model = realm.objects(Model.self)[(indexPath as NSIndexPath).section]
-            cell.textLabel?.text = model.value(forKey: str) as? String
+            cell!.detailTextLabel?.text = model.value(forKey: str) as? String
+            cell!.textLabel?.text = title[indexPath.row]
         } else {
             model = realm.objects(Model.self).filter("isNet = false")[(indexPath as NSIndexPath).row]
-            cell.textLabel?.text = model.adress
+            cell!.textLabel?.text = model.adress
         }
         
-        return cell
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -319,9 +281,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let pboard = UIPasteboard.general
             
             let str = getValueForNum((indexPath as NSIndexPath).row + 1)
-            let temp = (realm.objects(Model.self)[(indexPath as NSIndexPath).section].value(forKey: str)! as AnyObject).components(separatedBy: ":")
-            pboard.string = temp[1]
-            let alertVC = UIAlertController.init(title: temp[0] + "已成功复制", message: "", preferredStyle: .alert)
+            pboard.string = (realm.objects(Model.self)[indexPath.section].value(forKey: str)) as? String
+            let alertVC = UIAlertController.init(title: realm.objects(Model.self)[indexPath.section].name, message: str.capitalized + " Copied", preferredStyle: .alert)
             weak var weakSelf = self
             self.present(alertVC, animated: true) {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
@@ -331,23 +292,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 })
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            print("delete")
-            
-            let model = realm.objects(Model.self).filter("isNet = false")[(indexPath as NSIndexPath).row]
-            try! realm.write({
-                realm.delete(model)
-            })
-            print(model.isInvalidated)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return isDelete
     }
     
 }
