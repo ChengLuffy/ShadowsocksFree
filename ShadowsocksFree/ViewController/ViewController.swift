@@ -201,7 +201,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let password = model.passWord
             let sheet = UIAlertController(title: "Which type", message: nil, preferredStyle: .actionSheet)
             let surgeStringAction = UIAlertAction(title: "Surge Proxy String", style: .default, handler: { (action) in
-                let str = name! + " = custom, " + address! + ", " + port! + ", " + encryption! + ", " + password! + ", https://raw.githubusercontent.com/moreoronce/SSEncrypt.module/master/SSEncrypt.module"
+                let str = name! + " = custom, " + address! + ", " + port! + ", " + encryption! + ", " + password! + ", https://github.com/ChengLuffy/ShadowsocksFree/blob/new/SSEncrypt.module"
                 let alertVC = UIAlertController.init(title: realm.objects(Model.self)[section].name, message: str, preferredStyle: .alert)
                 let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
                 })
