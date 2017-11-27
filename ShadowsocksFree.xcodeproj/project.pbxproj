@@ -10,6 +10,7 @@
 		105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */; };
 		1D8D0A271FCBCE6500DA470A /* AddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D0A261FCBCE6400DA470A /* AddInfoViewController.swift */; };
 		1D8D0A291FCBED0200DA470A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D0A281FCBED0200DA470A /* HeaderView.swift */; };
+		1DC407B31FCC580200132269 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DC407B21FCC580200132269 /* StoreKit.framework */; };
 		2A33CE9C1D1C0642000F652A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9B1D1C0642000F652A /* Model.swift */; };
 		2A33CEA31D1C067B000F652A /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */; };
 		2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA01D1C067B000F652A /* QRViewController.swift */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		1D8D0A261FCBCE6400DA470A /* AddInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInfoViewController.swift; sourceTree = "<group>"; };
 		1D8D0A281FCBED0200DA470A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		1DC407B21FCC580200132269 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2A33CE9B1D1C0642000F652A /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		2A33CEA01D1C067B000F652A /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */,
+				1DC407B31FCC580200132269 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +228,7 @@
 		49CDE42A6D9F863670ED9EFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DC407B21FCC580200132269 /* StoreKit.framework */,
 				9DC121B21320A626A75E4D59 /* Pods.framework */,
 				9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */,
 			);
@@ -315,6 +319,9 @@
 						DevelopmentTeam = C5WAW7Z979;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 0;
 							};
@@ -637,7 +644,7 @@
 				LLVM_LTO = NO;
 				NEW_SETTING = "";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = test.chengluffy;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.chengluffy.shadowsocksfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
@@ -659,7 +666,7 @@
 				LLVM_LTO = NO;
 				NEW_SETTING = "";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = test.chengluffy;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.chengluffy.shadowsocksfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;

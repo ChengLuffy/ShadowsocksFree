@@ -57,10 +57,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>二维码扫描需要使用相机权限</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>二维码扫描需要使用相册权限</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Request Photo Library Additions Usage Privacy</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
@@ -74,14 +72,6 @@
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeCapturePhoto</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>扫描</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>scan</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeUpdate</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>二维码</string>
 			<key>UIApplicationShortcutItemType</key>
