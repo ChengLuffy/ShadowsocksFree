@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  ShadowsocksFree
+
+  Created by 成殿 on 2017/11/28.
+  Copyright © 2017年 成璐飞. All rights reserved.
+*/
+
+"saveImage" = "Save QRCode to Photo Library";
+"OK" = "OK";
+"cancel" = "Cancel";
+"error" = "Error";
+"saveSuccess" = "Saved";
+"buyTee" = "Buy a cup of tee for me 🍵";
+"processing" = "Processing 😆";

@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  ShadowsocksFree
+
+  Created by 成殿 on 2017/11/28.
+  Copyright © 2017年 成璐飞. All rights reserved.
+*/
+
+"saveImage" = "将二维码保存到相册？";
+"OK" = "确定";
+"cancel" = "取消";
+"error" = "错误";
+"saveSuccess" = "保存成功";
+"buyTee" = "请我喝杯茶🍵";
+"processing" = "正在处理😆";

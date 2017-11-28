@@ -16,6 +16,8 @@
 		1DC407BB1FCCF76200132269 /* QRCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC407B91FCCF76200132269 /* QRCollectionViewCell.swift */; };
 		1DC407BE1FCCF79200132269 /* QRCollectionReusableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DC407BC1FCCF79100132269 /* QRCollectionReusableHeaderView.xib */; };
 		1DC407BF1FCCF79200132269 /* QRCollectionReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC407BD1FCCF79200132269 /* QRCollectionReusableHeaderView.swift */; };
+		1DC407C11FCD51E300132269 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC407C01FCD51E300132269 /* GuideViewController.swift */; };
+		1DC407C41FCD5B9900132269 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1DC407C61FCD5B9900132269 /* Localizable.strings */; };
 		2A33CE9C1D1C0642000F652A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9B1D1C0642000F652A /* Model.swift */; };
 		2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA01D1C067B000F652A /* QRViewController.swift */; };
 		2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
@@ -54,6 +56,9 @@
 		1DC407B91FCCF76200132269 /* QRCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionViewCell.swift; sourceTree = "<group>"; };
 		1DC407BC1FCCF79100132269 /* QRCollectionReusableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionReusableHeaderView.xib; sourceTree = "<group>"; };
 		1DC407BD1FCCF79200132269 /* QRCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
+		1DC407C01FCD51E300132269 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		1DC407C51FCD5B9900132269 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1DC407CB1FCD5C6600132269 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2A33CE9B1D1C0642000F652A /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2A33CEA01D1C067B000F652A /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		2A33CEB61D1C0711000F652A /* QRImageCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRImageCreate.swift; sourceTree = "<group>"; };
@@ -114,6 +119,7 @@
 		2A33CE9D1D1C067B000F652A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1DC407C01FCD51E300132269 /* GuideViewController.swift */,
 				2A33CEA01D1C067B000F652A /* QRViewController.swift */,
 				1DC407B61FCCEFE600132269 /* SettingViewController.swift */,
 				1DC407B41FCCEF4700132269 /* ViewController.swift */,
@@ -144,6 +150,7 @@
 		2A520E271D5700CE0023F283 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1DC407C61FCD5B9900132269 /* Localizable.strings */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -326,6 +333,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 2AD282701CD8520800C4655E;
 			productRefGroup = 2AD2827A1CD8520800C4655E /* Products */;
@@ -347,6 +355,7 @@
 				2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */,
 				2AD282841CD8520800C4655E /* Assets.xcassets in Resources */,
 				2AD282821CD8520800C4655E /* Main.storyboard in Resources */,
+				1DC407C41FCD5B9900132269 /* Localizable.strings in Resources */,
 				E989C101DA0FEE619AC011D7 /* Pods-ShadowsocksFree-metadata.plist in Resources */,
 				1DC407BA1FCCF76200132269 /* QRCollectionViewCell.xib in Resources */,
 				1DC407BE1FCCF79200132269 /* QRCollectionReusableHeaderView.xib in Resources */,
@@ -441,6 +450,7 @@
 				1DC407BF1FCCF79200132269 /* QRCollectionReusableHeaderView.swift in Sources */,
 				1DC407BB1FCCF76200132269 /* QRCollectionViewCell.swift in Sources */,
 				1DC407B71FCCEFE600132269 /* SettingViewController.swift in Sources */,
+				1DC407C11FCD51E300132269 /* GuideViewController.swift in Sources */,
 				2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */,
 				1DC407B51FCCEF4700132269 /* ViewController.swift in Sources */,
 				2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */,
@@ -482,6 +492,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1DC407C61FCD5B9900132269 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DC407C51FCD5B9900132269 /* en */,
+				1DC407CB1FCD5C6600132269 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		2AD282801CD8520800C4655E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -505,6 +524,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -560,6 +580,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

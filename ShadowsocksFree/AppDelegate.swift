@@ -18,10 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        window?.backgroundColor = UIColor.init(hexString: "#90C1F9")
         
         if launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] != nil {
              let shortcutItem = launchOptions![UIApplicationLaunchOptionsKey.shortcutItem] as! UIApplicationShortcutItem
             pushVCWith(shortcutItem.type)
+        }
+        
+        if UserDefaults.standard.bool(forKey: "hasOpened") != false {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let nav = storyboard.instantiateViewController(withIdentifier: "nav") as! UINavigationController
+            window?.rootViewController = nav
+        } else {
+            window?.rootViewController = GuideViewController()
         }
         
         return true

@@ -127,11 +127,11 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alertVC = UIAlertController.init(title: "将二维码保存到相册？", message: "", preferredStyle: .alert)
-        let cancleAction = UIAlertAction.init(title: "取消", style: .cancel) { (action) in
+        let alertVC = UIAlertController.init(title: NSLocalizedString("saveImage", comment: ""), message: "", preferredStyle: .alert)
+        let cancleAction = UIAlertAction.init(title: NSLocalizedString("cancel", comment: ""), style: .cancel) { (action) in
             
         }
-        let sureAction = UIAlertAction.init(title: "确定", style: .default) { (action) in
+        let sureAction = UIAlertAction.init(title: NSLocalizedString("OK", comment: ""), style: .default) { (action) in
             UIImageWriteToSavedPhotosAlbum((collectionView.cellForItem(at: indexPath) as! QRCollectionViewCell).mainImageView.image!, self, #selector(QRViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
         }
         
@@ -145,12 +145,12 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
         let str: String?
         if didFinishSavingWithError != nil {
             print("错误")
-            str = "发生错误"
+            str = NSLocalizedString("error", comment: "")
         } else {
-            str = "保存成功"
+            str = NSLocalizedString("saveSuccess", comment: "")
         }
         
-        let alertVC = UIAlertController.init(title: str, message: "", preferredStyle: .alert)
+        let alertVC = UIAlertController.init(title: str, message: didFinishSavingWithError?.localizedDescription, preferredStyle: .alert)
         weak var weadSelf = self
         self.present(alertVC, animated: true) { 
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: { 
