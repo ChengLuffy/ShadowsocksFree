@@ -17,7 +17,6 @@
 		1DC407BE1FCCF79200132269 /* QRCollectionReusableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DC407BC1FCCF79100132269 /* QRCollectionReusableHeaderView.xib */; };
 		1DC407BF1FCCF79200132269 /* QRCollectionReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC407BD1FCCF79200132269 /* QRCollectionReusableHeaderView.swift */; };
 		2A33CE9C1D1C0642000F652A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9B1D1C0642000F652A /* Model.swift */; };
-		2A33CEA31D1C067B000F652A /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */; };
 		2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA01D1C067B000F652A /* QRViewController.swift */; };
 		2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
 		2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2827C1CD8520800C4655E /* AppDelegate.swift */; };
@@ -56,7 +55,6 @@
 		1DC407BC1FCCF79100132269 /* QRCollectionReusableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionReusableHeaderView.xib; sourceTree = "<group>"; };
 		1DC407BD1FCCF79200132269 /* QRCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
 		2A33CE9B1D1C0642000F652A /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		2A33CEA01D1C067B000F652A /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		2A33CEB61D1C0711000F652A /* QRImageCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRImageCreate.swift; sourceTree = "<group>"; };
 		2AD282791CD8520800C4655E /* ShadowsocksFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowsocksFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +114,6 @@
 		2A33CE9D1D1C067B000F652A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */,
 				2A33CEA01D1C067B000F652A /* QRViewController.swift */,
 				1DC407B61FCCEFE600132269 /* SettingViewController.swift */,
 				1DC407B41FCCEF4700132269 /* ViewController.swift */,
@@ -441,7 +438,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A33CEA31D1C067B000F652A /* QRScanViewController.swift in Sources */,
 				1DC407BF1FCCF79200132269 /* QRCollectionReusableHeaderView.swift in Sources */,
 				1DC407BB1FCCF76200132269 /* QRCollectionViewCell.swift in Sources */,
 				1DC407B71FCCEFE600132269 /* SettingViewController.swift in Sources */,

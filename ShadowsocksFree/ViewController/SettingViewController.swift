@@ -108,6 +108,7 @@ class SettingViewController: UIViewController {
     */
 
     @objc func buyBtnAction() {
+        view.isUserInteractionEnabled = false
         closeBtn.isEnabled = false
         buyBtn.isEnabled = false
         buyBtn.setTitle("正在处理😆", for: .normal)
@@ -141,23 +142,17 @@ extension SettingViewController: SKPaymentTransactionObserver {
             closeBtn.isEnabled = true
             buyBtn.isEnabled = true
             buyBtn.setTitle("请作者喝杯🍵", for: .normal)
+            view.isUserInteractionEnabled = true
         } else if transaction?.transactionState == SKPaymentTransactionState.failed {
-            if (transaction!.error as! SKError).code == SKError.paymentCancelled {
-                let alertVC = UIAlertController.init(title: "支付取消", message: "内购被您取消了", preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertVC.addAction(cancelAction)
-                self.present(alertVC, animated: true) {
-                }
-            } else {
-                let alertVC = UIAlertController.init(title: "支付出现了问题", message: (transaction!.error as! SKError).localizedDescription, preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertVC.addAction(cancelAction)
-                self.present(alertVC, animated: true) {
-                }
+            let alertVC = UIAlertController.init(title: "Error", message: transaction!.error?.localizedDescription, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertVC.addAction(cancelAction)
+            self.present(alertVC, animated: true) {
             }
             closeBtn.isEnabled = true
             buyBtn.isEnabled = true
             buyBtn.setTitle("请作者喝杯🍵", for: .normal)
+            view.isUserInteractionEnabled = true
         }
     }
 }
