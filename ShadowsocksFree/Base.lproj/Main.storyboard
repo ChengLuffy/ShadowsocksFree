@@ -88,6 +88,11 @@
                                 <action selector="watchBtnDidClicked:" destination="BYZ-38-t0r" id="0Mn-UP-Bf9"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="setting" id="r9y-jK-c3M">
+                            <connections>
+                                <action selector="SettingAction:" destination="BYZ-38-t0r" id="nRI-cS-90w"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Gu7-aD-qcz" id="l2e-HI-jbx"/>
@@ -215,6 +220,7 @@
     </scenes>
     <resources>
         <image name="qr" width="20" height="20"/>
+        <image name="setting" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7Ib-1I-0gq"/>

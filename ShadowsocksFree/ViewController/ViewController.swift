@@ -15,8 +15,6 @@ import IBAnimatable
 
 class ViewController: UIViewController {
     var titles = [String]()
-//    var refreshControl: UIRefreshControl?
-    var popoverView: Popover?
     var isDelete: Bool = false
     @IBOutlet weak var tableView: UITableView!
     
@@ -152,9 +150,15 @@ class ViewController: UIViewController {
     @IBAction func watchBtnDidClicked(_ sender: AnyObject) {
         let QRVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "watch")
         QRVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .left))
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
-            self.present(QRVC, animated: true, completion: nil)
-        })
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+        self.present(QRVC, animated: true, completion: nil)
+//        })
+    }
+    
+    @IBAction func SettingAction(_ sender: Any) {
+        let settingVC = SettingViewController()
+        settingVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .top))
+        self.present(settingVC, animated: true, completion: nil)
     }
     
 }

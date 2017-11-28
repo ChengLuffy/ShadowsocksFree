@@ -67,10 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch type {
         case "home":
             break
-        case "scan":
-            let scanVC = storyboard.instantiateViewController(withIdentifier: "scan")
-            nav.pushViewController(scanVC, animated: true)
-            break
         default:
             let qrVC = storyboard.instantiateViewController(withIdentifier: "watch")
             nav.present(qrVC, animated: true, completion: nil)

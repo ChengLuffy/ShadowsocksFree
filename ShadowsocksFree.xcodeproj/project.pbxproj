@@ -8,21 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */; };
-		1D8D0A271FCBCE6500DA470A /* AddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D0A261FCBCE6400DA470A /* AddInfoViewController.swift */; };
 		1D8D0A291FCBED0200DA470A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D0A281FCBED0200DA470A /* HeaderView.swift */; };
 		1DC407B31FCC580200132269 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DC407B21FCC580200132269 /* StoreKit.framework */; };
+		1DC407B51FCCEF4700132269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC407B41FCCEF4700132269 /* ViewController.swift */; };
+		1DC407B71FCCEFE600132269 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC407B61FCCEFE600132269 /* SettingViewController.swift */; };
+		1DC407BA1FCCF76200132269 /* QRCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DC407B81FCCF76100132269 /* QRCollectionViewCell.xib */; };
+		1DC407BB1FCCF76200132269 /* QRCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC407B91FCCF76200132269 /* QRCollectionViewCell.swift */; };
+		1DC407BE1FCCF79200132269 /* QRCollectionReusableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DC407BC1FCCF79100132269 /* QRCollectionReusableHeaderView.xib */; };
+		1DC407BF1FCCF79200132269 /* QRCollectionReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC407BD1FCCF79200132269 /* QRCollectionReusableHeaderView.swift */; };
 		2A33CE9C1D1C0642000F652A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9B1D1C0642000F652A /* Model.swift */; };
 		2A33CEA31D1C067B000F652A /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */; };
 		2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA01D1C067B000F652A /* QRViewController.swift */; };
-		2A33CEA51D1C067B000F652A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA11D1C067B000F652A /* ViewController.swift */; };
-		2A33CEB01D1C06BE000F652A /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA91D1C06BE000F652A /* Popover.swift */; };
-		2A33CEB11D1C06BE000F652A /* QRCollectionReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEAA1D1C06BE000F652A /* QRCollectionReusableHeaderView.swift */; };
-		2A33CEB21D1C06BE000F652A /* QRCollectionReusableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A33CEAB1D1C06BE000F652A /* QRCollectionReusableHeaderView.xib */; };
-		2A33CEB31D1C06BE000F652A /* QRCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEAC1D1C06BE000F652A /* QRCollectionViewCell.swift */; };
-		2A33CEB41D1C06BE000F652A /* QRCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A33CEAD1D1C06BE000F652A /* QRCollectionViewCell.xib */; };
 		2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
-		2A33CEC61D1C5FDE000F652A /* PopUpViewTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */; };
-		2A33CEC71D1C5FDE000F652A /* PopUpViewTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */; };
 		2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2827C1CD8520800C4655E /* AppDelegate.swift */; };
 		2AD282821CD8520800C4655E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282801CD8520800C4655E /* Main.storyboard */; };
 		2AD282841CD8520800C4655E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282831CD8520800C4655E /* Assets.xcassets */; };
@@ -50,21 +47,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D8D0A261FCBCE6400DA470A /* AddInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInfoViewController.swift; sourceTree = "<group>"; };
 		1D8D0A281FCBED0200DA470A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		1DC407B21FCC580200132269 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1DC407B41FCCEF4700132269 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1DC407B61FCCEFE600132269 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		1DC407B81FCCF76100132269 /* QRCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionViewCell.xib; sourceTree = "<group>"; };
+		1DC407B91FCCF76200132269 /* QRCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionViewCell.swift; sourceTree = "<group>"; };
+		1DC407BC1FCCF79100132269 /* QRCollectionReusableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionReusableHeaderView.xib; sourceTree = "<group>"; };
+		1DC407BD1FCCF79200132269 /* QRCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
 		2A33CE9B1D1C0642000F652A /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		2A33CEA01D1C067B000F652A /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
-		2A33CEA11D1C067B000F652A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2A33CEA91D1C06BE000F652A /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Popover.swift; path = ../Popover.swift; sourceTree = "<group>"; };
-		2A33CEAA1D1C06BE000F652A /* QRCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
-		2A33CEAB1D1C06BE000F652A /* QRCollectionReusableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionReusableHeaderView.xib; sourceTree = "<group>"; };
-		2A33CEAC1D1C06BE000F652A /* QRCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCollectionViewCell.swift; sourceTree = "<group>"; };
-		2A33CEAD1D1C06BE000F652A /* QRCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionViewCell.xib; sourceTree = "<group>"; };
 		2A33CEB61D1C0711000F652A /* QRImageCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRImageCreate.swift; sourceTree = "<group>"; };
-		2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewTextView.swift; path = PopUpView/PopUpViewTextView.swift; sourceTree = "<group>"; };
-		2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PopUpViewTextView.xib; path = PopUpView/PopUpViewTextView.xib; sourceTree = "<group>"; };
 		2AD282791CD8520800C4655E /* ShadowsocksFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowsocksFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD2827C1CD8520800C4655E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AD282811CD8520800C4655E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,10 +116,10 @@
 		2A33CE9D1D1C067B000F652A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1D8D0A261FCBCE6400DA470A /* AddInfoViewController.swift */,
 				2A33CE9F1D1C067B000F652A /* QRScanViewController.swift */,
 				2A33CEA01D1C067B000F652A /* QRViewController.swift */,
-				2A33CEA11D1C067B000F652A /* ViewController.swift */,
+				1DC407B61FCCEFE600132269 /* SettingViewController.swift */,
+				1DC407B41FCCEF4700132269 /* ViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -133,13 +127,10 @@
 		2A33CEA61D1C06BE000F652A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2A33CEAA1D1C06BE000F652A /* QRCollectionReusableHeaderView.swift */,
-				2A33CEAB1D1C06BE000F652A /* QRCollectionReusableHeaderView.xib */,
-				2A33CEAC1D1C06BE000F652A /* QRCollectionViewCell.swift */,
-				2A33CEAD1D1C06BE000F652A /* QRCollectionViewCell.xib */,
-				2A33CEC41D1C5FDE000F652A /* PopUpViewTextView.swift */,
-				2A33CEC51D1C5FDE000F652A /* PopUpViewTextView.xib */,
-				2A33CEC31D1C5FDE000F652A /* PopUpView */,
+				1DC407BD1FCCF79200132269 /* QRCollectionReusableHeaderView.swift */,
+				1DC407BC1FCCF79100132269 /* QRCollectionReusableHeaderView.xib */,
+				1DC407B91FCCF76200132269 /* QRCollectionViewCell.swift */,
+				1DC407B81FCCF76100132269 /* QRCollectionViewCell.xib */,
 				1D8D0A281FCBED0200DA470A /* HeaderView.swift */,
 			);
 			path = View;
@@ -151,14 +142,6 @@
 				2A33CEB61D1C0711000F652A /* QRImageCreate.swift */,
 			);
 			path = Tool;
-			sourceTree = "<group>";
-		};
-		2A33CEC31D1C5FDE000F652A /* PopUpView */ = {
-			isa = PBXGroup;
-			children = (
-				2A33CEA91D1C06BE000F652A /* Popover.swift */,
-			);
-			path = PopUpView;
 			sourceTree = "<group>";
 		};
 		2A520E271D5700CE0023F283 /* Resource */ = {
@@ -365,12 +348,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */,
-				2A33CEC71D1C5FDE000F652A /* PopUpViewTextView.xib in Resources */,
 				2AD282841CD8520800C4655E /* Assets.xcassets in Resources */,
 				2AD282821CD8520800C4655E /* Main.storyboard in Resources */,
-				2A33CEB21D1C06BE000F652A /* QRCollectionReusableHeaderView.xib in Resources */,
-				2A33CEB41D1C06BE000F652A /* QRCollectionViewCell.xib in Resources */,
 				E989C101DA0FEE619AC011D7 /* Pods-ShadowsocksFree-metadata.plist in Resources */,
+				1DC407BA1FCCF76200132269 /* QRCollectionViewCell.xib in Resources */,
+				1DC407BE1FCCF79200132269 /* QRCollectionReusableHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,16 +442,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A33CEA31D1C067B000F652A /* QRScanViewController.swift in Sources */,
-				2A33CEB11D1C06BE000F652A /* QRCollectionReusableHeaderView.swift in Sources */,
-				2A33CEB01D1C06BE000F652A /* Popover.swift in Sources */,
+				1DC407BF1FCCF79200132269 /* QRCollectionReusableHeaderView.swift in Sources */,
+				1DC407BB1FCCF76200132269 /* QRCollectionViewCell.swift in Sources */,
+				1DC407B71FCCEFE600132269 /* SettingViewController.swift in Sources */,
 				2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */,
-				2A33CEC61D1C5FDE000F652A /* PopUpViewTextView.swift in Sources */,
-				2A33CEB31D1C06BE000F652A /* QRCollectionViewCell.swift in Sources */,
+				1DC407B51FCCEF4700132269 /* ViewController.swift in Sources */,
 				2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */,
 				1D8D0A291FCBED0200DA470A /* HeaderView.swift in Sources */,
-				2A33CEA51D1C067B000F652A /* ViewController.swift in Sources */,
 				2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */,
-				1D8D0A271FCBCE6500DA470A /* AddInfoViewController.swift in Sources */,
 				2A33CE9C1D1C0642000F652A /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -648,6 +628,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -670,6 +651,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
