@@ -56,6 +56,7 @@ class SettingViewController: UIViewController {
         view.addSubview(buyBtn)
         view.addSubview(closeBtn)
         view.addSubview(infoLabel)
+        SKPaymentQueue.default().add(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,6 +97,10 @@ class SettingViewController: UIViewController {
         
     }
     
+    deinit {
+        SKPaymentQueue.default().remove(self)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -118,7 +123,6 @@ class SettingViewController: UIViewController {
     }
     
     @objc func closeBtnAction() {
-        
         dismiss(animated: true, completion: nil)
     }
     
@@ -127,9 +131,16 @@ class SettingViewController: UIViewController {
 extension SettingViewController: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let tee = response.products.first
-        let payment = SKPayment.init(product: tee!)
+        let payment = SKPayment(product: tee!)
         SKPaymentQueue.default().add(payment)
-        SKPaymentQueue.default().add(self)
+    }
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    func requestDidFinish(_ request: SKRequest) {
+        print("request finish")
     }
 }
 
@@ -143,6 +154,7 @@ extension SettingViewController: SKPaymentTransactionObserver {
             buyBtn.setTitle(NSLocalizedString("buyTee", comment: ""), for: .normal)
             view.isUserInteractionEnabled = true
         } else if transaction?.transactionState == SKPaymentTransactionState.failed {
+            SKPaymentQueue.default().finishTransaction(transaction!)
             let alertVC = UIAlertController.init(title: "Error", message: transaction!.error?.localizedDescription, preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertVC.addAction(cancelAction)
@@ -152,6 +164,19 @@ extension SettingViewController: SKPaymentTransactionObserver {
             buyBtn.isEnabled = true
             buyBtn.setTitle(NSLocalizedString("buyTee", comment: ""), for: .normal)
             view.isUserInteractionEnabled = true
+        } else if transaction?.transactionState == SKPaymentTransactionState.purchasing {
+            print("商品添加到列表")
+        } else if transaction?.transactionState == SKPaymentTransactionState.restored {
+            print("已经购买过该商品")
+        } else if transaction?.transactionState == SKPaymentTransactionState.deferred {
+            print("延期")
+        } else {
+            print(transaction ?? "production nil")
         }
     }
+    
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        print("finish")
+    }
+    
 }
