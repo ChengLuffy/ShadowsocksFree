@@ -54,7 +54,15 @@ class ViewController: UIViewController {
     
     @objc func getData() {
         tableView.updateFocusIfNeeded()
-        let URLStr = "http://ss.ishadowx.com"
+        // "https://go.ishadowx.net"
+        var data: Data
+        do {
+            data = try Data.init(contentsOf: URL.init(string: "https://chengluffy.tech/ssf-host/host")!)
+        } catch let error {
+            print(error.localizedDescription)
+            data = "https://go.ishadowx.net".data(using: .utf8)!
+        }
+        let URLStr = String.init(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         var isNeedRequest: Bool?
         
@@ -75,7 +83,8 @@ class ViewController: UIViewController {
             print(lastDateStr, dateNowStr)
             print(lastDateHStr, dateNowHStr)
             
-            isNeedRequest = Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6
+//            isNeedRequest = Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6
+            isNeedRequest = true
         } else {
             isNeedRequest = true
         }
@@ -105,9 +114,9 @@ class ViewController: UIViewController {
                                     
                                     switch index {
                                     case 0: model.adress = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-                                    case 1: model.port = sub.stringValue.components(separatedBy: ":").last!
+                                    case 1: model.port = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
                                     case 2: model.passWord = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-                                    case 3: model.encryption = sub.stringValue.components(separatedBy: ":").last!
+                                    case 3: model.encryption = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
                                     default :
                                         break
                                     }
@@ -201,7 +210,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let name = model.name
             let address = model.adress
             let port = model.port
-            let encryption = model.encryption?.components(separatedBy: "\n").first
+            let encryption = model.encryption
             let password = model.passWord
             let sheet = UIAlertController(title: "Which type", message: nil, preferredStyle: .actionSheet)
             let surgeStringAction = UIAlertAction(title: "Surge Proxy String", style: .default, handler: { (action) in
