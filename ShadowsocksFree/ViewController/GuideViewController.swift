@@ -12,6 +12,7 @@ class GuideViewController: UIViewController {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.image = #imageLiteral(resourceName: "Guide1")
         return imageView
     }()
