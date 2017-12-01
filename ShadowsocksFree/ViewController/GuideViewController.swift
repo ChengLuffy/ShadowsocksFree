@@ -41,10 +41,12 @@ class GuideViewController: UIViewController {
         
         let imageViewHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
         
-        
         if #available(iOS 11.0, *) {
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-            imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+//            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+//            imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+            let metrics = ["topAnchor": view.safeAreaInsets.top, "bottomAnchor": view.safeAreaInsets.bottom] as [String : Any]
+            let imageViewVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topAnchor-[imageView]-bottomAnchor-|", options: [], metrics: metrics, views: views)
+            view.addConstraints(imageViewVC)
         } else {
             // Fallback on earlier versions
             let imageViewVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]|", options: [], metrics: nil, views: views)
