@@ -113,7 +113,7 @@ class ViewController: UIViewController {
                                 for (index, sub) in node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").enumerated() {
                                     
                                     switch index {
-                                    case 0: model.adress = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+                                    case 0: model.address = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
                                     case 1: model.port = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
                                     case 2: model.passWord = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
                                     case 3: model.encryption = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -208,7 +208,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let headerView = HeaderView(frame: CGRect.zero) { (section) in
             let model = realm.objects(Model.self)[section]
             let name = model.name
-            let address = model.adress
+            let address = model.address
             let port = model.port
             let encryption = model.encryption
             let password = model.passWord
@@ -281,7 +281,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell!.textLabel?.text = title[indexPath.row]
         } else {
             model = realm.objects(Model.self).filter("isNet = false")[(indexPath as NSIndexPath).row]
-            cell!.textLabel?.text = model.adress
+            cell!.textLabel?.text = model.address
         }
         
         return cell!
