@@ -12,6 +12,7 @@ class GuideViewController: UIViewController {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.image = #imageLiteral(resourceName: "Guide1")
         return imageView
     }()
@@ -22,7 +23,7 @@ class GuideViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        (UIApplication.shared.delegate as! AppDelegate).window?.backgroundColor = UIColor.white
         view.addSubview(imageView)
     }
 
@@ -39,10 +40,22 @@ class GuideViewController: UIViewController {
         let views = ["imageView": imageView]
         
         let imageViewHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
-        let imageViewVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]|", options: [], metrics: nil, views: views)
+        
+        if #available(iOS 11.0, *) {
+//            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+//            imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+            let metrics = ["topAnchor": view.safeAreaInsets.top, "bottomAnchor": view.safeAreaInsets.bottom] as [String : Any]
+            let imageViewVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topAnchor-[imageView]-bottomAnchor-|", options: [], metrics: metrics, views: views)
+            view.addConstraints(imageViewVC)
+        } else {
+            // Fallback on earlier versions
+            let imageViewVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]|", options: [], metrics: nil, views: views)
+            view.addConstraints(imageViewVC)
+        }
+        
         
         view.addConstraints(imageViewHC)
-        view.addConstraints(imageViewVC)
+        
         
     }
     
@@ -64,6 +77,7 @@ class GuideViewController: UIViewController {
             let window = (UIApplication.shared.delegate as! AppDelegate).window
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let nav = storyboard.instantiateViewController(withIdentifier: "nav") as! UINavigationController
+            window?.backgroundColor = UIColor.init(hexString: "#90C1F9")
             window?.rootViewController = nav
         } else {
             imageView.image = UIImage.init(named: "Guide\(page)")

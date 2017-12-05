@@ -12,9 +12,9 @@ import RealmSwift
 class Model: Object {
 
     @objc dynamic var name: String?
-    @objc dynamic var adress: String? {
+    @objc dynamic var address: String? {
         didSet {
-            name = adress!.uppercased()
+            name = address!.uppercased()
         }
     }
     @objc dynamic var port: String?
@@ -31,7 +31,7 @@ class Model: Object {
      - returns: 主键
      */
     override class func primaryKey() -> String? {
-        return "adress"
+        return "address"
     }
     
 }

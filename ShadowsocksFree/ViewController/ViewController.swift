@@ -22,14 +22,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
         /*
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(ViewController.getData), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl!)
          */
-        self.tableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(ViewController.getData))
+        tableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(ViewController.getData))
         /*
         self.tableView.mj_footer = MJRefreshAutoStateFooter.init(refreshingBlock: {
             print("footer")
@@ -38,13 +38,36 @@ class ViewController: UIViewController {
             })
         })
          */
-        self.tableView.mj_header.beginRefreshing()
-        self.title = "ShadowsocksFree"
+        title = "ShadowsocksFree"
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // self.tableView.mj_header.beginRefreshing()
+        
+        if tableView.mj_header.lastUpdatedTime != nil {
+            let dateFormater = DateFormatter()
+            dateFormater.dateFormat = "yyyyMMdd"
+            
+            let dateFormaterH = DateFormatter()
+            dateFormaterH.dateFormat = "HH"
+            
+            let date = self.tableView.mj_header.lastUpdatedTime
+            let lastDateStr = dateFormater.string(from: date!)
+            let lastDateHStr = dateFormaterH.string(from: date!)
+            
+            let dateNow = Date()
+            let dateNowStr = dateFormater.string(from: dateNow)
+            let dateNowHStr = dateFormaterH.string(from: dateNow)
+            print(lastDateStr, dateNowStr)
+            print(lastDateHStr, dateNowHStr)
+            
+            if (Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6) {
+                tableView.mj_header.beginRefreshing()
+            }
+        } else {
+            tableView.mj_header.beginRefreshing()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,87 +87,56 @@ class ViewController: UIViewController {
         }
         let URLStr = String.init(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        var isNeedRequest: Bool?
         
-        if self.tableView.mj_header.lastUpdatedTime != nil {
-            let dateFormater = DateFormatter()
-            dateFormater.dateFormat = "yyyyMMdd"
+        Alamofire.request(URLStr).responseData { (respose) in
             
-            let dateFormaterH = DateFormatter()
-            dateFormaterH.dateFormat = "HH"
-            
-            let date = self.tableView.mj_header.lastUpdatedTime
-            let lastDateStr = dateFormater.string(from: date!)
-            let lastDateHStr = dateFormaterH.string(from: date!)
-            
-            let dateNow = Date()
-            let dateNowStr = dateFormater.string(from: dateNow)
-            let dateNowHStr = dateFormaterH.string(from: dateNow)
-            print(lastDateStr, dateNowStr)
-            print(lastDateHStr, dateNowHStr)
-            
-//            isNeedRequest = Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6
-            isNeedRequest = true
-        } else {
-            isNeedRequest = true
-        }
-        
-        
-        if isNeedRequest == true {
-        
-            Alamofire.request(URLStr).responseData { (respose) in
+            if respose.result.error == nil {
+                print(respose.data?.count ?? "nil")
                 
-                if respose.result.error == nil {
-                    print(respose.data?.count ?? "nil")
+                let html = NSString.init(data: respose.data!, encoding: String.Encoding.utf8.rawValue)
+                do {
                     
-                    let html = NSString.init(data: respose.data!, encoding: String.Encoding.utf8.rawValue)
-                    do {
-                        
-                        try! realm.write({ 
-                            realm.delete(realm.objects(Model.self).filter("server = 'ishadowsocks'"))
-                        })
-                        
-                        let doc = try HTMLDocument(string: html! as String, encoding: String.Encoding.utf8)
-                        let free = doc.xpath("//body")[0].children(tag: "div")[2].children(tag: "div")[1].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")
-                        if free.count > 0 {
-                            for node in free {
-                                let model = Model()
+                    try! realm.write({
+                        realm.delete(realm.objects(Model.self).filter("server = 'ishadowsocks'"))
+                    })
+                    
+                    let doc = try HTMLDocument(string: html! as String, encoding: String.Encoding.utf8)
+                    let free = doc.xpath("//body")[0].children(tag: "div")[2].children(tag: "div")[1].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")
+                    if free.count > 0 {
+                        for node in free {
+                            let model = Model()
+                            
+                            for (index, sub) in node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").enumerated() {
                                 
-                                for (index, sub) in node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").enumerated() {
-                                    
-                                    switch index {
-                                    case 0: model.adress = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-                                    case 1: model.port = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
-                                    case 2: model.passWord = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-                                    case 3: model.encryption = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
-                                    default :
-                                        break
-                                    }
-                                    model.isNet = true
-                                    model.server = "ishadowsocks"
+                                switch index {
+                                case 0: model.address = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+                                case 1: model.port = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                case 2: model.passWord = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+                                case 3: model.encryption = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                default :
+                                    break
                                 }
-                                
-                                try! realm.write({
-                                    realm.add(model, update: true)
-                                })
+                                model.isNet = true
+                                model.server = "ishadowsocks"
                             }
-                            self.tableView.reloadData()
-                            self.tableView.mj_header.endRefreshing()
-                        } else {
-                            print("nil")
+                            
+                            try! realm.write({
+                                realm.add(model, update: true)
+                            })
                         }
-                        
-                    } catch let error  {
-                        print(error)
+                        self.tableView.reloadData()
+                        self.tableView.mj_header.endRefreshing()
+                    } else {
+                        print("nil")
                     }
-                } else {
-                    print(respose.result.error ?? "nil")
-                    self.tableView.mj_header.endRefreshing()
+                    
+                } catch let error  {
+                    print(error)
                 }
+            } else {
+                print(respose.result.error ?? "nil")
+                self.tableView.mj_header.endRefreshing()
             }
-        } else {
-            self.tableView.reloadData()
-            self.tableView.mj_header.endRefreshing()
         }
     }
     
@@ -208,7 +200,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let headerView = HeaderView(frame: CGRect.zero) { (section) in
             let model = realm.objects(Model.self)[section]
             let name = model.name
-            let address = model.adress
+            let address = model.address
             let port = model.port
             let encryption = model.encryption
             let password = model.passWord
@@ -281,7 +273,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell!.textLabel?.text = title[indexPath.row]
         } else {
             model = realm.objects(Model.self).filter("isNet = false")[(indexPath as NSIndexPath).row]
-            cell!.textLabel?.text = model.adress
+            cell!.textLabel?.text = model.address
         }
         
         return cell!
