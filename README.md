@@ -5,3 +5,8 @@
 
 #  App Store
 comming soon!
+
+# LICENSE
+[SATA-LICENSE][907fa31f]
+
+  [907fa31f]: ./LICENSE "LICENSE"
