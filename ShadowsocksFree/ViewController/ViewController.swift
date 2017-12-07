@@ -204,26 +204,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let port = model.port
             let encryption = model.encryption
             let password = model.passWord
-            let sheet = UIAlertController(title: "Which type", message: nil, preferredStyle: .actionSheet)
+            let sheet = UIAlertController(title: "Copy with?", message: nil, preferredStyle: .actionSheet)
             let surgeStringAction = UIAlertAction(title: "Surge Proxy String", style: .default, handler: { (action) in
                 let str = name! + " = custom, " + address! + ", " + port! + ", " + encryption! + ", " + password! + ", https://github.com/ChengLuffy/ShadowsocksFree/blob/new/SSEncrypt.module"
-                let alertVC = UIAlertController.init(title: realm.objects(Model.self)[section].name, message: str, preferredStyle: .alert)
                 let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
                 })
                 let action = UIAlertAction(title: "Copy", style: .default, handler: { (_) in
                     let pboard = UIPasteboard.general
                     pboard.string = str
                 })
-                alertVC.addAction(action)
-                alertVC.addAction(cancel)
-                self.present(alertVC, animated: true) {
-                }
+                AlertMSG.alert(title: realm.objects(Model.self)[section].name!, msg: str, actions: [cancel, action])
             })
             let shadowsocksProxyString = UIAlertAction(title: "Shadowsocks Proxy String", style: .default, handler: { (action) in
                 let temp: NSString = NSString.init(format: "\(encryption!):\(password!)@\(address!):\(port!)" as NSString)
                 let temp1 = temp.base64EncodedString()
                 let retStr = "ss://" + (temp1 as String)
-                let alertVC = UIAlertController.init(title: realm.objects(Model.self)[section].name, message: retStr, preferredStyle: .alert)
                 let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
                 })
                 let action = UIAlertAction(title: "Copy", style: .default, handler: { (_) in
@@ -233,11 +228,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 let open = UIAlertAction(title: "Open", style: .default, handler: { (_) in
                     UIApplication.shared.openURL(URL.init(string: retStr)!)
                 })
-                alertVC.addAction(open)
-                alertVC.addAction(action)
-                alertVC.addAction(cancel)
-                self.present(alertVC, animated: true) {
-                }
+                AlertMSG.alert(title: realm.objects(Model.self)[section].name!, msg: retStr, actions: [open ,action, cancel])
             })
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
                 
@@ -287,15 +278,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             
             let str = getValueForNum((indexPath as NSIndexPath).row + 1)
             pboard.string = (realm.objects(Model.self)[indexPath.section].value(forKey: str)) as? String
-            let alertVC = UIAlertController.init(title: realm.objects(Model.self)[indexPath.section].name, message: str.capitalized + " Copied", preferredStyle: .alert)
             weak var weakSelf = self
-            self.present(alertVC, animated: true) {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+            AlertMSG.alert(title: realm.objects(Model.self)[indexPath.section].name!, msg: str.capitalized + " Copied", completion: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
                     weakSelf!.dismiss(animated: true, completion: {
                         weakSelf!.tableView.deselectRow(at: indexPath, animated: true)
                     })
                 })
-            }
+            })
         }
     }
     

@@ -127,18 +127,12 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alertVC = UIAlertController.init(title: NSLocalizedString("saveImage", comment: ""), message: "", preferredStyle: .alert)
         let cancleAction = UIAlertAction.init(title: NSLocalizedString("cancel", comment: ""), style: .cancel) { (action) in
-            
         }
         let sureAction = UIAlertAction.init(title: NSLocalizedString("OK", comment: ""), style: .default) { (action) in
             UIImageWriteToSavedPhotosAlbum((collectionView.cellForItem(at: indexPath) as! QRCollectionViewCell).mainImageView.image!, self, #selector(QRViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
         }
-        
-        alertVC.addAction(cancleAction)
-        alertVC.addAction(sureAction)
-        
-        self.present(alertVC, animated: true, completion: nil)
+        AlertMSG.alert(title: NSLocalizedString("saveImage", comment: ""), msg: "", actions: [cancleAction, sureAction])
     }
     // - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
     @objc func image(_ image: UIImage, didFinishSavingWithError: NSError?, contextInfo: AnyObject) {
@@ -149,15 +143,7 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
         } else {
             str = NSLocalizedString("saveSuccess", comment: "")
         }
-        
-        let alertVC = UIAlertController.init(title: str, message: didFinishSavingWithError?.localizedDescription, preferredStyle: .alert)
-        weak var weadSelf = self
-        self.present(alertVC, animated: true) { 
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: { 
-                weadSelf!.dismiss(animated: true, completion: nil)
-            })
-        }
-        
+        AlertMSG.alert(title: str!, msg: (didFinishSavingWithError?.localizedDescription) ?? "", delay: 1.5)
     }
     
 }

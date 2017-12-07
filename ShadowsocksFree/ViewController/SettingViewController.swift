@@ -116,7 +116,7 @@ class SettingViewController: UIViewController {
         closeBtn.isEnabled = false
         buyBtn.isEnabled = false
         buyBtn.setTitle(NSLocalizedString("processing", comment: ""), for: .normal)
-        let productionID = ["tech.chengluffy.shadowsocksfree.tee"]
+        let productionID = ["tech.chengluffy.tee"]
         let teeRequest = SKProductsRequest.init(productIdentifiers: Set(productionID))
         teeRequest.delegate = self
         teeRequest.start()
@@ -124,6 +124,13 @@ class SettingViewController: UIViewController {
     
     @objc func closeBtnAction() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func enableUserInteraction() {
+        closeBtn.isEnabled = true
+        buyBtn.isEnabled = true
+        buyBtn.setTitle(NSLocalizedString("buyTee", comment: ""), for: .normal)
+        view.isUserInteractionEnabled = true
     }
     
 }
@@ -137,6 +144,9 @@ extension SettingViewController: SKProductsRequestDelegate {
     
     func request(_ request: SKRequest, didFailWithError error: Error) {
         print(error.localizedDescription)
+        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        AlertMSG.alert(title: "Error", msg: error.localizedDescription, actions: [cancelAction])
+        enableUserInteraction()
     }
     
     func requestDidFinish(_ request: SKRequest) {
@@ -149,21 +159,12 @@ extension SettingViewController: SKPaymentTransactionObserver {
         let transaction = transactions.first
         if transaction?.transactionState == SKPaymentTransactionState.purchased {
             SKPaymentQueue.default().finishTransaction(transaction!)
-            closeBtn.isEnabled = true
-            buyBtn.isEnabled = true
-            buyBtn.setTitle(NSLocalizedString("buyTee", comment: ""), for: .normal)
-            view.isUserInteractionEnabled = true
+            enableUserInteraction()
         } else if transaction?.transactionState == SKPaymentTransactionState.failed {
             SKPaymentQueue.default().finishTransaction(transaction!)
-            let alertVC = UIAlertController.init(title: "Error", message: transaction!.error?.localizedDescription, preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertVC.addAction(cancelAction)
-            self.present(alertVC, animated: true) {
-            }
-            closeBtn.isEnabled = true
-            buyBtn.isEnabled = true
-            buyBtn.setTitle(NSLocalizedString("buyTee", comment: ""), for: .normal)
-            view.isUserInteractionEnabled = true
+            AlertMSG.alert(title: "Error", msg: (transaction!.error?.localizedDescription)!, actions: [cancelAction])
+            enableUserInteraction()
         } else if transaction?.transactionState == SKPaymentTransactionState.purchasing {
             print("商品添加到列表")
         } else if transaction?.transactionState == SKPaymentTransactionState.restored {

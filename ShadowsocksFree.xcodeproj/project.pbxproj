@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */; };
+		1D10D67E1FD7ECD00013C6EA /* AlertMSG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D67D1FD7ECD00013C6EA /* AlertMSG.swift */; };
 		1D8D0A291FCBED0200DA470A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D0A281FCBED0200DA470A /* HeaderView.swift */; };
 		1DC407B31FCC580200132269 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DC407B21FCC580200132269 /* StoreKit.framework */; };
 		1DC407B51FCCEF4700132269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC407B41FCCEF4700132269 /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D10D67D1FD7ECD00013C6EA /* AlertMSG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMSG.swift; sourceTree = "<group>"; };
 		1D8D0A281FCBED0200DA470A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		1DC407B21FCC580200132269 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1DC407B41FCCEF4700132269 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				2A33CEB61D1C0711000F652A /* QRImageCreate.swift */,
+				1D10D67D1FD7ECD00013C6EA /* AlertMSG.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				1DC407B51FCCEF4700132269 /* ViewController.swift in Sources */,
 				2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */,
 				1D8D0A291FCBED0200DA470A /* HeaderView.swift in Sources */,
+				1D10D67E1FD7ECD00013C6EA /* AlertMSG.swift in Sources */,
 				2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */,
 				2A33CE9C1D1C0642000F652A /* Model.swift in Sources */,
 			);
