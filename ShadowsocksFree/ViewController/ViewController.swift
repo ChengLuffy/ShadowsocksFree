@@ -156,12 +156,6 @@ class ViewController: UIViewController {
 //        })
     }
     
-    @IBAction func SettingAction(_ sender: Any) {
-        let settingVC = SettingViewController()
-        settingVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .top))
-        self.present(settingVC, animated: true, completion: nil)
-    }
-    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {

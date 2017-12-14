@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -86,11 +86,6 @@
                         <barButtonItem key="leftBarButtonItem" image="qr" id="v9E-zX-jVs">
                             <connections>
                                 <action selector="watchBtnDidClicked:" destination="BYZ-38-t0r" id="0Mn-UP-Bf9"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="setting" id="r9y-jK-c3M">
-                            <connections>
-                                <action selector="SettingAction:" destination="BYZ-38-t0r" id="nRI-cS-90w"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -220,9 +215,8 @@
     </scenes>
     <resources>
         <image name="qr" width="20" height="20"/>
-        <image name="setting" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RHg-S2-Nzt"/>
+        <segue reference="7Ib-1I-0gq"/>
     </inferredMetricsTieBreakers>
 </document>
