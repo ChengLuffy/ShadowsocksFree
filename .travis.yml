@@ -1,7 +1,8 @@
 language: swift
 cache:
-  - bundler
   - cocoapods
 before_install:
   - gem install cocoapods-acknowledgements -NV
   - pod repo update --silent
+xcode_project: ShadowsocksFree.xcworkspace
+xcode_scheme: ShadowsocksFree
