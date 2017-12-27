@@ -3,3 +3,4 @@ language: swift
 xcode_project: ShadowsocksFree.xcodeproj
 script: xcodebuild -project ShadowsocksFree.xcodeproj -scheme "ShadowsocksFree" 
         -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
+os: ios 
