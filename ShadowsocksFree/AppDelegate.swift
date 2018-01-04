@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             pushVCWith(shortcutItem.type)
         }
         
-        if UserDefaults.standard.bool(forKey: "hasOpened") != false {
+        if UserDefaults.standard.bool(forKey: "hasOpened") != false || UserDefaults.standard.bool(forKey: "hasOpened") != true {
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let nav = storyboard.instantiateViewController(withIdentifier: "nav") as! UINavigationController
             window?.rootViewController = nav

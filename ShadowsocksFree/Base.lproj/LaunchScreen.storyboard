@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Zapfino.ttf">
-            <string>Zapfino</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -27,19 +21,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ShadowSocksFree" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9CF-cB-kwJ">
-                                <rect key="frame" x="16" y="272.5" width="343" height="122"/>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fly-3" translatesAutoresizingMaskIntoConstraints="NO" id="TW8-N7-bcz">
+                                <rect key="frame" x="54" y="200.5" width="266" height="266"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9CF-cB-kwJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="IGe-m3-Ahq"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="9CF-cB-kwJ" secondAttribute="trailing" id="kfb-sc-NDT"/>
-                            <constraint firstItem="9CF-cB-kwJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="np6-iU-Feo"/>
-                            <constraint firstItem="9CF-cB-kwJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="r64-nJ-pIs"/>
+                            <constraint firstItem="TW8-N7-bcz" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Lyc-Lt-0zg"/>
+                            <constraint firstItem="TW8-N7-bcz" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="rPA-9c-11E"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -48,4 +37,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="fly-3" width="266" height="266"/>
+    </resources>
 </document>

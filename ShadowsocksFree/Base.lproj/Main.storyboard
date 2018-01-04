@@ -57,7 +57,7 @@
             </objects>
             <point key="canvasLocation" x="2537" y="-694"/>
         </scene>
-        <!--ShadowsocksFree-->
+        <!--Quarter-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="home" id="BYZ-38-t0r" customClass="ViewController" customModule="ShadowsocksFree" customModuleProvider="target" sceneMemberID="viewController">
@@ -82,10 +82,15 @@
                             <constraint firstItem="Gu7-aD-qcz" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="nSd-UR-rp4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ShadowsocksFree" id="T3q-cY-nUC">
+                    <navigationItem key="navigationItem" title="Quarter" id="T3q-cY-nUC">
                         <barButtonItem key="leftBarButtonItem" image="qr" id="v9E-zX-jVs">
                             <connections>
                                 <action selector="watchBtnDidClicked:" destination="BYZ-38-t0r" id="0Mn-UP-Bf9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="cash" id="epD-Ry-TGx">
+                            <connections>
+                                <action selector="SettingAction:" destination="BYZ-38-t0r" id="6LJ-BX-eaZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -214,6 +219,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cash" width="20" height="17"/>
         <image name="qr" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -38,7 +38,7 @@ class ViewController: UIViewController {
             })
         })
          */
-        title = "ShadowsocksFree"
+        title = "1/4DSSA"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -154,6 +154,12 @@ class ViewController: UIViewController {
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
         self.present(QRVC, animated: true, completion: nil)
 //        })
+    }
+    
+   @IBAction func SettingAction(_ sender: Any) {
+       let settingVC = SettingViewController()
+       settingVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .top))
+       self.present(settingVC, animated: true, completion: nil)
     }
     
 }
