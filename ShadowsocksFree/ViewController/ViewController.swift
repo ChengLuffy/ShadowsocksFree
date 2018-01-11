@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         // "https://go.ishadowx.net"
         var data: Data
         do {
-            data = try Data.init(contentsOf: URL.init(string: "https://chengluffy.tech/ssf-host/host")!)
+            data = try Data.init(contentsOf: URL.init(string: "https://raw.githubusercontent.com/ChengLuffy/ShadowsocksFree/master/host")!)
         } catch let error {
             print(error.localizedDescription)
             data = "https://go.ishadowx.net".data(using: .utf8)!
