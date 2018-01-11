@@ -7,8 +7,11 @@
 //
 
 import UIKit
+#if DEBUG
+#else
 import StoreKit
-
+#endif
+    
 class SettingViewController: UIViewController {
     
     private lazy var buyBtn: UIButton = {
@@ -22,6 +25,14 @@ class SettingViewController: UIViewController {
         button.layer.borderColor = UIColor.blue.cgColor
         button.addTarget(self, action: #selector(SettingViewController.buyBtnAction), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "IMG_1790"))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SettingViewController.saveImage))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tap)
+        return imageView
     }()
     
     private lazy var closeBtn: UIButton = {
@@ -48,10 +59,14 @@ class SettingViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.white
-        view.addSubview(buyBtn)
         view.addSubview(closeBtn)
-        view.addSubview(infoLabel)
-        SKPaymentQueue.default().add(self)
+        #if DEBUG
+            view.addSubview(imageView)
+        #else
+            view.addSubview(buyBtn)
+            view.addSubview(infoLabel)
+            SKPaymentQueue.default().add(self)
+        #endif
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,44 +77,68 @@ class SettingViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        buyBtn.translatesAutoresizingMaskIntoConstraints = false
         closeBtn.translatesAutoresizingMaskIntoConstraints = false
-        infoLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let views = ["buyBtn": buyBtn, "closeBtn": closeBtn, "infoLabel": infoLabel] as [String : Any]
-        
-        let buyBtnHC = NSLayoutConstraint.constraints(withVisualFormat: "H:[buyBtn(200)]", options: [], metrics: nil, views: views)
-        let buyBtnVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-150-[buyBtn(40)]", options: [], metrics: nil, views: views)
-        let buyBtnHCenter = NSLayoutConstraint.init(item: buyBtn, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
-        
-        let closeBtnHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[closeBtn]", options: [], metrics: nil, views: views)
-        var closeBtnVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-35-[closeBtn]", options: [], metrics: nil, views: views)
-        
-        if #available(iOS 11.0, *) {
-            let metrics = ["topAnchor": view.safeAreaInsets.top + 20 , "bottomAnchor": view.safeAreaInsets.bottom] as [String : Any]
-            closeBtnVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topAnchor-[closeBtn]", options: [], metrics: metrics, views: views)
-        }
-        
-        
-        let infoLabelVC = NSLayoutConstraint.constraints(withVisualFormat: "V:[buyBtn]-25-[infoLabel]", options: [], metrics: nil, views: views)
-        let infoLabelHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10)-[infoLabel]-(>=10)-|", options: [], metrics: nil, views: views)
-        let infoLabelHCenter = NSLayoutConstraint.init(item: infoLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
-        
-        view.addConstraints(infoLabelVC)
-        view.addConstraints(infoLabelHC)
-        view.addConstraint(infoLabelHCenter)
-        
-        view.addConstraints(closeBtnHC)
-        view.addConstraints(closeBtnVC)
-        
-        view.addConstraint(buyBtnHCenter)
-        view.addConstraints(buyBtnHC)
-        view.addConstraints(buyBtnVC)
-        
+        #if DEBUG
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            let views = ["closeBtn": closeBtn, "imageView": imageView] as [String : Any]
+            
+            let closeBtnHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[closeBtn]", options: [], metrics: nil, views: views)
+            var closeBtnVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-35-[closeBtn]", options: [], metrics: nil, views: views)
+            
+            if #available(iOS 11.0, *) {
+                let metrics = ["topAnchor": view.safeAreaInsets.top + 20 , "bottomAnchor": view.safeAreaInsets.bottom] as [String : Any]
+                closeBtnVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topAnchor-[closeBtn]", options: [], metrics: metrics, views: views)
+            }
+            
+            let imageViewHCenter = NSLayoutConstraint.init(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+            let imageViewVCenter = NSLayoutConstraint.init(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
+            
+            view.addConstraints(closeBtnHC)
+            view.addConstraints(closeBtnVC)
+            
+            view.addConstraint(imageViewHCenter)
+            view.addConstraint(imageViewVCenter)
+        #else
+            buyBtn.translatesAutoresizingMaskIntoConstraints = false
+            infoLabel.translatesAutoresizingMaskIntoConstraints = false
+            let views = ["buyBtn": buyBtn, "closeBtn": closeBtn, "infoLabel": infoLabel] as [String : Any]
+            
+            let buyBtnHC = NSLayoutConstraint.constraints(withVisualFormat: "H:[buyBtn(200)]", options: [], metrics: nil, views: views)
+            let buyBtnVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-150-[buyBtn(40)]", options: [], metrics: nil, views: views)
+            let buyBtnHCenter = NSLayoutConstraint.init(item: buyBtn, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+            
+            let closeBtnHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[closeBtn]", options: [], metrics: nil, views: views)
+            var closeBtnVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-35-[closeBtn]", options: [], metrics: nil, views: views)
+            
+            if #available(iOS 11.0, *) {
+                let metrics = ["topAnchor": view.safeAreaInsets.top + 20 , "bottomAnchor": view.safeAreaInsets.bottom] as [String : Any]
+                closeBtnVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topAnchor-[closeBtn]", options: [], metrics: metrics, views: views)
+            }
+            
+            
+            let infoLabelVC = NSLayoutConstraint.constraints(withVisualFormat: "V:[buyBtn]-25-[infoLabel]", options: [], metrics: nil, views: views)
+            let infoLabelHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10)-[infoLabel]-(>=10)-|", options: [], metrics: nil, views: views)
+            let infoLabelHCenter = NSLayoutConstraint.init(item: infoLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+            
+            view.addConstraints(infoLabelVC)
+            view.addConstraints(infoLabelHC)
+            view.addConstraint(infoLabelHCenter)
+            
+            view.addConstraints(closeBtnHC)
+            view.addConstraints(closeBtnVC)
+            
+            view.addConstraint(buyBtnHCenter)
+            view.addConstraints(buyBtnHC)
+            view.addConstraints(buyBtnVC)
+        #endif
     }
     
     deinit {
+        #if DEBUG
+        #else
         SKPaymentQueue.default().remove(self)
+        #endif
     }
     
     /*
@@ -117,14 +156,23 @@ class SettingViewController: UIViewController {
         closeBtn.isEnabled = false
         buyBtn.isEnabled = false
         buyBtn.setTitle(NSLocalizedString("processing", comment: ""), for: .normal)
+        #if DEBUG
+        #else
         let productionID = ["tech.chengluffy.tee"]
         let teeRequest = SKProductsRequest.init(productIdentifiers: Set(productionID))
         teeRequest.delegate = self
         teeRequest.start()
+        #endif
     }
     
     @objc func closeBtnAction() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func saveImage() {
+        let activityVC = UIActivityViewController(activityItems: [#imageLiteral(resourceName: "IMG_1790")], applicationActivities: nil)
+        present(activityVC, animated: true) {
+        }
     }
     
     private func enableUserInteraction() {
@@ -136,6 +184,8 @@ class SettingViewController: UIViewController {
     
 }
 
+#if DEBUG
+#else
 extension SettingViewController: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let tee = response.products.first
@@ -182,3 +232,4 @@ extension SettingViewController: SKPaymentTransactionObserver {
     }
     
 }
+#endif
