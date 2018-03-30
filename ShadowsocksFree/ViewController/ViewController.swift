@@ -157,9 +157,13 @@ class ViewController: UIViewController {
     }
     
    @IBAction func SettingAction(_ sender: Any) {
+    #if DEBUG
+    AlertMSG.alert(title: "非发行版本不可用", msg: "", delay: 2.0)
+    #else
        let settingVC = SettingViewController()
        settingVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .top))
        self.present(settingVC, animated: true, completion: nil)
+    #endif
     }
     
 }
