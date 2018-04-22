@@ -78,66 +78,83 @@ class ViewController: UIViewController {
     @objc func getData() {
         tableView.updateFocusIfNeeded()
         // "https://go.ishadowx.net"
-        var data: Data
-        do {
-            data = try Data.init(contentsOf: URL.init(string: "https://raw.githubusercontent.com/ChengLuffy/ShadowsocksFree/master/host")!)
-        } catch let error {
-            print(error.localizedDescription)
-            data = "https://go.ishadowx.net".data(using: .utf8)!
-        }
-        let URLStr = String.init(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        
-        Alamofire.request(URLStr).responseData { (respose) in
-            
-            if respose.result.error == nil {
-                print(respose.data?.count ?? "nil")
-                
-                let html = NSString.init(data: respose.data!, encoding: String.Encoding.utf8.rawValue)
-                do {
-                    
-                    try! realm.write({
-                        realm.delete(realm.objects(Model.self).filter("server = 'ishadowsocks'"))
-                    })
-                    
-                    let doc = try HTMLDocument(string: html! as String, encoding: String.Encoding.utf8)
-                    let free = doc.xpath("//body")[0].children(tag: "div")[2].children(tag: "div")[1].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")
-                    if free.count > 0 {
-                        for node in free {
-                            let model = Model()
-                            
-                            for (index, sub) in node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").enumerated() {
-                                
-                                switch index {
-                                case 0: model.address = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-                                case 1: model.port = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
-                                case 2: model.passWord = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-                                case 3: model.encryption = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
-                                default :
-                                    break
-                                }
-                                model.isNet = true
-                                model.server = "ishadowsocks"
-                            }
-                            
-                            try! realm.write({
-                                realm.add(model, update: true)
-                            })
-                        }
-                        self.tableView.reloadData()
-                        self.tableView.mj_header.endRefreshing()
-                    } else {
-                        print("nil")
-                    }
-                    
-                } catch let error  {
-                    print(error)
-                }
-            } else {
-                print(respose.result.error ?? "nil")
-                self.tableView.mj_header.endRefreshing()
+//        var data: Data
+//        do {
+//            data = try Data.init(contentsOf: URL.init(string: "https://raw.githubusercontent.com/ChengLuffy/ShadowsocksFree/master/host")!)
+//        } catch let error {
+//            print(error.localizedDescription)
+//            data = "https://go.ishadowx.net".data(using: .utf8)!
+//        }
+//        let URLStr = String.init(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+//
+//
+//        Alamofire.request(URLStr).responseData { (respose) in
+//
+//            if respose.result.error == nil {
+//                print(respose.data?.count ?? "nil")
+//
+//                let html = NSString.init(data: respose.data!, encoding: String.Encoding.utf8.rawValue)
+//                do {
+//
+//                    try! realm.write({
+//                        realm.delete(realm.objects(Model.self).filter("server = 'ishadowsocks'"))
+//                    })
+//
+//                    let doc = try HTMLDocument(string: html! as String, encoding: String.Encoding.utf8)
+//                    let free = doc.xpath("//body")[0].children(tag: "div")[2].children(tag: "div")[1].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")
+//                    if free.count > 0 {
+//                        for node in free {
+//                            let model = Model()
+//
+//                            for (index, sub) in node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").enumerated() {
+//
+//                                switch index {
+//                                case 0: model.address = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+//                                case 1: model.port = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
+//                                case 2: model.passWord = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+//                                case 3: model.encryption = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
+//                                default :
+//                                    break
+//                                }
+//                                model.isNet = true
+//                                model.server = "ishadowsocks"
+//                            }
+//
+//                            try! realm.write({
+//                                realm.add(model, update: true)
+//                            })
+//                        }
+//                        self.tableView.reloadData()
+//                        self.tableView.mj_header.endRefreshing()
+//                    } else {
+//                        print("nil")
+//                    }
+//
+//                } catch let error  {
+//                    print(error)
+//                }
+//            } else {
+//                print(respose.result.error ?? "nil")
+//                self.tableView.mj_header.endRefreshing()
+//            }
+//        }
+        NetData.RefreshData(success: { (isSuccess) in
+            self.tableView.reloadData()
+            self.tableView.mj_header.endRefreshing()
+            if !isSuccess {
+                AlertMSG.alert(title: "出现错误", msg: "数据处理错误", delay: 2.5)
             }
-        }
+        }, failure: { (error) in
+            var msg: String?
+            if error != nil {
+                msg = error?.localizedDescription
+            } else {
+                msg = "空数据"
+            }
+            self.tableView.mj_header.endRefreshing()
+            AlertMSG.alert(title: "出现错误", msg: msg!, delay: 2.5)
+            
+        })
     }
     
     func getValueForNum(_ num: Int) -> String {

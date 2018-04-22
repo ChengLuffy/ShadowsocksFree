@@ -9,3 +9,8 @@ pod 'MJRefresh'
 pod 'Fuzi'
 pod 'RealmSwift'
 end
+target 'SSFTodayWidget' do
+    pod 'Alamofire'
+    pod 'Fuzi'
+    pod 'RealmSwift'
+end

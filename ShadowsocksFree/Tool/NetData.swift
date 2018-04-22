@@ -1,0 +1,101 @@
+//
+//  GetNetData.swift
+//  ShadowsocksFree
+//
+//  Created by 成殿 on 2018/4/17.
+//  Copyright © 2018年 成璐飞. All rights reserved.
+//
+
+import Foundation
+import Alamofire
+import Fuzi
+import RealmSwift
+
+class NetData {
+    
+    class func RefreshData(success: @escaping (_ isSuccess: Bool)->(),failure: @escaping (_ error: Error?)->()) {
+        var data: Data
+        do {
+            data = try Data.init(contentsOf: URL.init(string: "https://raw.githubusercontent.com/ChengLuffy/ShadowsocksFree/master/host")!)
+        } catch let error {
+            print(error.localizedDescription)
+            data = "https://go.ishadowx.net".data(using: .utf8)!
+        }
+        let URLStr = String.init(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        
+        Alamofire.request(URLStr).responseData { (respose) in
+            
+            if respose.result.error == nil {
+                print(respose.data?.count ?? "nil")
+                
+                let html = NSString.init(data: respose.data!, encoding: String.Encoding.utf8.rawValue)
+                do {
+                    
+                    try! realm.write({
+                        realm.delete(realm.objects(Model.self).filter("server = 'ishadowsocks'"))
+                    })
+                    
+                    let doc = try HTMLDocument(string: html! as String, encoding: String.Encoding.utf8)
+                    let free = doc.xpath("//body")[0].children(tag: "div")[2].children(tag: "div")[1].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")
+                    if free.count > 0 {
+                        for node in free {
+                            let model = Model()
+                            
+                            for (index, sub) in node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").enumerated() {
+                                
+                                switch index {
+                                case 0: model.address = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+                                case 1: model.port = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                case 2: model.passWord = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
+                                case 3: model.encryption = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
+                                default :
+                                    break
+                                }
+                                model.isNet = true
+                                model.server = "ishadowsocks"
+                            }
+                            
+                            try! realm.write({
+                                realm.add(model, update: true)
+                            })
+                            success(true)
+                        }
+                    } else {
+                        print("nil")
+                        failure(nil)
+                    }
+                    
+                } catch let error  {
+                    print(error)
+                    failure(error)
+                }
+            } else {
+                print(respose.result.error ?? "nil")
+                failure(respose.result.error)
+            }
+        }
+    }
+    
+    class func getSSQRStr(_ num: Int) -> String! {
+        let model = realm.objects(Model.self)[num]
+        print(model.address!)
+        let method: NSString = model.encryption! as NSString
+        
+        let passWord: NSString?
+        if (model.passWord?.count)! > 5 {
+            passWord = model.passWord as NSString?
+        } else {
+            passWord = ""
+        }
+        
+        let adress: NSString = model.address! as NSString
+        
+        let port: NSString = model.port! as NSString
+        let temp: NSString = NSString.init(format: "\(method):\(passWord!)@\(adress):\(port)" as NSString)
+        let temp1 = temp.base64EncodedString()
+        let retStr = "ss://" + (temp1 as String)
+        
+        return retStr
+    }
+}

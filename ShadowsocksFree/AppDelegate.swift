@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.init(hexString: "#90C1F9")
+        
+        let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.tech.chengluffy.shadowsocksfree")
+        let realmURL = container!.appendingPathComponent("defualt.realm")
+        
+        Realm.Configuration.defaultConfiguration.fileURL = realmURL
         
         if launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] != nil {
              let shortcutItem = launchOptions![UIApplicationLaunchOptionsKey.shortcutItem] as! UIApplicationShortcutItem
