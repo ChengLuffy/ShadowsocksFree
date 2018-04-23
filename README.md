@@ -6,6 +6,16 @@ Data Source: [ishadowsocks](https://go.ishadowx.net)
 
 Made by Love.
 
+# 2018-4-23
+现在，您可以使用 ShadowsocksFree 链接其中的 Shadowsocks 节点。
+
+** 相关代码 copy 自 [yichengchen/RabbitVpnDemo][d83b77ef] **
+
+** 核心框架使用开源的 [zhuhaow/NEKit][33cbd2c3] **
+
+  [d83b77ef]: https://github.com/yichengchen/RabbitVpnDemo "Github"
+  [33cbd2c3]: https://github.com/zhuhaow/NEKit "Github"
+
 #  App Store
 2017.12.14: 加州审核团队的电话通知
 
