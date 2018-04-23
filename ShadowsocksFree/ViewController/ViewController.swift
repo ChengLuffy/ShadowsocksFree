@@ -39,6 +39,7 @@ class ViewController: UIViewController {
         })
          */
         title = "1/4DSSA"
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

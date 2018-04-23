@@ -19,7 +19,7 @@ class NetData {
             data = try Data.init(contentsOf: URL.init(string: "https://raw.githubusercontent.com/ChengLuffy/ShadowsocksFree/master/host")!)
         } catch let error {
             print(error.localizedDescription)
-            data = "https://go.ishadowx.net".data(using: .utf8)!
+            data = "https://free.ishadowx.net".data(using: .utf8)!
         }
         let URLStr = String.init(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
         
