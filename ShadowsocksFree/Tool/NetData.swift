@@ -92,10 +92,10 @@ class NetData {
         let adress: NSString = model.address! as NSString
         
         let port: NSString = model.port! as NSString
-        let temp: NSString = NSString.init(format: "\(method):\(passWord!)@\(adress):\(port)" as NSString)
+        let temp: NSString = NSString.init(format: "\(method.trimmingCharacters(in: .whitespacesAndNewlines)):\(passWord!.trimmingCharacters(in: .whitespacesAndNewlines))@\(adress.trimmingCharacters(in: .whitespacesAndNewlines)):\(port.trimmingCharacters(in: .whitespacesAndNewlines))" as NSString)
         let temp1 = temp.base64EncodedString()
         let retStr = "ss://" + (temp1 as String)
         
-        return retStr
+        return retStr.replacingOccurrences(of: "\r\n", with: "")
     }
 }

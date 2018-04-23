@@ -27,6 +27,10 @@
 		1DC4B01E2085A396003C70A1 /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
 		1DC4B0212085C386003C70A1 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DC4B01F2085C386003C70A1 /* CollectionViewCell.xib */; };
 		1DC4B0222085C386003C70A1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC4B0202085C386003C70A1 /* CollectionViewCell.swift */; };
+		1DF0E4FD208C8B3000B4C631 /* LTPingQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0E4F9208C8B2F00B4C631 /* LTPingQueue.swift */; };
+		1DF0E4FE208C8B3000B4C631 /* LTPingQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0E4F9208C8B2F00B4C631 /* LTPingQueue.swift */; };
+		1DF0E4FF208C8B3000B4C631 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0E4FC208C8B3000B4C631 /* SimplePing.m */; };
+		1DF0E500208C8B3000B4C631 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0E4FC208C8B3000B4C631 /* SimplePing.m */; };
 		2A33CE9C1D1C0642000F652A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9B1D1C0642000F652A /* Model.swift */; };
 		2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA01D1C067B000F652A /* QRViewController.swift */; };
 		2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
@@ -84,6 +88,10 @@
 		1DC4B01A2085A0EF003C70A1 /* SSFTodayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SSFTodayWidget.entitlements; sourceTree = "<group>"; };
 		1DC4B01F2085C386003C70A1 /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		1DC4B0202085C386003C70A1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		1DF0E4F9208C8B2F00B4C631 /* LTPingQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPingQueue.swift; sourceTree = "<group>"; };
+		1DF0E4FB208C8B3000B4C631 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
+		1DF0E4FC208C8B3000B4C631 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
+		1DF0E501208CBC1A00B4C631 /* ShadowsocksFree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShadowsocksFree-Bridging-Header.h"; sourceTree = "<group>"; };
 		2A33CE9B1D1C0642000F652A /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2A33CEA01D1C067B000F652A /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		2A33CEB61D1C0711000F652A /* QRImageCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRImageCreate.swift; sourceTree = "<group>"; };
@@ -137,6 +145,15 @@
 			path = SSFTodayWidget;
 			sourceTree = "<group>";
 		};
+		1DF0E4FA208C8B3000B4C631 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				1DF0E4FB208C8B3000B4C631 /* SimplePing.h */,
+				1DF0E4FC208C8B3000B4C631 /* SimplePing.m */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
 		2A33CE9A1D1C0622000F652A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +198,9 @@
 		2A520E271D5700CE0023F283 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1DF0E4F9208C8B2F00B4C631 /* LTPingQueue.swift */,
+				1DF0E501208CBC1A00B4C631 /* ShadowsocksFree-Bridging-Header.h */,
+				1DF0E4FA208C8B3000B4C631 /* Vendor */,
 				1DC407C61FCD5B9900132269 /* Localizable.strings */,
 			);
 			path = Resource;
@@ -449,7 +469,9 @@
 				1DC4B01B2085A190003C70A1 /* Model.swift in Sources */,
 				1D2A516F20859E4A006E4014 /* TodayViewController.swift in Sources */,
 				1DC4B0222085C386003C70A1 /* CollectionViewCell.swift in Sources */,
+				1DF0E4FE208C8B3000B4C631 /* LTPingQueue.swift in Sources */,
 				1DC4B0182085A085003C70A1 /* NetData.swift in Sources */,
+				1DF0E500208C8B3000B4C631 /* SimplePing.m in Sources */,
 				1DC4B01E2085A396003C70A1 /* QRImageCreate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,7 +483,9 @@
 				1D2A51532085923F006E4014 /* NetData.swift in Sources */,
 				1DC407BF1FCCF79200132269 /* QRCollectionReusableHeaderView.swift in Sources */,
 				1D4055B21FFC7449004EAD04 /* SettingViewController.swift in Sources */,
+				1DF0E4FD208C8B3000B4C631 /* LTPingQueue.swift in Sources */,
 				1DC407BB1FCCF76200132269 /* QRCollectionViewCell.swift in Sources */,
+				1DF0E4FF208C8B3000B4C631 /* SimplePing.m in Sources */,
 				1DC407C11FCD51E300132269 /* GuideViewController.swift in Sources */,
 				2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */,
 				1DC407B51FCCEF4700132269 /* ViewController.swift in Sources */,
@@ -534,6 +558,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/ShadowsocksFree/Resource/ShadowsocksFree-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -560,6 +585,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.chengluffy.shadowsocksfree.SSFTodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/ShadowsocksFree/Resource/ShadowsocksFree-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -694,6 +720,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.chengluffy.shadowsocksfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/ShadowsocksFree/Resource/ShadowsocksFree-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -718,6 +745,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.chengluffy.shadowsocksfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/ShadowsocksFree/Resource/ShadowsocksFree-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

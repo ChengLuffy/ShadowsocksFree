@@ -237,9 +237,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 AlertMSG.alert(title: realm.objects(Model.self)[section].name!, msg: str, actions: [cancel, action])
             })
             let shadowsocksProxyString = UIAlertAction(title: "Shadowsocks Proxy String", style: .default, handler: { (action) in
-                let temp: NSString = NSString.init(format: "\(encryption!):\(password!)@\(address!):\(port!)" as NSString)
-                let temp1 = temp.base64EncodedString()
-                let retStr = "ss://" + (temp1 as String)
+                let retStr = NetData.getSSQRStr(section)
                 let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
                 })
                 let action = UIAlertAction(title: "Copy", style: .default, handler: { (_) in
@@ -247,9 +245,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                     pboard.string = retStr
                 })
                 let open = UIAlertAction(title: "Open", style: .default, handler: { (_) in
-                    UIApplication.shared.openURL(URL.init(string: retStr)!)
+                    UIApplication.shared.openURL(URL.init(string: retStr!)!)
                 })
-                AlertMSG.alert(title: realm.objects(Model.self)[section].name!, msg: retStr, actions: [open ,action, cancel])
+                AlertMSG.alert(title: realm.objects(Model.self)[section].name!, msg: retStr!, actions: [open ,action, cancel])
             })
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
                 

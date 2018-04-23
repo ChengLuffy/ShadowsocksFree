@@ -97,7 +97,7 @@ extension TodayViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         
-        let SSStr = NetData.getSSQRStr((indexPath as NSIndexPath).section)
+        let SSStr = NetData.getSSQRStr((indexPath as NSIndexPath).row)
         cell.prefs = SSStr
         cell.label.text = realm.objects(Model.self)[indexPath.row].address
         return cell
@@ -105,7 +105,9 @@ extension TodayViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
+        print(cell.prefs!)
         let action = "shadowrocket://add/\(cell.prefs!)"
+        print(action)
         extensionContext?.open(URL.init(string: action)!, completionHandler: { (ret) in
             print(ret)
             if ret == false {
