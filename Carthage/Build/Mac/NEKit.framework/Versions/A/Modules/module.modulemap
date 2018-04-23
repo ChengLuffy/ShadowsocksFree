@@ -1,0 +1,11 @@
+framework module NEKit {
+  umbrella header "NEKit.h"
+
+  export *
+  module * { export * }
+}
+
+module NEKit.Swift {
+    header "NEKit-Swift.h"
+    requires objc
+}

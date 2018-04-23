@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+//        NotificationCenter.default.addObserver(self, selector: #selector(onVPNStatusChanged), name: NSNotification.Name(rawValue: kProxyServiceVPNStatusNotification), object: nil)
         tableView.delegate = self
         tableView.dataSource = self
         /*
@@ -39,6 +39,15 @@ class ViewController: UIViewController {
         })
          */
         title = "1/4DSSA"
+        
+         NotificationCenter.default.addObserver(forName: NSNotification.Name.init("NEUpdate"), object: nil, queue: OperationQueue.main, using: { [unowned self] (notification) -> Void in
+             if UserDefaults.standard.object(forKey: "connectedDate") == nil {
+                 self.navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "circle-cross")
+             } else {
+                 self.navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "circle-check")
+             }
+             self.tableView.reloadData()
+         })
         
     }
     
@@ -184,6 +193,27 @@ class ViewController: UIViewController {
     #endif
     }
     
+    @IBAction func statusAction(_ sender: UIBarButtonItem) {
+        if VPNManager.shared.vpnStatus == .on {
+            let index = UserDefaults.standard.value(forKey: "selectedSS") as! Int
+            let connectedDate = UserDefaults.standard.object(forKey: "connectedDate")
+            let df = DateFormatter()
+            df.dateFormat = "MM-dd HH:mm:ss"
+            let adr = realm.objects(Model.self)[index].address
+            let msg = "服务器: " + adr! + "\n" + "链接时间:" + df.string(from: connectedDate as! Date)
+            let alertC = UIAlertController(title: "链接信息", message: msg, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "ok", style: .cancel, handler: nil)
+            let disConnectAction = UIAlertAction(title: "disconnect", style: .default) { (_) in
+                VPNManager.shared.disconnect()
+            }
+            alertC.addAction(disConnectAction)
+            alertC.addAction(okAction)
+            self.present(alertC, animated: true, completion: nil)
+        } else {
+            AlertMSG.alert(title: "没有链接", msg: "请选择服务器链接", delay: 2.5)
+        }
+    }
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -226,7 +256,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let port = model.port
             let encryption = model.encryption
             let password = model.passWord
-            let sheet = UIAlertController(title: "Copy with?", message: nil, preferredStyle: .actionSheet)
+            let sheet = UIAlertController(title: "Connect or Copy?", message: nil, preferredStyle: .actionSheet)
             let surgeStringAction = UIAlertAction(title: "Surge Proxy String", style: .default, handler: { (action) in
                 let str = name! + " = custom, " + address! + ", " + port! + ", " + encryption! + ", " + password! + ", https://github.com/ChengLuffy/ShadowsocksFree/blob/new/SSEncrypt.module"
                 let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
@@ -250,9 +280,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 })
                 AlertMSG.alert(title: realm.objects(Model.self)[section].name!, msg: retStr!, actions: [open ,action, cancel])
             })
+            var title: String = "Connect"
+            if VPNManager.shared.vpnStatus == .on && UserDefaults.standard.value(forKey: "selectedSS") as! Int == section {
+                title = "Disconnect"
+            } else {
+                title = "Connect"
+            }
+            let connect = UIAlertAction(title: title, style: .destructive, handler: { (action) in
+                if title == "Disconnect" {
+                    VPNManager.shared.disconnect()
+                } else {
+                    UserDefaults.standard.set(section, forKey: "selectedSS")
+                    VPNManager.shared.connect()
+                }
+            })
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
                 
             })
+            sheet.addAction(connect)
             sheet.addAction(surgeStringAction)
             sheet.addAction(shadowsocksProxyString)
             sheet.addAction(cancel)
@@ -260,6 +305,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         headerView.row = section
         headerView.title = realm.objects(Model.self)[section].name
+        if VPNManager.shared.vpnStatus == .on && UserDefaults.standard.value(forKey: "selectedSS") as! Int == section {
+            headerView.isConnected = true
+        } else {
+            headerView.isConnected = false
+        }
         return headerView
     }
 

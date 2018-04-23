@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             pushVCWith(shortcutItem.type)
         }
         
-        if UserDefaults.standard.bool(forKey: "hasOpened") != false || UserDefaults.standard.bool(forKey: "hasOpened") != true {
+        if UserDefaults.standard.bool(forKey: "hasOpened") == true {
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let nav = storyboard.instantiateViewController(withIdentifier: "nav") as! UINavigationController
             window?.rootViewController = nav
@@ -67,6 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         print(url.query ?? "nil")
+        
+        UserDefaults.standard.set(Int(url.absoluteString.components(separatedBy: "=").last!), forKey: "selectedSS")
+        VPNManager.shared.connect()
         return true
     }
     

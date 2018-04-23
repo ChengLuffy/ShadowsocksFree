@@ -22,6 +22,15 @@ class HeaderView: UIView {
     var btn = UIButton.init(type: .system)
     var block :((Int) -> ())?
     var row: Int?
+    var isConnected: Bool = false {
+        didSet {
+            if isConnected {
+                label.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            } else {
+                label.textColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
+            }
+        }
+    }
     
     var title: String?
     
@@ -40,7 +49,7 @@ class HeaderView: UIView {
         isUserInteractionEnabled = true
         backgroundColor = UIColor.init(hexString: "#F7F7F7")
         
-        btn.setImage(#imageLiteral(resourceName: "share"), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "setting"), for: .normal)
         btn.addTarget(self, action: #selector(HeaderView.shareAction), for: .touchUpInside)
         
         addSubview(label)

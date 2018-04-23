@@ -104,15 +104,17 @@ extension TodayViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-        print(cell.prefs!)
-        let action = "shadowrocket://add/\(cell.prefs!)"
-        print(action)
-        extensionContext?.open(URL.init(string: action)!, completionHandler: { (ret) in
-            print(ret)
-            if ret == false {
-                print(cell.prefs!)
-            }
+//        let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
+//        print(cell.prefs!)
+//        let action = "shadowrocket://add/\(cell.prefs!)"
+//        print(action)
+//        extensionContext?.open(URL.init(string: action)!, completionHandler: { (ret) in
+//            print(ret)
+//            if ret == false {
+//                print(cell.prefs!)
+//            }
+//        })
+        extensionContext?.open(URL.init(string: "shadowsocksfree://selected=\(indexPath.row)")!, completionHandler: { (ret) in
         })
     }
     

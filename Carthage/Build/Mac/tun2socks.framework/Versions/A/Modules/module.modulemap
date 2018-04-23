@@ -1,0 +1,11 @@
+framework module tun2socks {
+  umbrella header "tun2socks.h"
+
+  export *
+  module * { export * }
+}
+
+module tun2socks.Swift {
+    header "tun2socks-Swift.h"
+    requires objc
+}

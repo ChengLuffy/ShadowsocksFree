@@ -1,0 +1,5 @@
+module CommonCrypto [system] {
+  header "/Users/zj-db0342/Desktop/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.1.sdk/usr/include/CommonCrypto//CommonCrypto.h"
+  header "/Users/zj-db0342/Desktop/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.1.sdk/usr/include/CommonCrypto//CommonRandom.h"
+  export *
+}

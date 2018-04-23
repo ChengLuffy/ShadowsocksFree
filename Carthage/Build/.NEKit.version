@@ -1,0 +1,21 @@
+{
+  "Mac" : [
+    {
+      "name" : "NEKit",
+      "hash" : "674cd6a7666188ab628d7eec4c3e3e713bb24007308088d27f7129f36df5fa17"
+    }
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "612aa9179e5f13bdcc8bf4eb5ff3e30ba95b8f99",
+  "iOS" : [
+    {
+      "name" : "NEKit",
+      "hash" : "262824e29b1a86212e7d89b8cc139db6852ece5aaa0ddb9aa5bfb9bb66280c8c"
+    }
+  ]
+}
