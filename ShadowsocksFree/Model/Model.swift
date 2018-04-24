@@ -20,7 +20,6 @@ class Model: Object {
     @objc dynamic var port: String?
     @objc dynamic var passWord: String?
     @objc dynamic var encryption: String?
-    @objc dynamic var stutas: String?
     @objc dynamic var isNet: Bool = true
     @objc dynamic var server: String?
 //    dynamic override var invalidated: Bool { return super.invalidated }

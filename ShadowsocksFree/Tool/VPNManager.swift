@@ -175,11 +175,11 @@ extension VPNManager{
     
     fileprivate func setRulerConfig(_ manager:NETunnelProviderManager){
         var conf = [String:AnyObject]()
-        let model = realm.objects(Model.self)[UserDefaults.standard.value(forKey: "selectedSS") as! Int]
-        conf["ss_address"] = "\(model.address!)" as AnyObject?
-        conf["ss_port"] = Int("\(model.port!)") as AnyObject?
-        conf["ss_method"] = model.encryption?.components(separatedBy: "-").joined(separator: "").uppercased() as AnyObject? // 大写 没有横杠 看Extension中的枚举类设定 否则引发fatal error
-        conf["ss_password"] = "\(model.passWord!)" as AnyObject?
+        let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
+        conf["ss_address"] = userDefaults?.value(forKey: "address") as AnyObject?
+        conf["ss_port"] = userDefaults?.integer(forKey: "port") as AnyObject?
+        conf["ss_method"] = (userDefaults?.value(forKey: "encryption") as! String).components(separatedBy: "-").joined(separator: "").uppercased() as AnyObject? // 大写 没有横杠 看Extension中的枚举类设定 否则引发fatal error
+        conf["ss_password"] = userDefaults?.value(forKey: "passWord") as AnyObject?
         conf["ymal_conf"] = getRuleConf() as AnyObject?
         let orignConf = manager.protocolConfiguration as! NETunnelProviderProtocol
         orignConf.providerConfiguration = conf

@@ -43,6 +43,7 @@
 		1DC4B01E2085A396003C70A1 /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
 		1DC4B0212085C386003C70A1 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DC4B01F2085C386003C70A1 /* CollectionViewCell.xib */; };
 		1DC4B0222085C386003C70A1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC4B0202085C386003C70A1 /* CollectionViewCell.swift */; };
+		22654A2B841201780F7F05DD /* Pods_SSFTodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FF1789151299B223B13359 /* Pods_SSFTodayWidget.framework */; };
 		2A33CE9C1D1C0642000F652A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9B1D1C0642000F652A /* Model.swift */; };
 		2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA01D1C067B000F652A /* QRViewController.swift */; };
 		2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
@@ -52,6 +53,7 @@
 		2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282851CD8520800C4655E /* LaunchScreen.storyboard */; };
 		6977BBAF827117401CEEDA30 /* Pods_SSFTodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45DAB4B4C36F9D90CC95E64 /* Pods_SSFTodayWidget.framework */; };
 		9D6B82CDAC9CD66BD5DD9513 /* Pods-SSFTodayWidget-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED92785DF061CE45B1510C24 /* Pods-SSFTodayWidget-metadata.plist */; };
+		D6443DE683703B5C25D26AC8 /* Pods_ShadowsocksFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EE6217980EFE6DDB0BFB41 /* Pods_ShadowsocksFree.framework */; };
 		E989C101DA0FEE619AC011D7 /* Pods-ShadowsocksFree-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7C0EDB3D1CD2109DBF025 /* Pods-ShadowsocksFree-metadata.plist */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +138,7 @@
 		2AD282881CD8520800C4655E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6126DFC8F639F4724B69E146 /* Pods-SSFTodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSFTodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-SSFTodayWidget/Pods-SSFTodayWidget.release.xcconfig"; sourceTree = "<group>"; };
 		7CE7C0EDB3D1CD2109DBF025 /* Pods-ShadowsocksFree-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-ShadowsocksFree-metadata.plist"; path = "Pods/Pods-ShadowsocksFree-metadata.plist"; sourceTree = "<group>"; };
+		98FF1789151299B223B13359 /* Pods_SSFTodayWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSFTodayWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksFree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC121B21320A626A75E4D59 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9628EBA50EBD12EDA813B3 /* Pods-ShadowsocksFree.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksFree.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksFree/Pods-ShadowsocksFree.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 		AC923A7DB871A38B57BD3C23 /* Pods-ShadowsocksFree.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksFree.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksFree/Pods-ShadowsocksFree.release.xcconfig"; sourceTree = "<group>"; };
 		EC464DB1039552D724250DD9 /* Pods-SSFTodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSFTodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SSFTodayWidget/Pods-SSFTodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		ED92785DF061CE45B1510C24 /* Pods-SSFTodayWidget-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-SSFTodayWidget-metadata.plist"; path = "Pods/Pods-SSFTodayWidget-metadata.plist"; sourceTree = "<group>"; };
+		F3EE6217980EFE6DDB0BFB41 /* Pods_ShadowsocksFree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksFree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 			files = (
 				1D2A516C20859E4A006E4014 /* NotificationCenter.framework in Frameworks */,
 				6977BBAF827117401CEEDA30 /* Pods_SSFTodayWidget.framework in Frameworks */,
+				22654A2B841201780F7F05DD /* Pods_SSFTodayWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +184,7 @@
 			files = (
 				105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */,
 				1D2C19E9208D83A70077ECD7 /* NetworkExtension.framework in Frameworks */,
+				D6443DE683703B5C25D26AC8 /* Pods_ShadowsocksFree.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +216,8 @@
 				1D2C1A26208D89CC0077ECD7 /* CocoaLumberjackSwift.framework */,
 				1D2C1A24208D89C50077ECD7 /* CocoaLumberjack.framework */,
 				1D2C1A22208D89C10077ECD7 /* CocoaAsyncSocket.framework */,
+				98FF1789151299B223B13359 /* Pods_SSFTodayWidget.framework */,
+				F3EE6217980EFE6DDB0BFB41 /* Pods_ShadowsocksFree.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -565,6 +573,7 @@
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -574,6 +583,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

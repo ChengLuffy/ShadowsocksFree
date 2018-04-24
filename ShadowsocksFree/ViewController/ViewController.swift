@@ -12,6 +12,7 @@ import Fuzi
 import RealmSwift
 import MJRefresh
 import IBAnimatable
+import SVProgressHUD
 
 class ViewController: UIViewController {
     var titles = [String]()
@@ -46,7 +47,8 @@ class ViewController: UIViewController {
              } else {
                  self.navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "circle-check")
              }
-             self.tableView.reloadData()
+            SVProgressHUD.dismiss()
+            self.tableView.reloadData()
          })
         
     }
@@ -87,72 +89,36 @@ class ViewController: UIViewController {
     
     @objc func getData() {
         tableView.updateFocusIfNeeded()
-        // "https://go.ishadowx.net"
-//        var data: Data
-//        do {
-//            data = try Data.init(contentsOf: URL.init(string: "https://raw.githubusercontent.com/ChengLuffy/ShadowsocksFree/master/host")!)
-//        } catch let error {
-//            print(error.localizedDescription)
-//            data = "https://go.ishadowx.net".data(using: .utf8)!
-//        }
-//        let URLStr = String.init(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
-//
-//
-//        Alamofire.request(URLStr).responseData { (respose) in
-//
-//            if respose.result.error == nil {
-//                print(respose.data?.count ?? "nil")
-//
-//                let html = NSString.init(data: respose.data!, encoding: String.Encoding.utf8.rawValue)
-//                do {
-//
-//                    try! realm.write({
-//                        realm.delete(realm.objects(Model.self).filter("server = 'ishadowsocks'"))
-//                    })
-//
-//                    let doc = try HTMLDocument(string: html! as String, encoding: String.Encoding.utf8)
-//                    let free = doc.xpath("//body")[0].children(tag: "div")[2].children(tag: "div")[1].children(tag: "div")[1].children(tag: "div")[0].children(tag: "div")
-//                    if free.count > 0 {
-//                        for node in free {
-//                            let model = Model()
-//
-//                            for (index, sub) in node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").enumerated() {
-//
-//                                switch index {
-//                                case 0: model.address = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-//                                case 1: model.port = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
-//                                case 2: model.passWord = (sub.stringValue.components(separatedBy: ":").last?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!
-//                                case 3: model.encryption = sub.stringValue.components(separatedBy: ":").last!.trimmingCharacters(in: .whitespacesAndNewlines)
-//                                default :
-//                                    break
-//                                }
-//                                model.isNet = true
-//                                model.server = "ishadowsocks"
-//                            }
-//
-//                            try! realm.write({
-//                                realm.add(model, update: true)
-//                            })
-//                        }
-//                        self.tableView.reloadData()
-//                        self.tableView.mj_header.endRefreshing()
-//                    } else {
-//                        print("nil")
-//                    }
-//
-//                } catch let error  {
-//                    print(error)
-//                }
-//            } else {
-//                print(respose.result.error ?? "nil")
-//                self.tableView.mj_header.endRefreshing()
-//            }
-//        }
         NetData.RefreshData(success: { (isSuccess) in
+            let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
+            let temp = userDefaults?.value(forKey: "address")
+            if temp != nil {
+                let address = temp as! String
+                if realm.objects(Model.self).filter("address = '\(address)'").count == 0 && address == "" {
+                    VPNManager.shared.disconnect()
+                    AlertMSG.alert(title: "\("address 已取消")", msg: "，请选择新的服务器链接", delay: 1.5)
+                } else if realm.objects(Model.self).filter("address = '\(address)'").count != 0 {
+                    let model = realm.objects(Model.self).filter("address = '\(address)'").first!
+                    if model.address == (userDefaults?.value(forKey: "address") as! String) && model.encryption == (userDefaults?.value(forKey: "encryption") as! String) && model.port == (userDefaults?.value(forKey: "port") as! String) && model.passWord == (userDefaults?.value(forKey: "passWord") as! String) {} else {
+                        userDefaults?.set(model.address, forKey: "address")
+                        userDefaults?.set(model.port, forKey: "port")
+                        userDefaults?.set(model.encryption, forKey: "encryption")
+                        userDefaults?.set(model.passWord, forKey: "password")
+                        if VPNManager.shared.vpnStatus == .on {
+                            SVProgressHUD.show()
+                            VPNManager.shared.disconnect()
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
+                                VPNManager.shared.connect()
+                            })
+                        }
+                    }
+                    
+                }
+            }
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
             if !isSuccess {
-                AlertMSG.alert(title: "出现错误", msg: "数据处理错误", delay: 2.5)
+                AlertMSG.alert(title: "出现错误", msg: "数据处理错误", delay: 1.5)
             }
         }, failure: { (error) in
             var msg: String?
@@ -195,22 +161,22 @@ class ViewController: UIViewController {
     
     @IBAction func statusAction(_ sender: UIBarButtonItem) {
         if VPNManager.shared.vpnStatus == .on {
-            let index = UserDefaults.standard.value(forKey: "selectedSS") as! Int
             let connectedDate = UserDefaults.standard.object(forKey: "connectedDate")
             let df = DateFormatter()
             df.dateFormat = "MM-dd HH:mm:ss"
-            let adr = realm.objects(Model.self)[index].address
-            let msg = "服务器: " + adr! + "\n" + "链接时间:" + df.string(from: connectedDate as! Date)
+            let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
+            let adr = userDefaults?.value(forKey: "address") as! String
+            let msg = "服务器: " + adr + "\n" + "链接时间: " + df.string(from: connectedDate as! Date)
             let alertC = UIAlertController(title: "链接信息", message: msg, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "ok", style: .cancel, handler: nil)
-            let disConnectAction = UIAlertAction(title: "disconnect", style: .default) { (_) in
+            let disConnectAction = UIAlertAction(title: "disconnect", style: .destructive) { (_) in
                 VPNManager.shared.disconnect()
             }
             alertC.addAction(disConnectAction)
             alertC.addAction(okAction)
             self.present(alertC, animated: true, completion: nil)
         } else {
-            AlertMSG.alert(title: "没有链接", msg: "请选择服务器链接", delay: 2.5)
+            AlertMSG.alert(title: "没有链接", msg: "请选择服务器链接", delay: 1.5)
         }
     }
     
@@ -281,7 +247,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 AlertMSG.alert(title: realm.objects(Model.self)[section].name!, msg: retStr!, actions: [open ,action, cancel])
             })
             var title: String = "Connect"
-            if VPNManager.shared.vpnStatus == .on && UserDefaults.standard.value(forKey: "selectedSS") as! Int == section {
+            let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
+            
+            if VPNManager.shared.vpnStatus == .on && model.address == (userDefaults?.value(forKey: "address") as! String) && model.encryption == (userDefaults?.value(forKey: "encryption") as! String) && model.port == (userDefaults?.value(forKey: "port") as! String) && model.passWord == (userDefaults?.value(forKey: "passWord") as! String) {
                 title = "Disconnect"
             } else {
                 title = "Connect"
@@ -290,7 +258,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 if title == "Disconnect" {
                     VPNManager.shared.disconnect()
                 } else {
-                    UserDefaults.standard.set(section, forKey: "selectedSS")
+                    let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
+                    userDefaults?.set(model.address, forKey: "address")
+                    userDefaults?.set(model.port, forKey: "port")
+                    userDefaults?.set(model.encryption, forKey: "encryption")
+                    userDefaults?.set(model.passWord, forKey: "passWord")
+                    SVProgressHUD.show()
                     VPNManager.shared.connect()
                 }
             })
@@ -305,7 +278,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         headerView.row = section
         headerView.title = realm.objects(Model.self)[section].name
-        if VPNManager.shared.vpnStatus == .on && UserDefaults.standard.value(forKey: "selectedSS") as! Int == section {
+        let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
+        let model = realm.objects(Model.self)[section]
+        
+        if VPNManager.shared.vpnStatus == .on && model.address == (userDefaults?.value(forKey: "address") as! String) && model.encryption == (userDefaults?.value(forKey: "encryption") as! String) && model.port == (userDefaults?.value(forKey: "port") as! String) && model.passWord == (userDefaults?.value(forKey: "passWord") as! String) {
             headerView.isConnected = true
         } else {
             headerView.isConnected = false

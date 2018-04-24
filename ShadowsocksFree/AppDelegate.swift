@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultMaskType(.gradient)
         NSTimeZone.default = NSTimeZone(name: "Asia/Shanghai")! as TimeZone
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
@@ -68,7 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         print(url.query ?? "nil")
         
-        UserDefaults.standard.set(Int(url.absoluteString.components(separatedBy: "=").last!), forKey: "selectedSS")
+        let model = realm.objects(Model.self)[Int(url.absoluteString.components(separatedBy: "=").last!)!]
+        let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
+        userDefaults?.set(model.address, forKey: "address")
+        userDefaults?.set(model.port, forKey: "port")
+        userDefaults?.set(model.encryption, forKey: "encryption")
+        userDefaults?.set(model.passWord, forKey: "passWord")
+        SVProgressHUD.show()
         VPNManager.shared.connect()
         return true
     }

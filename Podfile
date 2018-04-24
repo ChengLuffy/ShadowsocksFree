@@ -8,6 +8,7 @@ target 'ShadowsocksFree' do
     pod 'MJRefresh'
     pod 'Fuzi'
     pod 'RealmSwift'
+    pod 'SVProgressHUD'
 end
 target 'SSFTodayWidget' do
     pod 'Alamofire'
