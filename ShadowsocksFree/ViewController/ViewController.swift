@@ -103,7 +103,7 @@ class ViewController: UIViewController {
                         userDefaults?.set(model.address, forKey: "address")
                         userDefaults?.set(model.port, forKey: "port")
                         userDefaults?.set(model.encryption, forKey: "encryption")
-                        userDefaults?.set(model.passWord, forKey: "password")
+                        userDefaults?.set(model.passWord, forKey: "passWord")
                         if VPNManager.shared.vpnStatus == .on {
                             SVProgressHUD.show()
                             VPNManager.shared.disconnect()

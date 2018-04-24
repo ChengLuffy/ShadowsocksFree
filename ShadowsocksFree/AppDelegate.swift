@@ -77,7 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userDefaults?.set(model.port, forKey: "port")
         userDefaults?.set(model.encryption, forKey: "encryption")
         userDefaults?.set(model.passWord, forKey: "passWord")
-        SVProgressHUD.show()
         VPNManager.shared.connect()
         return true
     }
