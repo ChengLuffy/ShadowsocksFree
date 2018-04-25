@@ -24,7 +24,7 @@ class GuideViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         (UIApplication.shared.delegate as! AppDelegate).window?.backgroundColor = UIColor.white
-        view.addSubview(imageView)
+//        view.addSubview(imageView)
         
     }
 
@@ -44,6 +44,12 @@ class GuideViewController: UIViewController {
             UIApplication.shared.perform(Selector(("terminateWithSuccess")))
         }
         let okAction = UIAlertAction(title: "同意", style: .default) { (_) in
+            UserDefaults.standard.set(true, forKey: "hasOpened")
+            let window = (UIApplication.shared.delegate as! AppDelegate).window
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let nav = storyboard.instantiateViewController(withIdentifier: "nav") as! UINavigationController
+            window?.backgroundColor = UIColor.init(hexString: "#90C1F9")
+            window?.rootViewController = nav
         }
         alertC.addAction(cancelAction)
         alertC.addAction(okAction)
@@ -57,7 +63,7 @@ class GuideViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
+        /*
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         let views = ["imageView": imageView]
@@ -65,8 +71,6 @@ class GuideViewController: UIViewController {
         let imageViewHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
         
         if #available(iOS 11.0, *) {
-//            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-//            imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
             let metrics = ["topAnchor": view.safeAreaInsets.top, "bottomAnchor": view.safeAreaInsets.bottom] as [String : Any]
             let imageViewVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topAnchor-[imageView]-bottomAnchor-|", options: [], metrics: metrics, views: views)
             view.addConstraints(imageViewVC)
@@ -78,8 +82,7 @@ class GuideViewController: UIViewController {
         
         
         view.addConstraints(imageViewHC)
-        
-        
+        */
     }
     
     /*
@@ -94,17 +97,17 @@ class GuideViewController: UIViewController {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        page += 1
-        if page > 4 {
+//        page += 1
+//        if page > 4 {
             UserDefaults.standard.set(true, forKey: "hasOpened")
             let window = (UIApplication.shared.delegate as! AppDelegate).window
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let nav = storyboard.instantiateViewController(withIdentifier: "nav") as! UINavigationController
             window?.backgroundColor = UIColor.init(hexString: "#90C1F9")
             window?.rootViewController = nav
-        } else {
-            imageView.image = UIImage.init(named: "Guide\(page)")
-        }
+//        } else {
+//            imageView.image = UIImage.init(named: "Guide\(page)")
+//        }
     }
 
 }
