@@ -49,7 +49,7 @@ class HeaderView: UIView {
         isUserInteractionEnabled = true
         backgroundColor = UIColor.init(hexString: "#F7F7F7")
         
-        btn.setImage(#imageLiteral(resourceName: "setting"), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "connect").withRenderingMode(.alwaysOriginal), for: .normal)
         btn.addTarget(self, action: #selector(HeaderView.shareAction), for: .touchUpInside)
         
         addSubview(label)

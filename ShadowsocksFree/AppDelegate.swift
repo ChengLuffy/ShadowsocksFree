@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = nav
         } else {
             window?.rootViewController = GuideViewController()
+            UserDefaults.standard.set(true, forKey: "tapCopy")
         }
         
         return true

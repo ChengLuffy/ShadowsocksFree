@@ -18,35 +18,29 @@ class ViewController: UIViewController {
     var titles = [String]()
     var isDelete: Bool = false
     @IBOutlet weak var tableView: UITableView!
+    lazy var connectedStatusBtn: UIButton = {
+        let button = UIButton(type: .custom)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = #colorLiteral(red: 0.2862745098, green: 0.5647058824, blue: 0.9882352941, alpha: 1)
+        button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width*0.75, height: 50)
+        button.addTarget(self, action: #selector(ViewController.connectedStatusBtnAction), for: .touchUpInside)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        NotificationCenter.default.addObserver(self, selector: #selector(onVPNStatusChanged), name: NSNotification.Name(rawValue: kProxyServiceVPNStatusNotification), object: nil)
         tableView.delegate = self
         tableView.dataSource = self
-        /*
-        refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: #selector(ViewController.getData), forControlEvents: .ValueChanged)
-        self.tableView.addSubview(refreshControl!)
-         */
         tableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(ViewController.getData))
-        /*
-        self.tableView.mj_footer = MJRefreshAutoStateFooter.init(refreshingBlock: {
-            print("footer")
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { 
-                self.tableView.mj_footer.endRefreshingWithNoMoreData()
-            })
-        })
-         */
         title = "1/4DSSA"
         
          NotificationCenter.default.addObserver(forName: NSNotification.Name.init("NEUpdate"), object: nil, queue: OperationQueue.main, using: { [unowned self] (notification) -> Void in
-             if UserDefaults.standard.object(forKey: "connectedDate") == nil {
-                 self.navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "circle-cross")
-             } else {
-                 self.navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "circle-check")
-             }
+            if VPNManager.shared.vpnStatus == .on {
+                self.updateViewLayout(vpnStatus: true)
+            } else {
+                self.updateViewLayout(vpnStatus: false)
+            }
             SVProgressHUD.dismiss()
             self.tableView.reloadData()
          })
@@ -55,7 +49,6 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // self.tableView.mj_header.beginRefreshing()
         
         if tableView.mj_header.lastUpdatedTime != nil {
             let dateFormater = DateFormatter()
@@ -85,6 +78,24 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateViewLayout(vpnStatus: Bool) {
+        if vpnStatus {
+            connectedStatusBtn.center = CGPoint(x: view.center.x, y: UIScreen.main.bounds.size.height+200)
+            view.addSubview(connectedStatusBtn)
+            let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
+            connectedStatusBtn.setTitle("\((userDefaults?.value(forKey: "address") as! String).uppercased()) Connected", for: .normal)
+            UIView.animate(withDuration: 1.25) {
+                self.connectedStatusBtn.center = CGPoint(x: self.view.center.x, y: UIScreen.main.bounds.size.height-50)
+            }
+        } else {
+            UIView.animate(withDuration: 1.25, animations: {
+                self.connectedStatusBtn.center = CGPoint(x: self.view.center.x, y: UIScreen.main.bounds.size.height+200)
+            }) { (ret) in
+                self.connectedStatusBtn.removeFromSuperview()
+            }
+        }
     }
     
     @objc func getData() {
@@ -144,40 +155,29 @@ class ViewController: UIViewController {
     @IBAction func watchBtnDidClicked(_ sender: AnyObject) {
         let QRVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "watch")
         QRVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .top))
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.15 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
         self.present(QRVC, animated: true, completion: nil)
-//        })
     }
     
-   @IBAction func SettingAction(_ sender: Any) {
-    #if DEBUG
-    AlertMSG.alert(title: "非发行版本不可用", msg: "", delay: 2.0)
-    #else
+   @IBAction func settingAction(_ sender: Any) {
        let settingVC = SettingViewController()
        settingVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .top))
        self.present(settingVC, animated: true, completion: nil)
-    #endif
     }
     
-    @IBAction func statusAction(_ sender: UIBarButtonItem) {
-        if VPNManager.shared.vpnStatus == .on {
-            let connectedDate = UserDefaults.standard.object(forKey: "connectedDate")
-            let df = DateFormatter()
-            df.dateFormat = "MM-dd HH:mm:ss"
-            let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
-            let adr = userDefaults?.value(forKey: "address") as! String
-            let msg = "服务器: " + adr + "\n" + "链接时间: " + df.string(from: connectedDate as! Date)
-            let alertC = UIAlertController(title: "链接信息", message: msg, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "ok", style: .cancel, handler: nil)
-            let disConnectAction = UIAlertAction(title: "disconnect", style: .destructive) { (_) in
-                VPNManager.shared.disconnect()
-            }
-            alertC.addAction(disConnectAction)
-            alertC.addAction(okAction)
-            self.present(alertC, animated: true, completion: nil)
-        } else {
-            AlertMSG.alert(title: "没有链接", msg: "请选择服务器链接", delay: 1.5)
+    @objc func connectedStatusBtnAction() {
+        let df = DateFormatter()
+        df.dateFormat = "MM-dd HH:mm:ss"
+        let connectedDate = UserDefaults.standard.object(forKey: "connectedDate")
+        let date = df.string(from: connectedDate as! Date)
+        let sheet = UIAlertController(title: "Disconnect?", message: "Connected At \(date)", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
         }
+        let disconnectAction = UIAlertAction(title: "Disconnect", style: .destructive) { (_) in
+            VPNManager.shared.disconnect()
+        }
+        sheet.addAction(cancelAction)
+        sheet.addAction(disconnectAction)
+        present(sheet, animated: true) {}
     }
     
 }
@@ -263,8 +263,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                     userDefaults?.set(model.port, forKey: "port")
                     userDefaults?.set(model.encryption, forKey: "encryption")
                     userDefaults?.set(model.passWord, forKey: "passWord")
-                    SVProgressHUD.show()
-                    VPNManager.shared.connect()
+                    if VPNManager.shared.vpnStatus == .on {
+                        SVProgressHUD.show()
+                        VPNManager.shared.disconnect()
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
+                            VPNManager.shared.connect()
+                        })
+                    } else {
+                        SVProgressHUD.show()
+                        VPNManager.shared.connect()
+                    }
                 }
             })
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
@@ -317,6 +325,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard UserDefaults.standard.bool(forKey: "tapCopy") else {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
+        
         if (indexPath as NSIndexPath).row == 4 {
             tableView.deselectRow(at: indexPath, animated: true)
         } else {

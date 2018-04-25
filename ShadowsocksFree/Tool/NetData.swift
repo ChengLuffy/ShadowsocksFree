@@ -14,14 +14,12 @@ import RealmSwift
 class NetData {
     
     class func RefreshData(success: @escaping (_ isSuccess: Bool)->(),failure: @escaping (_ error: Error?)->()) {
-        var data: Data
-        do {
-            data = try Data.init(contentsOf: URL.init(string: "https://raw.githubusercontent.com/ChengLuffy/ShadowsocksFree/master/host")!)
-        } catch let error {
-            print(error.localizedDescription)
-            data = "https://free.ishadowx.net".data(using: .utf8)!
+        var URLStr: String = "https://free.ishadowx.net"
+        let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
+        
+        if userDefaults?.value(forKey: "url") != nil {
+            URLStr = userDefaults?.value(forKey: "url") as! String
         }
-        let URLStr = String.init(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         
         Alamofire.request(URLStr).responseData { (respose) in

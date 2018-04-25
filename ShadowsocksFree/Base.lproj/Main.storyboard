@@ -88,9 +88,9 @@
                                 <action selector="watchBtnDidClicked:" destination="BYZ-38-t0r" id="0Mn-UP-Bf9"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="circle-cross" id="VLb-ib-FQB">
+                        <barButtonItem key="rightBarButtonItem" image="setting" id="VLb-ib-FQB">
                             <connections>
-                                <action selector="statusAction:" destination="BYZ-38-t0r" id="Z1x-fH-jJf"/>
+                                <action selector="settingAction:" destination="BYZ-38-t0r" id="q1k-PZ-NsO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -219,8 +219,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="circle-cross" width="20" height="20"/>
         <image name="qr" width="20" height="20"/>
+        <image name="setting" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7Ib-1I-0gq"/>
