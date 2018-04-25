@@ -29,7 +29,7 @@ class SettingViewController: UIViewController {
     
     private lazy var tapCopyInfoLabel: UILabel = {
         let label = UILabel(frame: CGRect.zero)
-        label.text = "tap cell to copy info"
+        label.text = "首页点击 cell 是否复制相关信息"
         label.textColor = UIColor.black
         label.textAlignment = .center
         return label
@@ -41,16 +41,26 @@ class SettingViewController: UIViewController {
         switchBtn.addTarget(self, action: #selector(switchValueChange(_:)), for: .valueChanged)
         return switchBtn
     }()
+    
+    private lazy var infoLabel: UILabel = {
+        let label = UILabel(frame: CGRect.zero)
+        label.text = "https://free.ishadowx.net 经常更换二级域名，长按以输入最新的，可以将链接输入到浏览器查看最终链接"
+        label.textColor = UIColor.black
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.white
-        view.addSubview(closeBtn)
         view.addSubview(imageView)
+        view.addSubview(closeBtn)
         view.addSubview(tapCopyInfoLabel)
         view.addSubview(switchBtn)
+        view.addSubview(infoLabel)
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressAction))
         view.addGestureRecognizer(longPress)
@@ -68,8 +78,9 @@ class SettingViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         tapCopyInfoLabel.translatesAutoresizingMaskIntoConstraints = false
         switchBtn.translatesAutoresizingMaskIntoConstraints = false
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let views = ["closeBtn": closeBtn, "imageView": imageView, "infoLabel": tapCopyInfoLabel, "switchBtn": switchBtn] as [String : Any]
+        let views = ["closeBtn": closeBtn, "imageView": imageView, "infoLabel": tapCopyInfoLabel, "switchBtn": switchBtn, "label": infoLabel] as [String : Any]
         
         let closeBtnHC = NSLayoutConstraint.constraints(withVisualFormat: "H:[closeBtn]-25-|", options: [], metrics: nil, views: views)
         var closeBtnVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-35-[closeBtn]", options: [], metrics: nil, views: views)
@@ -83,10 +94,13 @@ class SettingViewController: UIViewController {
         let imageViewVCenter = NSLayoutConstraint.init(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: -100)
         
         let labelHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[infoLabel]-50-|", options: [], metrics: nil, views: views)
-        let labelVC = NSLayoutConstraint.constraints(withVisualFormat: "V:[imageView]-40-[infoLabel]", options: [], metrics: nil, views: views)
+        let labelVC = NSLayoutConstraint.constraints(withVisualFormat: "V:[imageView]-30-[infoLabel]", options: [], metrics: nil, views: views)
         
         let switchHC = NSLayoutConstraint.init(item: switchBtn, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
         let switchVC = NSLayoutConstraint.constraints(withVisualFormat: "V:[infoLabel]-10-[switchBtn]", options: [], metrics: nil, views: views)
+        
+        let infoLabelHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[label]-|", options: [], metrics: nil, views: views)
+        let infoLabelVC = NSLayoutConstraint.constraints(withVisualFormat: "V:[switchBtn]-30-[label]", options: [], metrics: nil, views: views)
         
         view.addConstraints(closeBtnHC)
         view.addConstraints(closeBtnVC)
@@ -99,6 +113,9 @@ class SettingViewController: UIViewController {
         
         view.addConstraint(switchHC)
         view.addConstraints(switchVC)
+        
+        view.addConstraints(infoLabelHC)
+        view.addConstraints(infoLabelVC)
     }
     
     deinit {

@@ -99,13 +99,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                     let typeStr = raw_dom.substring(to: index)
                     let url = raw_dom.substring(from: index2)
                     
-                    if typeStr == "s"{
+                    if typeStr == "s" {
                         rule_array.append(DomainListRule.MatchCriterion.suffix(url))
-                    }else if typeStr == "k"{
+                    } else if typeStr == "k" {
                         rule_array.append(DomainListRule.MatchCriterion.keyword(url))
-                    }else if typeStr == "p"{
+                    } else if typeStr == "p" {
                         rule_array.append(DomainListRule.MatchCriterion.prefix(url))
-                    }else if typeStr == "r"{
+                    } else if typeStr == "r" {
                         // ToDo:
                         // shoud be complete
                     }
