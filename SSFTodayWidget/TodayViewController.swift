@@ -56,11 +56,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             layout.minimumLineSpacing = maxSize.height/11
         } else {
             var height: CGFloat?
-            if (realm.objects(Model.self).count) > 3 {
+            if (realm.objects(Model.self).filter("isNet = true").count) > 3 {
                 let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
                 let temp = layout.itemSize.height / 4
                 print(temp)
-                let lines: Int = (realm.objects(Model.self).count-1)/3
+                let lines: Int = (realm.objects(Model.self).filter("isNet = true").count-1)/3
                 height = CGFloat(temp*6 + (temp * 5 * CGFloat(lines)))
             } else {
                 height = 110
@@ -91,7 +91,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
 extension TodayViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return realm.objects(Model.self).count
+        return realm.objects(Model.self).filter("isNet = true").count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -99,7 +99,7 @@ extension TodayViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         let SSStr = NetData.getSSQRStr((indexPath as NSIndexPath).row)
         cell.prefs = SSStr
-        cell.label.text = realm.objects(Model.self)[indexPath.row].address
+        cell.label.text = realm.objects(Model.self).filter("isNet = true")[indexPath.row].address
         return cell
     }
     

@@ -60,7 +60,7 @@ class QRViewController: UIViewController {
     }
     
     func getSSQRStr(_ num: Int) -> String! {
-        let model = realm.objects(Model.self)[num]
+        let model = realm.objects(Model.self).filter("isNet = true")[num]
         print(model.address!)
         let method: NSString = model.encryption! as NSString
         
@@ -96,7 +96,7 @@ class QRViewController: UIViewController {
 extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return realm.objects(Model.self).count
+        return realm.objects(Model.self).filter("isNet = true").count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -121,7 +121,7 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! QRCollectionReusableHeaderView
-        view.textLabel.text = realm.objects(Model.self)[(indexPath as NSIndexPath).section].name
+        view.textLabel.text = realm.objects(Model.self).filter("isNet = true")[(indexPath as NSIndexPath).section].name
         return view
         
     }

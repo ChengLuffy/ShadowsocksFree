@@ -125,7 +125,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         // Rules
         
         let chinaRule = CountryRule(countryCode: "CN", match: true, adapterFactory: directAdapterFactory)
-        let unKnowLoc = CountryRule(countryCode: "--", match: true, adapterFactory: directAdapterFactory)
+        let unKnowLoc = CountryRule(countryCode: "--", match: true, adapterFactory: ssAdapterFactory)
         let dnsFailRule = DNSFailRule(adapterFactory: ssAdapterFactory)
         
         let allRule = AllRule(adapterFactory: ssAdapterFactory)
@@ -209,7 +209,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                 
                 
                 let dnsServer = DNSServer(address: IPAddress(fromString: "198.18.0.1")!, port: NEKit.Port(port: 53), fakeIPPool: fakeIPPool)
-                let resolver = UDPDNSResolver(address: IPAddress(fromString: "114.114.114.114")!, port: NEKit.Port(port: 53))
+                let resolver = UDPDNSResolver(address: IPAddress(fromString: "8.8.8.8")!, port: NEKit.Port(port: 53))
                 dnsServer.registerResolver(resolver)
                 self.interface.register(stack: dnsServer)
                 

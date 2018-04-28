@@ -35,4 +35,10 @@ extension NSString {
         let data = self.data(using: String.Encoding.utf8.rawValue)
         return (data?.base64EncodedString(options: .lineLength64Characters))! as NSString
     }
+    func base64Decoded() -> String? {
+        if let data = Data(base64Encoded: self as String) {
+            return String(data: data, encoding: .utf8)
+        }
+        return nil
+    }
 }

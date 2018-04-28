@@ -16,7 +16,6 @@ import SVProgressHUD
 
 class ViewController: UIViewController {
     var titles = [String]()
-    var isDelete: Bool = false
     @IBOutlet weak var tableView: UITableView!
     lazy var connectedStatusBtn: UIButton = {
         let button = UIButton(type: .custom)
@@ -69,6 +68,8 @@ class ViewController: UIViewController {
             
             if (Int(lastDateStr)! < Int(dateNowStr)! || Int(dateNowHStr)! / 6 > Int(lastDateHStr)! / 6) {
                 tableView.mj_header.beginRefreshing()
+            } else {
+                tableView.reloadData()
             }
         } else {
             tableView.mj_header.beginRefreshing()
@@ -185,43 +186,26 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
-        if isDelete == true {
-            return 1
-        } else {
-            
-            return realm.objects(Model.self).count
-        }
-        
+        return realm.objects(Model.self).count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isDelete == false {
+        if section == realm.objects(Model.self).filter("isNet = true").count {
+            return 0
+        } else {
             return 4
-        } else {
-            
-            return realm.objects(Model.self).filter("isNet = false").count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        if isDelete == false {
-            return realm.objects(Model.self)[section].name
-        } else {
-            return "自定义节点信息列表"
         }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         weak var weakSelf = self
         let headerView = HeaderView(frame: CGRect.zero) { (section) in
-            let model = realm.objects(Model.self)[section]
-            let name = model.name
-            let address = model.address
-            let port = model.port
-            let encryption = model.encryption
-            let password = model.passWord
+            let model = (section == realm.objects(Model.self).filter("isNet = true").count) ? realm.objects(Model.self).filter("isNet = false").first : realm.objects(Model.self).filter("isNet = true")[section]
+            let name = model!.name
+            let address = model!.address
+            let port = model!.port
+            let encryption = model!.encryption
+            let password = model!.passWord
             let sheet = UIAlertController(title: "Connect or Copy?", message: nil, preferredStyle: .actionSheet)
             let surgeStringAction = UIAlertAction(title: "Surge Proxy String", style: .default, handler: { (action) in
                 let str = name! + " = custom, " + address! + ", " + port! + ", " + encryption! + ", " + password! + ", https://github.com/ChengLuffy/ShadowsocksFree/blob/new/SSEncrypt.module"
@@ -231,7 +215,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                     let pboard = UIPasteboard.general
                     pboard.string = str
                 })
-                AlertMSG.alert(title: realm.objects(Model.self)[section].name!, msg: str, actions: [cancel, action])
+                AlertMSG.alert(title: realm.objects(Model.self).filter("isNet = true")[section].name!, msg: str, actions: [cancel, action])
             })
             let shadowsocksProxyString = UIAlertAction(title: "Shadowsocks Proxy String", style: .default, handler: { (action) in
                 let retStr = NetData.getSSQRStr(section)
@@ -244,12 +228,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 let open = UIAlertAction(title: "Open", style: .default, handler: { (_) in
                     UIApplication.shared.openURL(URL.init(string: retStr!)!)
                 })
-                AlertMSG.alert(title: realm.objects(Model.self)[section].name!, msg: retStr!, actions: [open ,action, cancel])
+                AlertMSG.alert(title: realm.objects(Model.self).filter("isNet = true")[section].name!, msg: retStr!, actions: [open ,action, cancel])
             })
             var title: String = "Connect"
             let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
             
-            if VPNManager.shared.vpnStatus == .on && model.address == (userDefaults?.value(forKey: "address") as! String) && model.encryption == (userDefaults?.value(forKey: "encryption") as! String) && model.port == (userDefaults?.value(forKey: "port") as! String) && model.passWord == (userDefaults?.value(forKey: "passWord") as! String) {
+            if VPNManager.shared.vpnStatus == .on && model!.address == (userDefaults?.value(forKey: "address") as! String) && model!.encryption == (userDefaults?.value(forKey: "encryption") as! String) && model!.port == (userDefaults?.value(forKey: "port") as! String) && model!.passWord == (userDefaults?.value(forKey: "passWord") as! String) {
                 title = "Disconnect"
             } else {
                 title = "Connect"
@@ -259,10 +243,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                     VPNManager.shared.disconnect()
                 } else {
                     let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
-                    userDefaults?.set(model.address, forKey: "address")
-                    userDefaults?.set(model.port, forKey: "port")
-                    userDefaults?.set(model.encryption, forKey: "encryption")
-                    userDefaults?.set(model.passWord, forKey: "passWord")
+                    userDefaults?.set(model!.address, forKey: "address")
+                    userDefaults?.set(model!.port, forKey: "port")
+                    userDefaults?.set(model!.encryption, forKey: "encryption")
+                    userDefaults?.set(model!.passWord, forKey: "passWord")
                     if VPNManager.shared.vpnStatus == .on {
                         SVProgressHUD.show()
                         VPNManager.shared.disconnect()
@@ -285,11 +269,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             weakSelf?.present(sheet, animated: true, completion: nil)
         }
         headerView.row = section
-        headerView.title = realm.objects(Model.self)[section].name
-        let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
-        let model = realm.objects(Model.self)[section]
+        if section != realm.objects(Model.self).filter("isNet = true").count {
+            headerView.title = realm.objects(Model.self).filter("isNet = true")[section].name
+        } else {
+            headerView.title = "MY Server"
+        }
         
-        if VPNManager.shared.vpnStatus == .on && model.address == (userDefaults?.value(forKey: "address") as! String) && model.encryption == (userDefaults?.value(forKey: "encryption") as! String) && model.port == (userDefaults?.value(forKey: "port") as! String) && model.passWord == (userDefaults?.value(forKey: "passWord") as! String) {
+        let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
+        let model = (section == realm.objects(Model.self).filter("isNet = true").count) ? realm.objects(Model.self).filter("isNet = false").first : realm.objects(Model.self).filter("isNet = true")[section]
+        
+        if VPNManager.shared.vpnStatus == .on && model!.address == (userDefaults?.value(forKey: "address") as! String) && model!.encryption == (userDefaults?.value(forKey: "encryption") as! String) && model!.port == (userDefaults?.value(forKey: "port") as! String) && model!.passWord == (userDefaults?.value(forKey: "passWord") as! String) {
             headerView.isConnected = true
         } else {
             headerView.isConnected = false
@@ -308,12 +297,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let title = ["Address:", "Port:", "Password:", "Encryption:"]
         
         var model = Model()
-        if isDelete == false {
+        if true {
             if cell == nil {
                 cell = UITableViewCell.init(style: .value2, reuseIdentifier: "cell")
             }
             let str = self.getValueForNum((indexPath as NSIndexPath).row + 1)
-            model = realm.objects(Model.self)[(indexPath as NSIndexPath).section]
+            model = realm.objects(Model.self).filter("isNet = true")[(indexPath as NSIndexPath).section]
             cell!.detailTextLabel?.text = model.value(forKey: str) as? String
             cell!.textLabel?.text = title[indexPath.row]
         } else {

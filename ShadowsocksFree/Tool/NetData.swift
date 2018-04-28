@@ -14,7 +14,7 @@ import RealmSwift
 class NetData {
     
     class func RefreshData(success: @escaping (_ isSuccess: Bool)->(),failure: @escaping (_ error: Error?)->()) {
-        var URLStr: String = "https://free.ishadowx.net"
+        var URLStr: String = "https://fast.ishadowx.net"
         let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
         
         if userDefaults?.value(forKey: "url") != nil {
@@ -76,7 +76,7 @@ class NetData {
     }
     
     class func getSSQRStr(_ num: Int) -> String! {
-        let model = realm.objects(Model.self)[num]
+        let model = realm.objects(Model.self).filter("isNet = true")[num]
         print(model.address!)
         let method: NSString = model.encryption! as NSString
         
