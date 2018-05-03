@@ -30,6 +30,7 @@
 		1D2C1A33208D89E60077ECD7 /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2C1A32208D89E60077ECD7 /* Yaml.framework */; };
 		1D2C1A35208D89EE0077ECD7 /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2C1A34208D89EE0077ECD7 /* Resolver.framework */; };
 		1D4055B21FFC7449004EAD04 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4055B11FFC7449004EAD04 /* SettingViewController.swift */; };
+		1D8C45A5209AFD7B00981751 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8C45A4209AFD7B00981751 /* Utils.m */; };
 		1D8D0A291FCBED0200DA470A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D0A281FCBED0200DA470A /* HeaderView.swift */; };
 		1DC407B51FCCEF4700132269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC407B41FCCEF4700132269 /* ViewController.swift */; };
 		1DC407BA1FCCF76200132269 /* QRCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DC407B81FCCF76100132269 /* QRCollectionViewCell.xib */; };
@@ -114,6 +115,9 @@
 		1D2C1A32208D89E60077ECD7 /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = Carthage/Build/iOS/Yaml.framework; sourceTree = SOURCE_ROOT; };
 		1D2C1A34208D89EE0077ECD7 /* Resolver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Resolver.framework; path = Carthage/Build/iOS/Resolver.framework; sourceTree = SOURCE_ROOT; };
 		1D4055B11FFC7449004EAD04 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		1D8C45A2209AFD7A00981751 /* ShadowsocksFree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShadowsocksFree-Bridging-Header.h"; sourceTree = "<group>"; };
+		1D8C45A3209AFD7B00981751 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		1D8C45A4209AFD7B00981751 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		1D8D0A281FCBED0200DA470A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		1DC407B41FCCEF4700132269 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1DC407B81FCCF76100132269 /* QRCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -266,10 +270,13 @@
 		2A33CEB51D1C0711000F652A /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				1D8C45A3209AFD7B00981751 /* Utils.h */,
+				1D8C45A4209AFD7B00981751 /* Utils.m */,
 				2A33CEB61D1C0711000F652A /* QRImageCreate.swift */,
 				1D10D67D1FD7ECD00013C6EA /* AlertMSG.swift */,
 				1D2A51522085923F006E4014 /* NetData.swift */,
 				1D2C19EB208D84C80077ECD7 /* VPNManager.swift */,
+				1D8C45A2209AFD7A00981751 /* ShadowsocksFree-Bridging-Header.h */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -447,7 +454,7 @@
 					2AD282781CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = C5WAW7Z979;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0930;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -658,6 +665,7 @@
 				1D4055B21FFC7449004EAD04 /* SettingViewController.swift in Sources */,
 				1DC407BB1FCCF76200132269 /* QRCollectionViewCell.swift in Sources */,
 				1DC407C11FCD51E300132269 /* GuideViewController.swift in Sources */,
+				1D8C45A5209AFD7B00981751 /* Utils.m in Sources */,
 				2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */,
 				1DC407B51FCCEF4700132269 /* ViewController.swift in Sources */,
 				2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */,
@@ -943,6 +951,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ShadowsocksFree/ShadowsocksFree.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -961,7 +970,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.chengluffy.shadowsocksfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/Tool/ShadowsocksFree-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -973,6 +983,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ShadowsocksFree/ShadowsocksFree.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -991,7 +1002,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.chengluffy.shadowsocksfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/Tool/ShadowsocksFree-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

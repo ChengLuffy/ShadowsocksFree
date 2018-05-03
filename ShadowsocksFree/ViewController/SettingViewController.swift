@@ -199,6 +199,30 @@ class SettingViewController: UIViewController {
                 return
             }
             
+            let ssInfo = ParseSSURL(URL.init(string: sslink))
+            
+            guard ssInfo!["msg"] == nil else {
+                AlertMSG.alert(title: "无法识别您输入的 ss 链接", msg: "请确认你的链接格式是否正确,\n当然也有可能是软件不完善.", delay: 2.50)
+                return
+            }
+            
+            try! realm.write({
+                realm.delete(realm.objects(Model.self).filter("server = 'mine'"))
+            })
+            
+            let model = Model()
+            model.encryption = ssInfo?["Method"] as? String
+            model.port = "\(String(describing: ssInfo?["ServerPort"] as! Int))"
+            model.passWord = ssInfo?["Password"] as? String
+            model.address = ssInfo?["ServerHost"] as? String
+            model.isNet = false
+            model.server = "mine"
+            try! realm.write({
+                realm.add(model, update: true)
+            })
+            AlertMSG.alert(title: "Success", msg: "您可以在首页最下面进行链接，如果失败，请检查链接是否正确，当然也有可能是软件不完善", delay: 1.25)
+            
+            /*
             if sslink.components(separatedBy: "//").count > 1 {
                 var base64Str: String = ""
                 let temp = sslink.components(separatedBy: "//").last
@@ -231,6 +255,7 @@ class SettingViewController: UIViewController {
             } else {
                 AlertMSG.alert(title: "无法识别您输入的 ss 链接", msg: "请确认你的链接格式是否正确", delay: 1.25)
             }
+            */
             
         }
         
