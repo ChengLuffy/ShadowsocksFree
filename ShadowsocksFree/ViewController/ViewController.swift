@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if tableView.mj_header.lastUpdatedTime != nil {
+            /*
             let dateFormater = DateFormatter()
             dateFormater.dateFormat = "yyyyMMdd"
             
@@ -71,6 +72,8 @@ class ViewController: UIViewController {
             } else {
                 tableView.reloadData()
             }
+            */
+            tableView.mj_header.beginRefreshing()
         } else {
             tableView.mj_header.beginRefreshing()
         }
