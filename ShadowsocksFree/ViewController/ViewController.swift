@@ -73,7 +73,7 @@ class ViewController: UIViewController {
                 tableView.reloadData()
             }
             */
-            tableView.mj_header.beginRefreshing()
+            getData()
         } else {
             tableView.mj_header.beginRefreshing()
         }

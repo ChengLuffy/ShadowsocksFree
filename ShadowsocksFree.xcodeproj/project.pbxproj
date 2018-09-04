@@ -114,6 +114,7 @@
 		1D2C1A30208D89E10077ECD7 /* tun2socks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = tun2socks.framework; path = Carthage/Build/iOS/tun2socks.framework; sourceTree = SOURCE_ROOT; };
 		1D2C1A32208D89E60077ECD7 /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = Carthage/Build/iOS/Yaml.framework; sourceTree = SOURCE_ROOT; };
 		1D2C1A34208D89EE0077ECD7 /* Resolver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Resolver.framework; path = Carthage/Build/iOS/Resolver.framework; sourceTree = SOURCE_ROOT; };
+		1D325C16211018F70061CC35 /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommonCrypto.framework; path = iphoneos/CommonCrypto.framework; sourceTree = "<group>"; };
 		1D4055B11FFC7449004EAD04 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		1D8C45A2209AFD7A00981751 /* ShadowsocksFree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShadowsocksFree-Bridging-Header.h"; sourceTree = "<group>"; };
 		1D8C45A3209AFD7B00981751 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 		1D2C1A08208D87520077ECD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1D325C16211018F70061CC35 /* CommonCrypto.framework */,
 				1D2C1A34208D89EE0077ECD7 /* Resolver.framework */,
 				1D2C1A32208D89E60077ECD7 /* Yaml.framework */,
 				1D2C1A30208D89E10077ECD7 /* tun2socks.framework */,
