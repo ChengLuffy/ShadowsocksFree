@@ -1,7 +1,0 @@
-language: swift
-before_install:
-  - gem update
-  - gem install cocoapods-acknowledgements -NV
-  - pod repo update --silent
-xcode_project: ShadowsocksFree.xcworkspace
-xcode_scheme: ShadowsocksFree

@@ -1,8 +1,9 @@
 # ShadowsocksFree
-[![Build Status](https://travis-ci.org/ChengLuffy/ShadowsocksFree.svg?branch=master)](https://travis-ci.org/ChengLuffy/ShadowsocksFree)
 ![Language](https://img.shields.io/badge/language-swift-orange.svg)
 
 Data Source: [ishadowsocks](https://go.ishadowx.net)
+
+TestFlight 申请 [点击申请](https://testflight.top/t/mmMNzi)
 
 Made by Love.
 
