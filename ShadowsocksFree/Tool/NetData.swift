@@ -14,10 +14,10 @@ import RealmSwift
 class NetData {
     
     class func RefreshData(success: @escaping (_ isSuccess: Bool)->(),failure: @escaping (_ error: Error?)->()) {
-        var URLStr: String = "https://fast.ishadowx.net"
+        var URLStr: String = "https://us.ishadowx.net"
         let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
         
-        if userDefaults?.value(forKey: "url") != nil {
+        if userDefaults?.value(forKey: "url") != nil && userDefaults?.string(forKey: "url") != "" {
             URLStr = userDefaults?.value(forKey: "url") as! String
         }
         

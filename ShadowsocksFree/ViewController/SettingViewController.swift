@@ -39,6 +39,7 @@ class SettingViewController: UIViewController {
         label.text = "首页点击 cell 是否复制相关信息"
         label.textColor = UIColor.black
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -54,7 +55,7 @@ class SettingViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.white
-        view.addSubview(imageView)
+//        view.addSubview(imageView)
         view.addSubview(closeBtn)
         view.addSubview(customBtn)
         view.addSubview(tapCopyInfoLabel)
@@ -71,12 +72,12 @@ class SettingViewController: UIViewController {
         
         closeBtn.translatesAutoresizingMaskIntoConstraints = false
         customBtn.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
         tapCopyInfoLabel.translatesAutoresizingMaskIntoConstraints = false
         switchBtn.translatesAutoresizingMaskIntoConstraints = false
         
         let views = ["closeBtn": closeBtn,
-                     "imageView": imageView,
+//                     "imageView": imageView,
                      "infoLabel": tapCopyInfoLabel,
                      "switchBtn": switchBtn,
                      "customBtn": customBtn] as [String : Any]
@@ -97,11 +98,12 @@ class SettingViewController: UIViewController {
             customBtnVC = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topAnchor-[customBtn]", options: [], metrics: metrics, views: views)
         }
         
-        let imageViewHCenter = NSLayoutConstraint.init(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
-        let imageViewVCenter = NSLayoutConstraint.init(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: -100)
+//        let imageViewHCenter = NSLayoutConstraint.init(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+//        let imageViewVCenter = NSLayoutConstraint.init(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: -100)
         
         let labelHC = NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[infoLabel]-50-|", options: [], metrics: nil, views: views)
-        let labelVC = NSLayoutConstraint.constraints(withVisualFormat: "V:[imageView]-30-[infoLabel]", options: [], metrics: nil, views: views)
+//        let labelVC = NSLayoutConstraint.constraints(withVisualFormat: "V:[imageView]-30-[infoLabel]", options: [], metrics: nil, views: views)
+        let labelVC = NSLayoutConstraint.init(item: tapCopyInfoLabel, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
         
         let switchHC = NSLayoutConstraint.init(item: switchBtn, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
         let switchVC = NSLayoutConstraint.constraints(withVisualFormat: "V:[infoLabel]-10-[switchBtn]", options: [], metrics: nil, views: views)
@@ -112,11 +114,11 @@ class SettingViewController: UIViewController {
         view.addConstraints(customBtnHC)
         view.addConstraints(customBtnVC)
         
-        view.addConstraint(imageViewHCenter)
-        view.addConstraint(imageViewVCenter)
+//        view.addConstraint(imageViewHCenter)
+//        view.addConstraint(imageViewVCenter)
         
         view.addConstraints(labelHC)
-        view.addConstraints(labelVC)
+        view.addConstraint(labelVC)
         
         view.addConstraint(switchHC)
         view.addConstraints(switchVC)
@@ -172,7 +174,7 @@ class SettingViewController: UIViewController {
     }
     
     func updateSourceAddress() {
-        let alertC = UIAlertController(title: "自定义源数据链接地址", message: "https://fast.ishadowx.net 经常更换二级域名，您可以将上述链接输入到浏览器查看最终定向的链接地址，并将完全的地址(包括https://)填写到输入框内", preferredStyle: .alert)
+        let alertC = UIAlertController(title: "自定义源数据链接地址", message: "https://us.ishadowx.net 经常更换二级域名，您可以将上述链接输入到浏览器查看最终定向的链接地址，并将完全的地址(包括https://)填写到输入框内", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
         let sureAction = UIAlertAction(title: "Sure", style: .default) { (action) in
             let userDefaults = UserDefaults.init(suiteName: "group.tech.chengluffy.shadowsocksfree")
