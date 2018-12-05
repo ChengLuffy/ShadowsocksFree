@@ -2,10 +2,9 @@
 //  PacketTunnelProvider.swift
 //  PacketTunnel
 //
-//  Created by 称一称 on 2016/11/18.
-//  Copyright © 2016年 yicheng. All rights reserved.
+//  Created by admin on 2018/7/25.
+//  Copyright © 2018年 admin. All rights reserved.
 //
-
 import NetworkExtension
 import NEKit
 import CocoaLumberjackSwift
@@ -99,13 +98,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                     let typeStr = raw_dom.substring(to: index)
                     let url = raw_dom.substring(from: index2)
                     
-                    if typeStr == "s" {
+                    if typeStr == "s"{
                         rule_array.append(DomainListRule.MatchCriterion.suffix(url))
-                    } else if typeStr == "k" {
+                    }else if typeStr == "k"{
                         rule_array.append(DomainListRule.MatchCriterion.keyword(url))
-                    } else if typeStr == "p" {
+                    }else if typeStr == "p"{
                         rule_array.append(DomainListRule.MatchCriterion.prefix(url))
-                    } else if typeStr == "r" {
+                    }else if typeStr == "r"{
                         // ToDo:
                         // shoud be complete
                     }
@@ -125,7 +124,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         // Rules
         
         let chinaRule = CountryRule(countryCode: "CN", match: true, adapterFactory: directAdapterFactory)
-        let unKnowLoc = CountryRule(countryCode: "--", match: true, adapterFactory: ssAdapterFactory)
+        let unKnowLoc = CountryRule(countryCode: "--", match: true, adapterFactory: directAdapterFactory)
         let dnsFailRule = DNSFailRule(adapterFactory: ssAdapterFactory)
         
         let allRule = AllRule(adapterFactory: ssAdapterFactory)
@@ -209,7 +208,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                 
                 
                 let dnsServer = DNSServer(address: IPAddress(fromString: "198.18.0.1")!, port: NEKit.Port(port: 53), fakeIPPool: fakeIPPool)
-                let resolver = UDPDNSResolver(address: IPAddress(fromString: "8.8.8.8")!, port: NEKit.Port(port: 53))
+                let resolver = UDPDNSResolver(address: IPAddress(fromString: "114.114.114.114")!, port: NEKit.Port(port: 53))
                 dnsServer.registerResolver(resolver)
                 self.interface.register(stack: dnsServer)
                 
