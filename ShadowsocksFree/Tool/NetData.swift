@@ -78,7 +78,7 @@ class NetData {
     class func getSSQRStr(_ num: Int) -> String! {
         let model = realm.objects(Model.self).filter("isNet = true")[num]
         print(model.address!)
-        let method: NSString = model.encryption! as NSString
+        let method: NSString = model.encryption as NSString? ?? "" as NSString
         
         let passWord: NSString?
         if (model.passWord?.count)! > 5 {
