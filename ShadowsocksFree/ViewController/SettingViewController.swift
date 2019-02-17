@@ -161,7 +161,26 @@ class SettingViewController: UIViewController {
             self.updateSourceAddress()
         }
         let inputMineAction = UIAlertAction(title: "输入备用节点", style: .default) { (_) in
-            self.inputMineAction()
+            
+            let sheet = UIAlertController(title: "请选择", message: nil, preferredStyle: .actionSheet)
+            let ssAction = UIAlertAction(title: "Shadowsocks", style: .default, handler: { (_) in
+                self.inputMineAction()
+            })
+            let httpAction = UIAlertAction(title: "Http", style: .default, handler: { (_) in
+                self.inputHttpOrSocksProxy(type: 0)
+            })
+            let socksAction = UIAlertAction(title: "Socks 5", style: .default, handler: { (_) in
+                self.inputHttpOrSocksProxy(type: 1)
+            })
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (_) in
+            }
+            sheet.addAction(ssAction)
+            sheet.addAction(httpAction)
+            sheet.addAction(socksAction)
+            sheet.addAction(cancelAction)
+            self.present(sheet, animated: true) {
+            }
+            
         }
         let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (_) in
         }
@@ -186,6 +205,49 @@ class SettingViewController: UIViewController {
             if userDefaults?.value(forKey: "url") != nil {
                 tf.text = userDefaults?.value(forKey: "url") as? String
             }
+        }
+        alertC.addAction(cancelAction)
+        alertC.addAction(sureAction)
+        
+        present(alertC, animated: true, completion: nil)
+    }
+    
+    func inputHttpOrSocksProxy(type: Int) {
+        let temp = (type == 0 ? "Http" : "Socks 5")
+        let alertC = UIAlertController(title: "Proxy info", message: "您可以内置一个备用  \(temp)  节点", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+        let sureAction = UIAlertAction(title: "Sure", style: .default) { (action) in
+            guard let ip = alertC.textFields?.first?.text else {
+                return
+            }
+            
+            guard let prot = alertC.textFields?.last?.text else {
+                return
+            }
+            
+            try! realm.write({
+                realm.delete(realm.objects(Model.self).filter("server = 'mine'"))
+            })
+            
+            let model = Model()
+            model.encryption = type == 0 ? "http" : "socks"
+            model.port = prot
+            model.passWord = ""
+            model.address = ip
+            model.isNet = false
+            model.server = "mine"
+            try! realm.write({
+                realm.add(model, update: true)
+            })
+            AlertMSG.alert(title: "Success", msg: "您可以在首页最下面进行链接，如果失败，请检查输入是否正确，当然也有可能是软件不完善", delay: 1.25)
+            
+        }
+        
+        alertC.addTextField { (tf) in
+            tf.placeholder = "Adress"
+        }
+        alertC.addTextField { (tf) in
+            tf.placeholder = "Prot"
         }
         alertC.addAction(cancelAction)
         alertC.addAction(sureAction)

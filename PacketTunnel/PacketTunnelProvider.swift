@@ -54,22 +54,30 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         // Origin
         let obfuscater = ShadowsocksAdapter.ProtocolObfuscater.OriginProtocolObfuscater.Factory()
         
+        let adapterFactory: ServerAdapterFactory?
         
-        let algorithm:CryptoAlgorithm
-        
-        switch method{
-        case "AES128CFB":algorithm = .AES128CFB
-        case "AES192CFB":algorithm = .AES192CFB
-        case "AES256CFB":algorithm = .AES256CFB
-        case "CHACHA20":algorithm = .CHACHA20
-        case "SALSA20":algorithm = .SALSA20
-        case "RC4MD5":algorithm = .RC4MD5
-        default:
-            fatalError("Undefined algorithm!")
+        if method == "HTTP" {
+            adapterFactory = HTTPAdapterFactory(serverHost: ss_adder, serverPort: ss_port, auth: nil)
+        } else if method == "SOCKS" {
+            adapterFactory = SOCKS5AdapterFactory(serverHost: ss_adder, serverPort: ss_port)
+        } else {
+            let algorithm:CryptoAlgorithm
+            
+            switch method{
+            case "AES128CFB":algorithm = .AES128CFB
+            case "AES192CFB":algorithm = .AES192CFB
+            case "AES256CFB":algorithm = .AES256CFB
+            case "CHACHA20":algorithm = .CHACHA20
+            case "SALSA20":algorithm = .SALSA20
+            case "RC4MD5":algorithm = .RC4MD5
+            default:
+                fatalError("Undefined algorithm!")
+            }
+            
+            
+            adapterFactory = ShadowsocksAdapterFactory(serverHost: ss_adder, serverPort: ss_port, protocolObfuscaterFactory:obfuscater, cryptorFactory: ShadowsocksAdapter.CryptoStreamProcessor.Factory(password: password, algorithm: algorithm), streamObfuscaterFactory: ShadowsocksAdapter.StreamObfuscater.OriginStreamObfuscater.Factory())
         }
         
-        
-        let ssAdapterFactory = ShadowsocksAdapterFactory(serverHost: ss_adder, serverPort: ss_port, protocolObfuscaterFactory:obfuscater, cryptorFactory: ShadowsocksAdapter.CryptoStreamProcessor.Factory(password: password, algorithm: algorithm), streamObfuscaterFactory: ShadowsocksAdapter.StreamObfuscater.OriginStreamObfuscater.Factory())
         
         let directAdapterFactory = DirectAdapterFactory()
         
@@ -84,7 +92,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
             if each["adapter"].string! == "direct"{
                 adapter = directAdapterFactory
             }else{
-                adapter = ssAdapterFactory
+                adapter = adapterFactory!
             }
             
             let ruleType = each["type"].string!
@@ -125,9 +133,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         
         let chinaRule = CountryRule(countryCode: "CN", match: true, adapterFactory: directAdapterFactory)
         let unKnowLoc = CountryRule(countryCode: "--", match: true, adapterFactory: directAdapterFactory)
-        let dnsFailRule = DNSFailRule(adapterFactory: ssAdapterFactory)
+        let dnsFailRule = DNSFailRule(adapterFactory: adapterFactory!)
         
-        let allRule = AllRule(adapterFactory: ssAdapterFactory)
+        let allRule = AllRule(adapterFactory: adapterFactory!)
         UserRules.append(contentsOf: [chinaRule,unKnowLoc,dnsFailRule,allRule])
         
         let manager = RuleManager(fromRules: UserRules, appendDirect: true)
