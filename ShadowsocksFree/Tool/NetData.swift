@@ -40,6 +40,10 @@ class NetData {
                         for node in free {
                             let model = Model()
                             
+                            if node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").first?.stringValue.components(separatedBy: ".").count ?? 0 <= 1 {
+                                continue
+                            }
+                            
                             for (index, sub) in node.children(tag: "div")[0].children(tag: "div")[0].children(tag: "div")[0].children(tag: "h4").enumerated() {
                                 
                                 switch index {
