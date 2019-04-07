@@ -32,7 +32,7 @@ class SafeDict<T> {
     
     func remove(_ id: UnsafeMutablePointer<Int>) -> T? {
         defer {
-            id.deallocate(capacity: 1)
+            id.deallocate()
         }
         return remove(id.pointee)
     }

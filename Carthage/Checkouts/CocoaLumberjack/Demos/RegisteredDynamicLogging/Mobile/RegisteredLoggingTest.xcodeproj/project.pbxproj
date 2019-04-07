@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A13BEB29F06AA36B608BD68 /* Pods_RegisteredLoggingTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB331C4BC5323F845B014D38 /* Pods_RegisteredLoggingTest.framework */; };
+		0A7D8FC2217A10F000B496D7 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A7D8FC1217A10F000B496D7 /* CocoaLumberjack.framework */; };
 		DC7DC5301415523E00601B40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7DC52F1415523E00601B40 /* UIKit.framework */; };
 		DC7DC5321415523E00601B40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7DC5311415523E00601B40 /* Foundation.framework */; };
 		DC7DC5341415523E00601B40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7DC5331415523E00601B40 /* CoreGraphics.framework */; };
@@ -23,9 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3441577751E32EA192860BE9 /* Pods-RegisteredLoggingTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RegisteredLoggingTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-RegisteredLoggingTest/Pods-RegisteredLoggingTest.release.xcconfig"; sourceTree = "<group>"; };
-		510FDDC1E603974721634C29 /* Pods-RegisteredLoggingTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RegisteredLoggingTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RegisteredLoggingTest/Pods-RegisteredLoggingTest.debug.xcconfig"; sourceTree = "<group>"; };
-		CB331C4BC5323F845B014D38 /* Pods_RegisteredLoggingTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RegisteredLoggingTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A7D8FC1217A10F000B496D7 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43AF806D2174EF6200C0D9DC /* Module-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Module-Release.xcconfig"; sourceTree = "<group>"; };
+		43AF806E2174EF6200C0D9DC /* Module-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Module-Debug.xcconfig"; sourceTree = "<group>"; };
+		43AF806F2174EF6200C0D9DC /* Module-Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Module-Shared.xcconfig"; sourceTree = "<group>"; };
 		DC7DC52B1415523E00601B40 /* RegisteredLoggingTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RegisteredLoggingTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7DC52F1415523E00601B40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DC7DC5311415523E00601B40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -52,33 +53,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7D8FC2217A10F000B496D7 /* CocoaLumberjack.framework in Frameworks */,
 				DC7DC5301415523E00601B40 /* UIKit.framework in Frameworks */,
 				DC7DC5321415523E00601B40 /* Foundation.framework in Frameworks */,
 				DC7DC5341415523E00601B40 /* CoreGraphics.framework in Frameworks */,
-				4A13BEB29F06AA36B608BD68 /* Pods_RegisteredLoggingTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6D7B528557A33DCAF5C93B95 /* Pods */ = {
+		43AF806C2174EF6200C0D9DC /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				510FDDC1E603974721634C29 /* Pods-RegisteredLoggingTest.debug.xcconfig */,
-				3441577751E32EA192860BE9 /* Pods-RegisteredLoggingTest.release.xcconfig */,
+				43AF806D2174EF6200C0D9DC /* Module-Release.xcconfig */,
+				43AF806E2174EF6200C0D9DC /* Module-Debug.xcconfig */,
+				43AF806F2174EF6200C0D9DC /* Module-Shared.xcconfig */,
 			);
-			name = Pods;
+			name = Configs;
+			path = ../../../Configs;
 			sourceTree = "<group>";
 		};
 		DC7DC5201415523E00601B40 = {
 			isa = PBXGroup;
 			children = (
+				43AF806C2174EF6200C0D9DC /* Configs */,
 				DCD6EAC916FFC34C00710668 /* Default-568h@2x.png */,
 				DC7DC5351415523E00601B40 /* RegisteredLoggingTest */,
 				DC7DC52E1415523E00601B40 /* Frameworks */,
 				DC7DC52C1415523E00601B40 /* Products */,
-				6D7B528557A33DCAF5C93B95 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,10 +96,10 @@
 		DC7DC52E1415523E00601B40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A7D8FC1217A10F000B496D7 /* CocoaLumberjack.framework */,
 				DC7DC52F1415523E00601B40 /* UIKit.framework */,
 				DC7DC5311415523E00601B40 /* Foundation.framework */,
 				DC7DC5331415523E00601B40 /* CoreGraphics.framework */,
-				CB331C4BC5323F845B014D38 /* Pods_RegisteredLoggingTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,12 +140,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC7DC54C1415523F00601B40 /* Build configuration list for PBXNativeTarget "RegisteredLoggingTest" */;
 			buildPhases = (
-				FA12C30316144F6E95AE179B /* [CP] Check Pods Manifest.lock */,
 				DC7DC5271415523E00601B40 /* Sources */,
 				DC7DC5281415523E00601B40 /* Frameworks */,
 				DC7DC5291415523E00601B40 /* Resources */,
-				7063814F578A4C06A5BD9EBE /* [CP] Copy Pods Resources */,
-				FA988705AA33BC3014454B1C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -192,60 +192,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		7063814F578A4C06A5BD9EBE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RegisteredLoggingTest/Pods-RegisteredLoggingTest-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FA12C30316144F6E95AE179B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RegisteredLoggingTest-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FA988705AA33BC3014454B1C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RegisteredLoggingTest/Pods-RegisteredLoggingTest-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RegisteredLoggingTest/Pods-RegisteredLoggingTest-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		DC7DC5271415523E00601B40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -291,73 +237,40 @@
 /* Begin XCBuildConfiguration section */
 		DC7DC54A1415523F00601B40 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43AF806E2174EF6200C0D9DC /* Module-Debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
 		DC7DC54B1415523F00601B40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43AF806D2174EF6200C0D9DC /* Module-Release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		DC7DC54D1415523F00601B40 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 510FDDC1E603974721634C29 /* Pods-RegisteredLoggingTest.debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RegisteredLoggingTest/RegisteredLoggingTest-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "RegisteredLoggingTest/RegisteredLoggingTest-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.deusty.oss.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		DC7DC54E1415523F00601B40 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3441577751E32EA192860BE9 /* Pods-RegisteredLoggingTest.release.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RegisteredLoggingTest/RegisteredLoggingTest-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "RegisteredLoggingTest/RegisteredLoggingTest-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.deusty.oss.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

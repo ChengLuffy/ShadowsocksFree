@@ -43,7 +43,7 @@ class QRViewController: UIViewController {
         super.viewDidLoad()
 
         CollectionView.register(UINib.init(nibName: "QRCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        CollectionView.register(UINib.init(nibName: "QRCollectionReusableHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
+        CollectionView.register(UINib.init(nibName: "QRCollectionReusableHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
         let layout = CollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.sectionHeadersPinToVisibleBounds = true
         // Do any additional setup after loading the view.
@@ -120,7 +120,7 @@ extension QRViewController: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! QRCollectionReusableHeaderView
+        let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! QRCollectionReusableHeaderView
         view.textLabel.text = realm.objects(Model.self).filter("isNet = true")[(indexPath as NSIndexPath).section].name
         return view
         

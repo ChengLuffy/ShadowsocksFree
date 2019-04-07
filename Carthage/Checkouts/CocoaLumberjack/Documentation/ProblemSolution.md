@@ -8,8 +8,13 @@ iOS Extensions are sandboxed environments hosted within the sending application.
 
 By default, for maximum performance, CocoaLumberjack logs messages asynchronously. This can cause problems in Extensions with reliable logging of the final messages before an exception is handled. To work around this, enable this compile-time setting either at the top of your Extension's entry code file or as a Preprocessor Macro:
 
-```objective-c
+```objc
 #define LOG_ASYNC_ENABLED NO
+```
+
+In Swift there's a global variable you an set to achieve the same:
+```swift
+asyncLoggingEnabled = false
 ```
 
 This will disable asynchronous logging just for the extension, improving its reliability there.
@@ -22,7 +27,7 @@ Your application fails to launch, and you see a crash message that looks somethi
 This seems to be an issue with LLVM, and blocks in general. It seems to affect those using Xcode 3, and targeting either Mac OS X 10.5 or iOS 3.X, and perhaps using the LLVM compiler.
 
 A solution was posted to [StackOverflow](http://stackoverflow.com/questions/3313786/ios-4-app-crashes-at-startup-on-ios-3-1-3-symbol-not-found-nsconcretestackblo), and states that you should specify the linker flag
-```objective-c
+```objc
 -weak_library /usr/lib/libSystem.B.dylib
 ```
 

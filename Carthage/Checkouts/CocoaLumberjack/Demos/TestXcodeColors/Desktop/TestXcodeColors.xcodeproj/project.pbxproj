@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A671E93AD9D574A90C154802 /* Pods_TestXcodeColors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F260B7BC9873B0B0A6E33BC0 /* Pods_TestXcodeColors.framework */; };
+		0A7D8FC4217A10F300B496D7 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A7D8FC3217A10F300B496D7 /* CocoaLumberjack.framework */; };
 		DCAACA831565CEBD001A5857 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAACA821565CEBD001A5857 /* Cocoa.framework */; };
 		DCAACA8D1565CEBD001A5857 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCAACA8B1565CEBD001A5857 /* InfoPlist.strings */; };
 		DCAACA8F1565CEBD001A5857 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAACA8E1565CEBD001A5857 /* main.m */; };
@@ -17,7 +17,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E67F36E8E943AD82F600FAD /* Pods-TestXcodeColors.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestXcodeColors.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestXcodeColors/Pods-TestXcodeColors.debug.xcconfig"; sourceTree = "<group>"; };
+		0A7D8FC3217A10F300B496D7 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43AF80712174EFBB00C0D9DC /* Module-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Module-Release.xcconfig"; sourceTree = "<group>"; };
+		43AF80722174EFBB00C0D9DC /* Module-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Module-Debug.xcconfig"; sourceTree = "<group>"; };
+		43AF80732174EFBB00C0D9DC /* Module-Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Module-Shared.xcconfig"; sourceTree = "<group>"; };
 		DCAACA7E1565CEBD001A5857 /* TestXcodeColors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestXcodeColors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAACA821565CEBD001A5857 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DCAACA851565CEBD001A5857 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -31,8 +34,6 @@
 		DCAACA941565CEBD001A5857 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DCAACA951565CEBD001A5857 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DCAACA981565CEBD001A5857 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		F260B7BC9873B0B0A6E33BC0 /* Pods_TestXcodeColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestXcodeColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4C4E1B9A797EEAFB26839FC /* Pods-TestXcodeColors.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestXcodeColors.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestXcodeColors/Pods-TestXcodeColors.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,30 +41,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7D8FC4217A10F300B496D7 /* CocoaLumberjack.framework in Frameworks */,
 				DCAACA831565CEBD001A5857 /* Cocoa.framework in Frameworks */,
-				A671E93AD9D574A90C154802 /* Pods_TestXcodeColors.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A7444058C5801629B7C3DF6B /* Pods */ = {
+		43AF80702174EFBB00C0D9DC /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				0E67F36E8E943AD82F600FAD /* Pods-TestXcodeColors.debug.xcconfig */,
-				F4C4E1B9A797EEAFB26839FC /* Pods-TestXcodeColors.release.xcconfig */,
+				43AF80712174EFBB00C0D9DC /* Module-Release.xcconfig */,
+				43AF80722174EFBB00C0D9DC /* Module-Debug.xcconfig */,
+				43AF80732174EFBB00C0D9DC /* Module-Shared.xcconfig */,
 			);
-			name = Pods;
+			name = Configs;
+			path = ../../../Configs;
 			sourceTree = "<group>";
 		};
 		DCAACA731565CEBD001A5857 = {
 			isa = PBXGroup;
 			children = (
+				43AF80702174EFBB00C0D9DC /* Configs */,
 				DCAACA881565CEBD001A5857 /* TestXcodeColors */,
 				DCAACA811565CEBD001A5857 /* Frameworks */,
 				DCAACA7F1565CEBD001A5857 /* Products */,
-				A7444058C5801629B7C3DF6B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,9 +81,9 @@
 		DCAACA811565CEBD001A5857 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A7D8FC3217A10F300B496D7 /* CocoaLumberjack.framework */,
 				DCAACA821565CEBD001A5857 /* Cocoa.framework */,
 				DCAACA841565CEBD001A5857 /* Other Frameworks */,
-				F260B7BC9873B0B0A6E33BC0 /* Pods_TestXcodeColors.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,12 +128,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCAACA9C1565CEBD001A5857 /* Build configuration list for PBXNativeTarget "TestXcodeColors" */;
 			buildPhases = (
-				EB464937B0CE488A84F2AADD /* [CP] Check Pods Manifest.lock */,
 				DCAACA7A1565CEBD001A5857 /* Sources */,
 				DCAACA7B1565CEBD001A5857 /* Frameworks */,
 				DCAACA7C1565CEBD001A5857 /* Resources */,
-				8B1455570C474FE39D9FBE8E /* [CP] Copy Pods Resources */,
-				32972ACF228A19E2FE2DA834 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -179,60 +179,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		32972ACF228A19E2FE2DA834 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TestXcodeColors/Pods-TestXcodeColors-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TestXcodeColors/Pods-TestXcodeColors-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8B1455570C474FE39D9FBE8E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TestXcodeColors/Pods-TestXcodeColors-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EB464937B0CE488A84F2AADD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TestXcodeColors-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		DCAACA7A1565CEBD001A5857 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -275,112 +221,40 @@
 /* Begin XCBuildConfiguration section */
 		DCAACA9A1565CEBD001A5857 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43AF80722174EFBB00C0D9DC /* Module-Debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		DCAACA9B1565CEBD001A5857 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43AF80712174EFBB00C0D9DC /* Module-Release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		DCAACA9D1565CEBD001A5857 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E67F36E8E943AD82F600FAD /* Pods-TestXcodeColors.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TestXcodeColors/TestXcodeColors-Prefix.pch";
 				INFOPLIST_FILE = "TestXcodeColors/TestXcodeColors-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.deusty.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				TARGETED_DEVICE_FAMILY = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		DCAACA9E1565CEBD001A5857 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4C4E1B9A797EEAFB26839FC /* Pods-TestXcodeColors.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TestXcodeColors/TestXcodeColors-Prefix.pch";
 				INFOPLIST_FILE = "TestXcodeColors/TestXcodeColors-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.deusty.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				TARGETED_DEVICE_FAMILY = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

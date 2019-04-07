@@ -67,7 +67,7 @@ public class Resolver {
         let action = DispatchWorkItem {
             self.id = dict.insert(value: self)
             
-            self.timer.scheduleOneshot(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(self.timeout))
+            self.timer.schedule(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(self.timeout))
             self.timer.setEventHandler(handler: self.timeoutHandler)
             
             result = self.hostname.withCString { (ptr: UnsafePointer<Int8>) in

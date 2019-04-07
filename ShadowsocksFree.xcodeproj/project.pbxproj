@@ -44,7 +44,6 @@
 		1DC4B01E2085A396003C70A1 /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
 		1DC4B0212085C386003C70A1 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DC4B01F2085C386003C70A1 /* CollectionViewCell.xib */; };
 		1DC4B0222085C386003C70A1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC4B0202085C386003C70A1 /* CollectionViewCell.swift */; };
-		22654A2B841201780F7F05DD /* Pods_SSFTodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FF1789151299B223B13359 /* Pods_SSFTodayWidget.framework */; };
 		2A33CE9C1D1C0642000F652A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9B1D1C0642000F652A /* Model.swift */; };
 		2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA01D1C067B000F652A /* QRViewController.swift */; };
 		2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
@@ -54,7 +53,6 @@
 		2AD282871CD8520800C4655E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282851CD8520800C4655E /* LaunchScreen.storyboard */; };
 		6977BBAF827117401CEEDA30 /* Pods_SSFTodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45DAB4B4C36F9D90CC95E64 /* Pods_SSFTodayWidget.framework */; };
 		9D6B82CDAC9CD66BD5DD9513 /* Pods-SSFTodayWidget-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED92785DF061CE45B1510C24 /* Pods-SSFTodayWidget-metadata.plist */; };
-		D6443DE683703B5C25D26AC8 /* Pods_ShadowsocksFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EE6217980EFE6DDB0BFB41 /* Pods_ShadowsocksFree.framework */; };
 		E989C101DA0FEE619AC011D7 /* Pods-ShadowsocksFree-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7C0EDB3D1CD2109DBF025 /* Pods-ShadowsocksFree-metadata.plist */; };
 /* End PBXBuildFile section */
 
@@ -161,7 +159,6 @@
 			files = (
 				1D2A516C20859E4A006E4014 /* NotificationCenter.framework in Frameworks */,
 				6977BBAF827117401CEEDA30 /* Pods_SSFTodayWidget.framework in Frameworks */,
-				22654A2B841201780F7F05DD /* Pods_SSFTodayWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +186,6 @@
 			files = (
 				105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */,
 				1D2C19E9208D83A70077ECD7 /* NetworkExtension.framework in Frameworks */,
-				D6443DE683703B5C25D26AC8 /* Pods_ShadowsocksFree.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,12 +423,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "成璐飞";
 				TargetAttributes = {
 					1D2A516A20859E4A006E4014 = {
 						CreatedOnToolsVersion = 9.3;
 						DevelopmentTeam = C5WAW7Z979;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -443,6 +440,7 @@
 					1D2C1A14208D89600077ECD7 = {
 						CreatedOnToolsVersion = 9.3;
 						DevelopmentTeam = C5WAW7Z979;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.NetworkExtensions.iOS = {
@@ -456,7 +454,7 @@
 					2AD282781CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = C5WAW7Z979;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -479,7 +477,7 @@
 			};
 			buildConfigurationList = 2AD282741CD8520800C4655E /* Build configuration list for PBXProject "ShadowsocksFree" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -575,7 +573,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksFree/Pods-ShadowsocksFree-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ShadowsocksFree/Pods-ShadowsocksFree-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuzi/Fuzi.framework",
 				"${BUILT_PRODUCTS_DIR}/IBAnimatable/IBAnimatable.framework",
@@ -596,7 +594,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksFree/Pods-ShadowsocksFree-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShadowsocksFree/Pods-ShadowsocksFree-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		69B8B32CF2073B98B82AD6B6 /* [CP] Check Pods Manifest.lock */ = {
@@ -746,7 +744,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -773,7 +771,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -803,7 +801,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -832,7 +830,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.chengluffy.shadowsocksfree.PacketTunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -974,7 +972,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/Tool/ShadowsocksFree-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "";
 			};
@@ -1006,7 +1004,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/Tool/ShadowsocksFree-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "";
 			};

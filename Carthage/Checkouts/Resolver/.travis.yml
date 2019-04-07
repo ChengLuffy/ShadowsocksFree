@@ -1,14 +1,14 @@
 language: objective-c
-osx_image: xcode8.1
-cache: 
-directories:
-- Carthage
+osx_image: xcode10.2
+cache:
+  directories:
+  - Carthage
 install:
 - bin/bootstrap-if-needed
-- gem install scan
+- bundle install
 script:
-- scan --scheme Resolver-macOS
-- scan --scheme Resolver-iOS
+- bundle exec fastlane scan --scheme Resolver-macOS
+- bundle exec fastlane scan --scheme Resolver-iOS
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 before_deploy:
@@ -18,7 +18,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: C5qDpqAPLHc3W5MWaqkSG/LKk9r0cJ9Etn15dnBwwQoByGiMu2HcJB+GJry6143qU8xEddoahuYf7KUzl/NsR9E2nKv4ZDBWSQh6yvJVzf0q2PTikEn8OHqqvcUa9V9p+xnqnIa5A3HB7xcD7ACSnNO2zC2uNP+7+HBVJbZymLdBBpelwJFKidTXHC+4PlW3vxpJ6jbjXXqNbTF9bJnuKW/+Hj7MSGJs6QbxerDlsVtN5aGNu7CHziPe8RKG500vcpNqnwJYCJBn+FESjJIwr+J9zj+ANjZTgJ7oRekDg/Ghgu+T9NU8PTxzPuYJahprQDOJaXWEOv2A9fCN+2p1zW1ZifD3C0pQsqvCtgnbrNcfMXYLhLNih2pMRsYxIgnJD4MiheLJTRhh2ZmE4rMwGvzntsj7q3+UzjN2HRLpv7j1+QlgsXUp720P5C5gyq6k3fG4O2ReFzV6Wa67/MbKCcZdSLHvXuOqKzgDOfPLAbzMEVBFGdO7FkH943tnKP7uGt1aSD93tKpbQA0bLlUGYeCgw/LfVOC4VL0ecx+NCUmtxVh8VbCW+UGtSAssja6FkqbsECCHa7lqiKGjFk3J/GKjxdbQx13wlVHgg0lPe+SAwJqB1JeZtqrWn6+YIA7InXbnG1bAquQ85BdGBUynD1H+jCBCIZ8tGo4lrLu0piE=
+    secure: S9WVTJe6puQQnHIwUkee4DEi9QxRmnI8mBp0vXYamy48snvxM3YRRYndz3UtlZRqxXHmtaec+VmJ9CMQKSN5fcubpsAq2dbpRTy2ggE9841m+fAJ6VA1SmbP7x3TDVisnrzw8Im80MuSa9zGPZ7fgBJby3QSQhk4Uq/SK2tcUE2JeGoLfGYa/n1Q/JKr560vatfN7gdlM2t3PFDpuS7bEqoSaqbAxWtBC7vWTE25QMJ+5c1V6f84Tsnc5yQFZn/6TEgTbpq716UvgImeoL6v/5wZuDqtJY7NCD8Xs58wknDUE6/O8yVexPp3djp/EUB+b6TLoDfx9QOEwX5Tak7U8htZ4a0PCZyiDsk/ar76KywPmFFvWsG/1MOPAFJJ7Qn1XXQK2RgtmEzCY/K1EE1Yzo8MPFe9AEZ2m2BSeHa0SMMFqiUE8OCPPKoCZdPK87kdacgiL2kvU9XBnme5jdvpL8FOl1H3v5iSqhAFXqcpwPopPXHRz6XG6jd6Iko3eI01jwn42fKN3KdaCBThyhYxnX6RmsjdIBCbTbm+FhgHF4oZwDlqzUQIzVhWARz4tjfBczY7QyDyOOqBMnmQlXt0BsYRybr5ru3Su0hpgLqlA/cOJbFxUHBT3rD2kqZqPV6XyYWRf+iuxyAgyc2QBe8beCLGCZl24eBSeJ7RC5Lnums=
   file: Resolver.framework.zip
   on:
     repo: zhuhaow/Resolver

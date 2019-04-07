@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         SVProgressHUD.setDefaultStyle(.dark)
         SVProgressHUD.setDefaultMaskType(.gradient)
@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Realm.Configuration.defaultConfiguration.fileURL = realmURL
         
-        if launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] != nil {
-             let shortcutItem = launchOptions![UIApplicationLaunchOptionsKey.shortcutItem] as! UIApplicationShortcutItem
+        if launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] != nil {
+             let shortcutItem = launchOptions![UIApplication.LaunchOptionsKey.shortcutItem] as! UIApplicationShortcutItem
             pushVCWith(shortcutItem.type)
         }
         
@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         print(url.query ?? "nil")
         
         let model = realm.objects(Model.self)[Int(url.absoluteString.components(separatedBy: "=").last!)!]

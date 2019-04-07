@@ -219,7 +219,7 @@ public final class TSTCPSocket {
         assert(tcp_close(pcb)==err_t(ERR_OK))
         
         release()
-        // the lwip will handle the rest things for us
+        // the lwip will handle the following things for us
         delegate?.socketDidClose(self)
     }
     
@@ -244,8 +244,8 @@ public final class TSTCPSocket {
     
     func release() {
         pcb = nil
-        identityArg.deinitialize()
-        identityArg.deallocate(capacity: 1)
+        identityArg.deinitialize(count: 1)
+        identityArg.deallocate()
         SocketDict.socketDict.removeValue(forKey: identity)
     }
     
