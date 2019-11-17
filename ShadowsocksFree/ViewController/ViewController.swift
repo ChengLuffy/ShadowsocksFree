@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     lazy var connectedStatusBtn: UIButton = {
         let button = UIButton(type: .custom)
         button.layer.cornerRadius = 10
-        button.backgroundColor = #colorLiteral(red: 0.2862745098, green: 0.5647058824, blue: 0.9882352941, alpha: 1)
+        button.backgroundColor = UIColor.systemBlue
         button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width*0.75, height: 50)
         button.addTarget(self, action: #selector(ViewController.connectedStatusBtnAction), for: .touchUpInside)
         return button
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         tableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(ViewController.getData))
         title = "1/4DSSA"
         
-         NotificationCenter.default.addObserver(forName: NSNotification.Name.init("NEUpdate"), object: nil, queue: OperationQueue.main, using: { [unowned self] (notification) -> Void in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.init("NEUpdate"), object: nil, queue: OperationQueue.main, using: { [unowned self] (notification) -> Void in
             if VPNManager.shared.vpnStatus == .on {
                 self.updateViewLayout(vpnStatus: true)
             } else {
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
             }
             SVProgressHUD.dismiss()
             self.tableView.reloadData()
-         })
+        })
         
     }
     
@@ -158,13 +158,13 @@ class ViewController: UIViewController {
     
     @IBAction func watchBtnDidClicked(_ sender: AnyObject) {
         let QRVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "watch")
-        QRVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .top))
+//        QRVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .top))
         self.present(QRVC, animated: true, completion: nil)
     }
     
    @IBAction func settingAction(_ sender: Any) {
        let settingVC = SettingViewController()
-       settingVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .cards(direction: .backward), transitionDuration: 1, interactiveGestureType: .pan(from: .top))
+//    settingVC.transitioningDelegate = TransitionPresenterManager.shared.retrievePresenter(transitionAnimationType: .fade(direction: .bottom), transitionDuration: 1, interactiveGestureType: .pan(from: .top))
        self.present(settingVC, animated: true, completion: nil)
     }
     

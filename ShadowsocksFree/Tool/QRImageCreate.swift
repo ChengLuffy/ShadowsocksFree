@@ -24,6 +24,11 @@ extension UIImage {
         
         let context = CIContext.init(options: nil)
         let imageRef = context.createCGImage(transformImage!, from: (transformImage?.extent)!)
+        if #available(iOS 13.0, *) {
+            UIColor.systemBackground.setFill()
+        } else {
+            // Fallback on earlier versions
+        }
         
         return UIImage.init(cgImage: imageRef!)
     }

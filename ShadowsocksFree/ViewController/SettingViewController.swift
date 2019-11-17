@@ -37,7 +37,12 @@ class SettingViewController: UIViewController {
     private lazy var tapCopyInfoLabel: UILabel = {
         let label = UILabel(frame: CGRect.zero)
         label.text = "首页点击 cell 是否复制相关信息"
-        label.textColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            label.textColor = UIColor.label
+        } else {
+            // Fallback on earlier versions
+            label.textColor = UIColor.black
+        }
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -54,7 +59,12 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemGroupedBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
 //        view.addSubview(imageView)
         view.addSubview(closeBtn)
         view.addSubview(customBtn)

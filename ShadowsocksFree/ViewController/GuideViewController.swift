@@ -13,7 +13,7 @@ class GuideViewController: UIViewController {
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = #imageLiteral(resourceName: "Guide1")
+        imageView.image = #imageLiteral(resourceName: "connect")
         return imageView
     }()
     
@@ -23,7 +23,12 @@ class GuideViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        (UIApplication.shared.delegate as! AppDelegate).window?.backgroundColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            (UIApplication.shared.delegate as! AppDelegate).window?.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+             (UIApplication.shared.delegate as! AppDelegate).window?.backgroundColor = UIColor.white
+        }
 //        view.addSubview(imageView)
         
     }
@@ -48,7 +53,12 @@ class GuideViewController: UIViewController {
             let window = (UIApplication.shared.delegate as! AppDelegate).window
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let nav = storyboard.instantiateViewController(withIdentifier: "nav") as! UINavigationController
-            window?.backgroundColor = UIColor.init(hexString: "#90C1F9")
+            if #available(iOS 13.0, *) {
+                window?.backgroundColor = UIColor.systemBackground
+            } else {
+                // Fallback on earlier versions
+                window?.backgroundColor = UIColor.init(hexString: "#90C1F9")
+            }
             window?.rootViewController = nav
         }
         alertC.addAction(cancelAction)
@@ -103,7 +113,12 @@ class GuideViewController: UIViewController {
             let window = (UIApplication.shared.delegate as! AppDelegate).window
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let nav = storyboard.instantiateViewController(withIdentifier: "nav") as! UINavigationController
+        if #available(iOS 13.0, *) {
+            window?.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
             window?.backgroundColor = UIColor.init(hexString: "#90C1F9")
+        }
             window?.rootViewController = nav
 //        } else {
 //            imageView.image = UIImage.init(named: "Guide\(page)")

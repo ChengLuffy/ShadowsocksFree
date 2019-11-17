@@ -1,13 +1,13 @@
 PODS:
-  - Alamofire (4.8.2)
-  - Fuzi (3.0.0)
-  - IBAnimatable (5.2.1)
-  - MJRefresh (3.1.16)
-  - Realm (3.14.1):
-    - Realm/Headers (= 3.14.1)
-  - Realm/Headers (3.14.1)
-  - RealmSwift (3.14.1):
-    - Realm (= 3.14.1)
+  - Alamofire (4.9.0)
+  - Fuzi (3.1.1)
+  - IBAnimatable (6.0.0)
+  - MJRefresh (3.2.0)
+  - Realm (3.19.0):
+    - Realm/Headers (= 3.19.0)
+  - Realm/Headers (3.19.0)
+  - RealmSwift (3.19.0):
+    - Realm (= 3.19.0)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
@@ -29,14 +29,14 @@ SPEC REPOS:
     - SVProgressHUD
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Fuzi: a758e57fab9fbec6fd218ea7f2e00aa79325a93a
-  IBAnimatable: a46b835ec6875178516cf7e014a40194d6bfa3fc
-  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
-  Realm: e12c9c2387d05c5bba3a9c394838f5870e85763b
-  RealmSwift: a82eab9b04c3e1616082c7e17aa300740847769c
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  Fuzi: bcc5694488dd6e672e126cbf3c5471d7a79506d1
+  IBAnimatable: d49f9fee0c401b5b08d31b77256b77fb067e0e92
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  Realm: 995d585bcf699aaff226715886c849a29dd3d07f
+  RealmSwift: 35f284a537989f2187b413e5917091948cb87a3f
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 8c0aadacd7c50860f07abc4a0cbabdacc4347869
+PODFILE CHECKSUM: acbe3c68edb2c2ab6c2cb0d51ed6c917468028bb
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.5

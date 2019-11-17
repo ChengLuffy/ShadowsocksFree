@@ -5,9 +5,9 @@ plugin 'cocoapods-acknowledgements'
 target 'ShadowsocksFree' do
     pod 'Alamofire'
     pod 'IBAnimatable'
-    pod 'MJRefresh'
     pod 'Fuzi'
     pod 'RealmSwift'
+    pod 'MJRefresh'
     pod 'SVProgressHUD'
 end
 target 'SSFTodayWidget' do

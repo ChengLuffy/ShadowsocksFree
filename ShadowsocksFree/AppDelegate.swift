@@ -23,7 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSTimeZone.default = NSTimeZone(name: "Asia/Shanghai")! as TimeZone
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.backgroundColor = UIColor.init(hexString: "#90C1F9")
+        if #available(iOS 13.0, *) {
+            window?.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            window?.backgroundColor = UIColor.white
+        }
         
         let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.tech.chengluffy.shadowsocksfree")
         let realmURL = container!.appendingPathComponent("defualt.realm")

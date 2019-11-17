@@ -3,12 +3,12 @@
   "iOS" : [
     {
       "name" : "tun2socks",
-      "hash" : "4458b08ab91a50d571380e755709303b8eb671d6990b3677512e941645b66eb5",
-      "swiftToolchainVersion" : "5.0 (swiftlang-1001.0.69.5 clang-1001.0.46.3)"
+      "hash" : "fb0ef2d4e654de104742ca07f4e9035f660a29af7b7d265291a60267d5354beb",
+      "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     },
     {
       "name" : "lwip",
-      "hash" : "12ad1d361408b78f25ab6244a9dae7d9559a05dde70688ef3e402161ed8b284a"
+      "hash" : "5362241937024008faf28da9836aa5def8068232faf5326b4c01f8430ad7fc03"
     }
   ]
 }

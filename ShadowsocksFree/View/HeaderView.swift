@@ -25,9 +25,9 @@ class HeaderView: UIView {
     var isConnected: Bool = false {
         didSet {
             if isConnected {
-                label.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+                label.textColor = UIColor.systemRed
             } else {
-                label.textColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
+                label.textColor = UIColor.systemTeal
             }
         }
     }
@@ -47,7 +47,12 @@ class HeaderView: UIView {
         self.block = shareAction
         
         isUserInteractionEnabled = true
-        backgroundColor = UIColor.init(hexString: "#F7F7F7")
+        if #available(iOS 13.0, *) {
+            backgroundColor = UIColor.systemGroupedBackground
+        } else {
+            // Fallback on earlier versions
+            backgroundColor = UIColor.groupTableViewBackground
+        }
         
         btn.setImage(#imageLiteral(resourceName: "connect").withRenderingMode(.alwaysOriginal), for: .normal)
         btn.addTarget(self, action: #selector(HeaderView.shareAction), for: .touchUpInside)

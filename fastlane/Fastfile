@@ -1,0 +1,45 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  ipa_dir  = "fastlane_build/"
+  ipa_name = "shadowsocksfree" + Time.new.strftime('%Y-%m-%d_%H:%M')
+
+  lane :beta do |options|
+  # testflight
+    increment_build_number(xcodeproj: "./ShadowsocksFree.xcodeproj")
+    build_app(
+      # 打包前clean项目
+      clean: true, 
+      # 构建时，隐藏不必要的信息  
+      silent: true, 
+      # bitcode
+      include_bitcode: true, 
+      # ipa的存放目录
+      output_directory: ipa_dir,          
+      # 输出ipa的文件名为当前的build号
+      output_name: ipa_name,
+      workspace: "ShadowsocksFree.xcworkspace",
+      scheme: "ShadowsocksFree"
+    )
+    upload_to_testflight(
+      username: "chengluffy@hotmail.com",
+      app_identifier: "tech.chengluffy.shadowsocksfree",
+      changelog: options[:info]
+    )
+  end
+end

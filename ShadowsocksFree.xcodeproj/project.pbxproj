@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD2E2C0E986A5A63E924725 /* Pods_ShadowsocksFree.framework */; };
+		136E51C1FF6AA0C95DC87EEA /* Pods_ShadowsocksFree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EE6217980EFE6DDB0BFB41 /* Pods_ShadowsocksFree.framework */; };
 		1D10D67E1FD7ECD00013C6EA /* AlertMSG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D67D1FD7ECD00013C6EA /* AlertMSG.swift */; };
 		1D2A51532085923F006E4014 /* NetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2A51522085923F006E4014 /* NetData.swift */; };
 		1D2A516C20859E4A006E4014 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2A51402085909D006E4014 /* NotificationCenter.framework */; };
@@ -47,6 +48,7 @@
 		2A33CE9C1D1C0642000F652A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CE9B1D1C0642000F652A /* Model.swift */; };
 		2A33CEA41D1C067B000F652A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEA01D1C067B000F652A /* QRViewController.swift */; };
 		2A33CEB71D1C0711000F652A /* QRImageCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33CEB61D1C0711000F652A /* QRImageCreate.swift */; };
+		2AC7803571CBBEB9E0D0C584 /* Pods_SSFTodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FF1789151299B223B13359 /* Pods_SSFTodayWidget.framework */; };
 		2AD2827D1CD8520800C4655E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD2827C1CD8520800C4655E /* AppDelegate.swift */; };
 		2AD282821CD8520800C4655E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282801CD8520800C4655E /* Main.storyboard */; };
 		2AD282841CD8520800C4655E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AD282831CD8520800C4655E /* Assets.xcassets */; };
@@ -159,6 +161,7 @@
 			files = (
 				1D2A516C20859E4A006E4014 /* NotificationCenter.framework in Frameworks */,
 				6977BBAF827117401CEEDA30 /* Pods_SSFTodayWidget.framework in Frameworks */,
+				2AC7803571CBBEB9E0D0C584 /* Pods_SSFTodayWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +189,7 @@
 			files = (
 				105E10C3E7420E7532F6CE9D /* Pods_ShadowsocksFree.framework in Frameworks */,
 				1D2C19E9208D83A70077ECD7 /* NetworkExtension.framework in Frameworks */,
+				136E51C1FF6AA0C95DC87EEA /* Pods_ShadowsocksFree.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +556,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		1D2C1A36208D8A7B0077ECD7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -734,6 +738,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 201910061102;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = SSFTodayWidget/Info.plist;
@@ -762,6 +767,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 201910061102;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = SSFTodayWidget/Info.plist;
@@ -788,6 +794,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 201910061102;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -803,6 +810,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -818,6 +826,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 201910061102;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -832,6 +841,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -955,6 +965,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShadowsocksFree/ShadowsocksFree.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 201910061102;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -974,7 +985,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VERSIONING_SYSTEM = "";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -988,6 +999,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShadowsocksFree/ShadowsocksFree.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 201910061102;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1006,7 +1018,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksFree/Tool/ShadowsocksFree-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VERSIONING_SYSTEM = "";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
