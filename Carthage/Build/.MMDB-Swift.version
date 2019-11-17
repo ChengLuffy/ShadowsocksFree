@@ -3,7 +3,7 @@
   "iOS" : [
     {
       "name" : "MMDB",
-      "hash" : "0a9a28ea55f0d6c1fdbf59d6ea007b19b42c6e5d2a22f52639a1c8a1a5803591",
+      "hash" : "bc0d8e89c73293de006dad1eada0514d7e41a474436c7d6ad52dbe22f8cf7a3c",
       "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     }
   ]

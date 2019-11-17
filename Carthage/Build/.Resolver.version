@@ -3,7 +3,7 @@
   "iOS" : [
     {
       "name" : "Resolver",
-      "hash" : "212bcc190ce043b6ddbb9d6dd5decf7710369d228550dfb32133e091d9ef3bf3",
+      "hash" : "dd4d84f070d30ddc74306fa8d4324c93a04c384dca46444a921f10461fafb694",
       "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     }
   ]

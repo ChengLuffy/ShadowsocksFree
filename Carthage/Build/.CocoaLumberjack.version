@@ -3,21 +3,21 @@
   "iOS" : [
     {
       "name" : "CocoaLumberjackSwift",
-      "hash" : "48484f389fd2c97ea77f488878e153f3af05dd829a34706a75a712b141a3c518",
+      "hash" : "2a96f7273c0d0f3003060dc9aca4b0a3fa9c0d9053a8e98eecb1fc54de7a0a7b",
       "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     },
     {
       "name" : "CocoaLumberjackSwift",
-      "hash" : "48484f389fd2c97ea77f488878e153f3af05dd829a34706a75a712b141a3c518",
+      "hash" : "2a96f7273c0d0f3003060dc9aca4b0a3fa9c0d9053a8e98eecb1fc54de7a0a7b",
       "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     },
     {
       "name" : "CocoaLumberjack",
-      "hash" : "0451333c18adba23775f3d83977364a825153adaf17e9f2551a9b731b21e97d9"
+      "hash" : "875e0c64c77f0ea8cf2fdc29d5e8aaf38188f5e07a4f1cc03a2dc547f89c75c0"
     },
     {
       "name" : "CocoaLumberjack",
-      "hash" : "0451333c18adba23775f3d83977364a825153adaf17e9f2551a9b731b21e97d9"
+      "hash" : "875e0c64c77f0ea8cf2fdc29d5e8aaf38188f5e07a4f1cc03a2dc547f89c75c0"
     }
   ]
 }

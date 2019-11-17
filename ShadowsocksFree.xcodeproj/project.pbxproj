@@ -738,7 +738,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 201910061102;
+				CURRENT_PROJECT_VERSION = 201910061104;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = SSFTodayWidget/Info.plist;
@@ -767,7 +767,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 201910061102;
+				CURRENT_PROJECT_VERSION = 201910061104;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = SSFTodayWidget/Info.plist;
@@ -794,7 +794,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 201910061102;
+				CURRENT_PROJECT_VERSION = 201910061104;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -826,7 +826,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 201910061102;
+				CURRENT_PROJECT_VERSION = 201910061104;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -965,7 +965,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShadowsocksFree/ShadowsocksFree.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 201910061102;
+				CURRENT_PROJECT_VERSION = 201910061104;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -999,7 +999,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShadowsocksFree/ShadowsocksFree.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 201910061102;
+				CURRENT_PROJECT_VERSION = 201910061104;
 				DEVELOPMENT_TEAM = C5WAW7Z979;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

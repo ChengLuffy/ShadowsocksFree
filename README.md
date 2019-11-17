@@ -27,3 +27,10 @@ Made by Love.
 你可以在 [SATA-LICENSE][907fa31f] 下自由使用本项目。
 
   [907fa31f]: ./LICENSE "LICENSE"
+
+解决打包上传时遇到的 `CFBundleShortVersionString` 问题
+---
+```
+defaults write "$PWD/Carthage/Build/iOS/NEKit.framework/Info.plist" CFBundleShortVersionString 0.2.0
+defaults write "$PWD/Carthage/Build/iOS/NEKit.framework.dSYM/Contents/Info.plist" CFBundleShortVersionString 0.2.0
+```
