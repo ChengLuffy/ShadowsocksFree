@@ -432,7 +432,7 @@
 				TargetAttributes = {
 					1D2A516A20859E4A006E4014 = {
 						CreatedOnToolsVersion = 9.3;
-						DevelopmentTeam = C5WAW7Z979;
+						DevelopmentTeam = N7XNKCS3XY;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -443,7 +443,7 @@
 					};
 					1D2C1A14208D89600077ECD7 = {
 						CreatedOnToolsVersion = 9.3;
-						DevelopmentTeam = C5WAW7Z979;
+						DevelopmentTeam = N7XNKCS3XY;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -457,7 +457,7 @@
 					};
 					2AD282781CD8520800C4655E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = C5WAW7Z979;
+						DevelopmentTeam = N7XNKCS3XY;
 						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -739,7 +739,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 201910061104;
-				DEVELOPMENT_TEAM = C5WAW7Z979;
+				DEVELOPMENT_TEAM = N7XNKCS3XY;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = SSFTodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
@@ -768,7 +768,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 201910061104;
-				DEVELOPMENT_TEAM = C5WAW7Z979;
+				DEVELOPMENT_TEAM = N7XNKCS3XY;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = SSFTodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
@@ -795,7 +795,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 201910061104;
-				DEVELOPMENT_TEAM = C5WAW7Z979;
+				DEVELOPMENT_TEAM = N7XNKCS3XY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -827,7 +827,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 201910061104;
-				DEVELOPMENT_TEAM = C5WAW7Z979;
+				DEVELOPMENT_TEAM = N7XNKCS3XY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -966,7 +966,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 201910061104;
-				DEVELOPMENT_TEAM = C5WAW7Z979;
+				DEVELOPMENT_TEAM = N7XNKCS3XY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/iphoneos",
@@ -1000,7 +1000,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 201910061104;
-				DEVELOPMENT_TEAM = C5WAW7Z979;
+				DEVELOPMENT_TEAM = N7XNKCS3XY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/iphoneos",

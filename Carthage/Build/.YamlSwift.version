@@ -3,8 +3,8 @@
   "iOS" : [
     {
       "name" : "Yaml",
-      "hash" : "88c7fb7abc3422902a442fe6ebca0eb4993516a6da37ffc5fcc29e442f94505d",
-      "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
+      "hash" : "cd158c5710f625e42c449c56496cf6d15e7aa34bcccaee103e7af1e145c88ff6",
+      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
     }
   ]
 }

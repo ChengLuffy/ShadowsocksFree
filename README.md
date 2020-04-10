@@ -7,6 +7,10 @@ TestFlight 申请 [点击申请](https://testflight.apple.com/join/I4GSKgX1)
 
 Made by Love.
 
+```
+carthage update --no-use-binaries --platform ios
+```
+
 # 2018-4-23
 现在，您可以使用 ShadowsocksFree 链接其中的 Shadowsocks 节点。
 
