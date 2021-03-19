@@ -3,8 +3,6 @@
 
 Data Source: [ishadowsocks](https://go.ishadowx.net)
 
-TestFlight 申请 [点击申请](https://testflight.apple.com/join/I4GSKgX1)
-
 Made by Love.
 
 ```
